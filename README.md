@@ -6,7 +6,7 @@ Whendor is a web app designed to increase the reach that street vendors have. Wh
 ## Project Vision Statement
 The Minimum Viable Product is an application where the user will be able to choose either the role of a customer (user) or vendor and a user will able to browse for vendors that fall under specific categories.
 - **Account Creation/Profile:** As a user, a person will be able to create a profile by providing their name, email, a username, and a password. On the user profile itself, they will be able to upload a profile picture and follow different vendors. Users can also view vendors' profiles and leave ratings (ratings not necessary). Besides providing the same information as users in the account creation process, vendors will also provide their business name, category of product, location, contact information, and work hours.
-- **Home Page*:** A vendor will be featured and a search bar will be provided.
+- **Home Page:** A vendor will be featured and a search bar will be provided.
 - **Navigation Bar:** Will allow users to navigate the application.
 - **Categories:** Allows users to refine their search for vendors by selecting specific categories and subcategories.Can be accessed by tapping on **Vendors** in the navigation bar. 
 - **About Us Page:** Short amount of information about the team.
