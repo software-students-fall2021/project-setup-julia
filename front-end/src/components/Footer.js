@@ -12,16 +12,14 @@ function Footer() {
             <ul>
               <li>
                 <a
-                  href="#About_Us"
-                  target="_blank"
+                  href="/About"
                 >
                   About Us
                 </a>
               </li>
               <li>
                 <a
-                  href="#Contact_Us"
-                  target="_blank"
+                  href="/Contact"
                 >
                   Contact Us
                 </a>

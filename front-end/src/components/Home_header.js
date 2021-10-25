@@ -25,7 +25,7 @@ function Home_header() {
         <div
           style={{
             backgroundImage:
-              "url(" + require("assets/img/whendor/featured_img.jpg").default + ")",
+              'url("https://picsum.photos/1200/1200")',
           }}
           className="page-header"
           data-parallax={true}
