@@ -14,6 +14,7 @@ import Home from 'views/Home.js';
 import Vendors from "views/Vendors.js";
 import About from "views/About.js";
 import Contact from "views/Contact.js";
+import VendorSideProfile from "views/VendorSideProfile.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -30,6 +31,10 @@ ReactDOM.render(
       <Route
         path="/Contact"
         render={(props) => <Contact {...props} />}
+      />
+      <Route
+        path="/VendorSideProfile"
+        render={(props) => <VendorSideProfile {...props} />}
       />
       <Redirect to="/Home" />
     </Switch>
