@@ -81,7 +81,7 @@ function Navigation() {
           <Nav navbar>
             <NavItem>
               <NavLink to="/Vendors" tag={Link}>
-                <i /> Vendor
+                <i /> Vendors
               </NavLink>
             </NavItem>
             <NavItem>

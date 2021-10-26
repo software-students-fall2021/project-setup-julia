@@ -23,7 +23,7 @@ const VendorProfileForm= () => {
       <br />
       <FormGroup>
         <Label for="description">Description</Label>
-        <Input type="textarea" name="text" id="description" />
+        <Input type="textarea" name="text" id="description" placeholder="Location, Hours, Product Information, etc..." />
       </FormGroup>
       <br />
       <Button color="primary" type="submit">
