@@ -40,7 +40,7 @@ function Home_header() {
               <Button className="btn-round" color="neutral" type="button" outline>
                 Featured Vendor
               </Button>
-              <Button className="btn-round" color="neutral" type="button" outline>
+              <Button className="btn-round" href="/About" color="neutral" type="button" outline>
                 About Us
               </Button>
             </div>
