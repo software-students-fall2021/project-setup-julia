@@ -38,6 +38,41 @@ function About() {
                                 <h2 className="title">Meet the Team</h2>
                             </Col>
                         </Row>
+                        <Row>
+                            <Col style={{textAlign: 'center'}}>
+                                <img src="https://picsum.photos/200/300" />
+                                <br />
+                                <h2>Jaime</h2>
+                            </Col>
+                            <Col style={{textAlign: 'center'}}>
+                                <img src="https://picsum.photos/200/300" />
+                                <br />
+                                <h2>Shu</h2>
+                            </Col>
+                            <Col style={{textAlign: 'center'}}>
+                                <img src="https://picsum.photos/200/300" />
+                                <br />
+                                <h2>Michael</h2>
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col style={{textAlign: 'center'}}>
+                                <img src="https://picsum.photos/200/300" />
+                                <br />
+                                <h2>Taza</h2>
+                            </Col>
+                            <Col style={{textAlign: 'center'}}>
+                                <img src="https://picsum.photos/200/300" />
+                                <br />
+                                <h2>Terry</h2>
+                            </Col>
+                            <Col style={{textAlign: 'center'}}>
+                                <img src="https://picsum.photos/200/300" />
+                                <br />
+                                <h2>Julia</h2>
+                            </Col>
+                        </Row>
                     </Container>
                 </div>
             </div>
