@@ -8,24 +8,6 @@ import {
   Button
 } from "reactstrap";
 
-/*
-//generate subcategories list
-const getSubcategoryList = (vendorCategory) =>{
-  let output = [];
-  switch (vendorCategory){
-    case "Food":
-      output = ["Snacks", "Breakfast", "Drinks", "Asian", "African", "Latin American", "European"];
-  }
-  return output;
-}
-
-const getSubcategoryInput = () =>{
-  return (
-
-  )
-}
-*/
-
 const VendorProfileForm= () => {
   return (
     <form>
