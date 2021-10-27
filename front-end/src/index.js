@@ -14,9 +14,13 @@ import Home from "views/Home.js";
 import Vendors from "views/Vendors.js";
 import About from "views/About.js";
 import Contact from "views/Contact.js";
+<<<<<<< HEAD
 import Profile from "views/Profile.js";
 import UserProfile from "views/UserProfile.js";
 import UserFollowing from "views/UserFollowing.js";
+=======
+import VendorSideProfile from "views/VendorSideProfile.js";
+>>>>>>> 40971f249916912bdd1e0608f7e916db826d5103
 
 ReactDOM.render(
   <BrowserRouter>
@@ -33,6 +37,10 @@ ReactDOM.render(
       <Route
         path="/UserFollowing"
         render={(props) => <UserFollowing {...props} />}
+      />
+      <Route
+        path="/VendorSideProfile"
+        render={(props) => <VendorSideProfile {...props} />}
       />
       <Redirect to="/Home" />
     </Switch>
