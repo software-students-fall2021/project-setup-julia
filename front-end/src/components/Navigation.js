@@ -90,8 +90,13 @@ function Navigation() {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#Vendors" active>
+              <NavLink href="/Profile" active>
                 <i /> Profile
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/UserProfile" active>
+                <i /> User Profile
               </NavLink>
             </NavItem>
             <NavItem>

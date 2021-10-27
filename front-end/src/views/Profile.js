@@ -18,16 +18,17 @@ import {
 } from "reactstrap";
 
 import Navigation from "components/Navigation.js";
+import About_header from "components/About_header.js";
 import Footer from "components/Footer.js";
-import Home_header from "components/Home_header.js";
 
-function Vendors() {
-    return (
-        <>
-            <Navigation />
-            <Footer />
-        </>
-    );
+function Profile() {
+  return (
+    <>
+      <Navigation />
+      <About_header />
+      <Footer />
+    </>
+  );
 }
 
-export default Vendors;
+export default Profile;
