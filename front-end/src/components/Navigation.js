@@ -90,13 +90,8 @@ function Navigation() {
               </NavLink>
             </NavItem>
             <NavItem>
-<<<<<<< HEAD
-              <NavLink href="/Profile" active>
-                <i /> Profile
-=======
               <NavLink to="/VendorSideProfile" tag={Link}>
-                <i /> My Profile (Vendor)
->>>>>>> 40971f249916912bdd1e0608f7e916db826d5103
+                <i /> Vendor Profile
               </NavLink>
             </NavItem>
             <NavItem>
