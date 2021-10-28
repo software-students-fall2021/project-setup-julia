@@ -2,29 +2,27 @@ import React from "react";
 
 import {
   FormGroup,
-  Label,
   Input,
-  FormText,
   Button
 } from "reactstrap";
 
-const Category_Search_Bar = () => {
+const Search_Results_Search_Bar = () => {
     return (
       <form>
         <FormGroup>
           <Input
             type="search"
             name="search"
-            id="categorySearch"
-            placeholder="Search Category"
+            id="resultsSearch"
+            placeholder="Search Again"
           />
         </FormGroup>
         <br />
         <Button color="default" size="sm">
-          <a href="/SearchResults">Search</a>
+          Search
         </Button>
       </form>
     );
   };
 
-export default Category_Search_Bar;
+export default Search_Results_Search_Bar;
