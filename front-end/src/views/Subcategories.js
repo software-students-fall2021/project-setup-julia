@@ -30,16 +30,18 @@ function Subcategories() {
     <>
       <Navigation />
       <About_header />
+      
       <Container>
         <Row>
           <Col>
             <Subcategories_Search_Bar />
           </Col>
         </Row>
+
       </Container>
       <Footer />
     </>
   );
 }
 
-export default UserProfile;
+export default Subcategories;

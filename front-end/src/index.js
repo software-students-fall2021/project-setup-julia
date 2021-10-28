@@ -18,6 +18,7 @@ import Profile from "views/Profile.js";
 import VendorSideProfile from "views/VendorSideProfile.js";
 import UserProfile from "views/UserProfile.js";
 import UserFollowing from "views/UserFollowing.js";
+import SearchResults from "views/SearchResults.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -38,6 +39,10 @@ ReactDOM.render(
       <Route
         path="/VendorSideProfile"
         render={(props) => <VendorSideProfile {...props} />}
+      />
+      <Route
+        path="/SearchResults"
+        render={(props) => <SearchResults {...props} />}
       />
       <Redirect to="/Home" />
     </Switch>
