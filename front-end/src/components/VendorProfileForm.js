@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react"
 
 import {
   FormGroup,
@@ -7,26 +7,29 @@ import {
   FormText,
   Button
 } from "reactstrap";
+import "./VendorProfileForm.css"
 
-/*
-//generate subcategories list
-const getSubcategoryList = (vendorCategory) =>{
-  let output = [];
-  switch (vendorCategory){
-    case "Food":
-      output = ["Snacks", "Breakfast", "Drinks", "Asian", "African", "Latin American", "European"];
+function VendorProfileForm() {      //this is a component!
+
+  //object to store form input
+  //can replace with just category information
+  const [stateSubcategories, setStateSubcategories] = useState([]);
+
+  //set subcategories list using state value for category
+  const setSubcategoryOptions = (selectedCategory) =>{
+    let subcategories = []
+    switch (selectedCategory){
+      case "Food":
+        subcategories = ["Snacks", "Breakfast", "Drinks", "Asian", "African", "Latin American", "European"];
+    }
+    setStateSubcategories(subcategories);
   }
-  return output;
-}
 
-const getSubcategoryInput = () =>{
-  return (
+  //on form button
+  const handleCategoryInput = async event =>{
+    setSubcategoryOptions(event.target.value);
+  }
 
-  )
-}
-*/
-
-const VendorProfileForm= () => {
   return (
     <form>
       <FormGroup>
@@ -41,7 +44,8 @@ const VendorProfileForm= () => {
       <br />
       <FormGroup>
       <Label for="vendorCategory">Category</Label>
-        <Input type="select" name="select" id="vendorCategory">
+        <Input type="select" name="select" id="vendorCategory" onInput={handleCategoryInput}>
+          <option selected>Select a Category</option>
           <option>Food</option>
           <option>Fruit and Vegetable</option>
           <option>Accessories</option>
@@ -49,20 +53,38 @@ const VendorProfileForm= () => {
           <option>Other</option>
         </Input>
       </FormGroup>
+      {
+        (stateSubcategories.length>0) ?
+        <FormGroup check>
+        <Label check for="vendorSubcategories" name= "selectMulti" id= "vendorSubcategories">Select Subcategories</Label>
+        {
+          stateSubcategories.map(subcategory => (
+            <FormGroup check>
+              <Label check>
+                <Input type="checkbox" id="subcategory" />{subcategory}          
+                <span className="form-check-sign">
+                <span className="check"></span>
+                </span>
+              </Label>
+            </FormGroup>
+          ))
+        }
+        </FormGroup> : null
+      }
       <FormGroup>
-        <Label for="location">Location</Label>
+        <Label for="vendorLocation">Location</Label>
         <Input type="textarea" name="text" id="location" placeholder="W 4th Street across from Stern Business School" />
       </FormGroup>
       <FormGroup>
-        <Label for="hours">Hours</Label>
+        <Label for="vendorHours">Hours</Label>
         <Input type="textarea" name="text" id="hours" placeholder="Mondays-Saturday 9am-6pm" />
       </FormGroup>
       <FormGroup>
-        <Label for="menu">Menu</Label>
+        <Label for="vendorMenu">Menu</Label>
         <Input type="textarea" name="text" id="menu" placeholder="Green juice - $5" />
       </FormGroup>
       <FormGroup>
-        <Label for="description">Description</Label>
+        <Label for="vendorDescription">Description</Label>
         <Input type="textarea" name="text" id="description" placeholder="Convenient, healthy, delicious green juices made to order by Julia!" />
       </FormGroup>
       <br />
