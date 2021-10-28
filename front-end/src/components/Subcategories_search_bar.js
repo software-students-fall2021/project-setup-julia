@@ -8,15 +8,15 @@ import {
   Button
 } from "reactstrap";
 
-const Category_Search_Bar = () => {
+const Subcategories_Search_Bar = () => {
     return (
       <form>
         <FormGroup>
           <Input
             type="search"
             name="search"
-            id="categorySearch"
-            placeholder="Search Category"
+            id="subcategorySearch"
+            placeholder="Search Vendor"
           />
         </FormGroup>
         <br />
@@ -27,4 +27,4 @@ const Category_Search_Bar = () => {
     );
   };
 
-export default Category_Search_Bar;
+export default Subcategories_Search_Bar;
