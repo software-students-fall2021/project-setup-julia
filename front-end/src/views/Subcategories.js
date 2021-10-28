@@ -34,7 +34,9 @@ function Subcategories() {
       <Container>
         <Row>
           <Col style={{textAlign: 'center'}}>
-            <h2 className="title">Subcategory</h2>
+            <h2 className="title">
+              Subcategory
+            </h2>
             <Subcategories_Search_Bar />
           </Col>
         </Row>

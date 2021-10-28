@@ -21,7 +21,9 @@ function SearchResults() {
                     <Container>
                         <Row>
                             <Col>
-                                <h2 className="title">Results for lorem ipsum</h2>
+                                <h2 className="title">
+                                    Results for lorem ipsum
+                                </h2>
                                 <Search_Results_Search_Bar />
                             </Col>
                         </Row>

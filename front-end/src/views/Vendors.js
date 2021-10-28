@@ -36,7 +36,9 @@ function Vendors() {
                     <Container>
                         <Row>
                             <Col style={{textAlign: 'center'}}>
-                                <h2 className="title">Categories</h2>
+                                <h2 className="title">
+                                    Categories
+                                </h2>
                                 <Category_Search_Bar />
                             </Col>
                         </Row>

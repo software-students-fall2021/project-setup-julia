@@ -34,7 +34,14 @@ function User_follow_vendors() {
               ipsum.
             </CardText>
             <CardText>
-              <small className="text-muted">Category: Subcategory</small>
+              <small className="text-muted">
+                Category: Subcategory
+              </small>
+            </CardText>
+            <CardText style={{textAlign: 'right'}}>
+              <small className="text-muted">
+                Report Vendor
+              </small>
             </CardText>
           </CardBody>
         </Card>

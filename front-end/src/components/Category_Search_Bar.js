@@ -21,7 +21,9 @@ const Category_Search_Bar = () => {
         </FormGroup>
         <br />
         <Button color="default" size="sm">
-          <a href="/SearchResults">Search</a>
+          <a href="/SearchResults">
+            Search
+          </a>
         </Button>
       </form>
     );

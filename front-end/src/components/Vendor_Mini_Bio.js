@@ -32,9 +32,14 @@ function Vendor_Mini_Bio() {
               Today's Business Hours <br />
               Contact Info
             </CardText>
-            <CardText>
-              <small className="text-muted">
+            <Button style={{color: 'lightgray'}}>
+              <small>
                   Jump to Vendor Profile
+              </small>
+            </Button>
+            <CardText style={{textAlign: 'right'}}>
+              <small className="text-muted">
+                Report Vendor
               </small>
             </CardText>
           </CardBody>
