@@ -25,6 +25,54 @@ function SearchResults() {
                                 <Search_Results_Search_Bar />
                             </Col>
                         </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                -lorem ipsum
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                -lorem ipsum
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                -lorem ipsum
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                -lorem ipsum
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                -lorem ipsum
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                -lorem ipsum
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                -lorem ipsum
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                -lorem ipsum
+                            </Col>
+                        </Row>
                     </Container>
                 </div>
             </div>
