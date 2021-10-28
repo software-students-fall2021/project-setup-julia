@@ -34,3 +34,4 @@ To be added soon.
 ## Additional Markdown Documents and Web Pages
 - [Project Proposal](https://github.com/software-students-fall2021/project-proposal-julia)
 - [App Map and Wireframes](https://github.com/software-students-fall2021/user-experience-design-julia/blob/main/README.md)
+- [Front End Access](https://github.com/software-students-fall2021/project-setup-julia/blob/master/front-end/README.md)
