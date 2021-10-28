@@ -19,6 +19,7 @@ import VendorSideProfile from "views/VendorSideProfile.js";
 import UserProfile from "views/UserProfile.js";
 import UserFollowing from "views/UserFollowing.js";
 import SearchResults from "views/SearchResults.js";
+import Subcategories from "views/Subcategories.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -43,6 +44,10 @@ ReactDOM.render(
       <Route
         path="/SearchResults"
         render={(props) => <SearchResults {...props} />}
+      />
+      <Route
+        path="/Subcategories"
+        render={(props) => <Subcategories {...props} />}
       />
       <Redirect to="/Home" />
     </Switch>
