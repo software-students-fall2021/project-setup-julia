@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/software-students-fall2021/project-setup-julia/issues"
   },
-  "homepage": "https://github.com/software-students-fall2021/project-setup-julia#readme"
+  "homepage": "https://github.com/software-students-fall2021/project-setup-julia#readme",
+  "devDependencies": {
+    "node-sass": "^6.0.1"
+  }
 }

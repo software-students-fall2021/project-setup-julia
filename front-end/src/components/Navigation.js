@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom'
 // nodejs library that concatenates strings
-import classnames from "classnames";
+import classnames from 'classnames'
 
 // reactstrap components
 import {
@@ -13,16 +13,16 @@ import {
   Nav,
   Container,
   Button,
-} from "reactstrap";
+} from 'reactstrap'
 
 function Navigation() {
-  const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
-  const [navbarCollapse, setNavbarCollapse] = React.useState(false);
+  const [navbarColor, setNavbarColor] = React.useState('navbar-transparent')
+  const [navbarCollapse, setNavbarCollapse] = React.useState(false)
 
   const toggleNavbarCollapse = () => {
-    setNavbarCollapse(!navbarCollapse);
-    document.documentElement.classList.toggle("nav-open");
-  };
+    setNavbarCollapse(!navbarCollapse)
+    document.documentElement.classList.toggle('nav-open')
+  }
 
   React.useEffect(() => {
     const updateNavbarColor = () => {
@@ -30,91 +30,104 @@ function Navigation() {
         document.documentElement.scrollTop > 299 ||
         document.body.scrollTop > 299
       ) {
-        setNavbarColor("");
+        setNavbarColor('')
       } else if (
         document.documentElement.scrollTop < 300 ||
         document.body.scrollTop < 300
       ) {
-        setNavbarColor("navbar-transparent");
+        setNavbarColor('navbar-transparent')
       }
-    };
+    }
 
-    window.addEventListener("scroll", updateNavbarColor);
+    window.addEventListener('scroll', updateNavbarColor)
 
     return function cleanup() {
-      window.removeEventListener("scroll", updateNavbarColor);
-    };
-  });
+      window.removeEventListener('scroll', updateNavbarColor)
+    }
+  })
   return (
     <Navbar
-      className={classnames("fixed-top", navbarColor)}
-      color-on-scroll="300"
-      expand="lg"
+      className={classnames('fixed-top', navbarColor)}
+      color-on-scroll='300'
+      expand='lg'
     >
       <Container>
-        <div className="navbar-translate">
+        <div className='navbar-translate'>
           <NavbarBrand
-            data-placement="bottom"
-            to="/Home"
-            title="Coded by Creative Tim"
+            data-placement='bottom'
+            to='/Home'
+            title='Coded by Creative Tim'
             tag={Link}
           >
             Whendor
           </NavbarBrand>
           <button
             aria-expanded={navbarCollapse}
-            className={classnames("navbar-toggler navbar-toggler", {
+            className={classnames('navbar-toggler navbar-toggler', {
               toggled: navbarCollapse,
             })}
             onClick={toggleNavbarCollapse}
           >
-            <span className="navbar-toggler-bar bar1" />
-            <span className="navbar-toggler-bar bar2" />
-            <span className="navbar-toggler-bar bar3" />
+            <span className='navbar-toggler-bar bar1' />
+            <span className='navbar-toggler-bar bar2' />
+            <span className='navbar-toggler-bar bar3' />
           </button>
         </div>
         <Collapse
-          className="justify-content-end"
+          className='justify-content-end'
           navbar
           isOpen={navbarCollapse}
         >
           <Nav navbar>
             <NavItem>
-              <NavLink to="/Vendors" tag={Link}>
+              <NavLink to='/Vendors' tag={Link}>
                 <i /> Vendors
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#Vendors" active>
+              <NavLink href='#Vendors' active>
                 <i /> Settings
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/VendorSideProfile" tag={Link}>
+              <NavLink to='/VendorSideProfile' tag={Link}>
                 <i /> Vendor Profile
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/UserProfile" active>
+              <NavLink href='/UserProfile' active>
                 <i /> User Profile
               </NavLink>
             </NavItem>
+
+            <NavItem>
+              <NavLink to='/Login' tag={Link}>
+                <i /> Login
+              </NavLink>
+            </NavItem>
+
+            <NavItem>
+              <NavLink to='/SignUp' tag={Link}>
+                <i /> Sign Up
+              </NavLink>
+            </NavItem>
+
             <NavItem>
               <NavLink
-                data-placement="bottom"
-                href="https://github.com/software-students-fall2021/project-setup-julia"
-                target="_blank"
-                title="Star on GitHub"
+                data-placement='bottom'
+                href='https://github.com/software-students-fall2021/project-setup-julia'
+                target='_blank'
+                title='Star on GitHub'
               >
-                <i className="fa fa-github" />
-                <p className="d-lg-none">GitHub</p>
+                <i className='fa fa-github' />
+                <p className='d-lg-none'>GitHub</p>
               </NavLink>
             </NavItem>
           </Nav>
         </Collapse>
       </Container>
     </Navbar>
-  );
+  )
 }
 
-export default Navigation;
+export default Navigation
