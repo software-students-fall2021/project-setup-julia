@@ -102,7 +102,7 @@ function Navigation() {
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="https://github.com/software-students-fall2021/user-experience-design-julia"
+                href="https://github.com/software-students-fall2021/project-setup-julia"
                 target="_blank"
                 title="Star on GitHub"
               >
