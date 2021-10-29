@@ -107,8 +107,13 @@ function Navigation() {
             </NavItem>
 
             <NavItem>
-              <NavLink to='/SignUp' tag={Link}>
-                <i /> Sign Up
+              <NavLink to='/VendorSignUp' tag={Link}>
+                <i /> Vendor-SignUp
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink to='/UserSignUp' tag={Link}>
+                <i /> User-SignUp
               </NavLink>
             </NavItem>
 
