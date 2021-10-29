@@ -21,6 +21,8 @@ import UserFollowing from 'views/UserFollowing.js'
 import SearchResults from 'views/SearchResults.js'
 import Subcategories from 'views/Subcategories.js'
 import Login from 'views/Login.js'
+import VendorSignUp from 'views/VendorSignUp.js'
+import UserSignUp from 'views/UserSignUp.js'
 
 ReactDOM.render(
   <BrowserRouter>
@@ -31,6 +33,12 @@ ReactDOM.render(
       <Route path='/Contact' render={(props) => <Contact {...props} />} />
       <Route path='/Profile' render={(props) => <Profile {...props} />} />
       <Route path='/Login' render={(props) => <Login {...props} />} />
+      <Route
+        path='/VendorSignUp'
+        render={(props) => <VendorSignUp {...props} />}
+      />
+      <Route path='/UserSignUp' render={(props) => <UserSignUp {...props} />} />
+
       <Route
         path='/UserProfile'
         render={(props) => <UserProfile {...props} />}
