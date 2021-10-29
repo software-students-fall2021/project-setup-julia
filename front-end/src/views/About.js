@@ -35,24 +35,32 @@ function About() {
                                 <h5 className="description">
                                     We are wonderful NYU students who are passionate about killer app design and supporting small businesses.
                                 </h5>
-                                <h2 className="title">Meet the Team</h2>
+                                <h2 className="title">
+                                    Meet the Team
+                                </h2>
                             </Col>
                         </Row>
                         <Row>
                             <Col style={{textAlign: 'center'}}>
                                 <img src="https://picsum.photos/200/300" />
                                 <br />
-                                <h2>Jaime</h2>
+                                <h2>
+                                    Jaime
+                                </h2>
                             </Col>
                             <Col style={{textAlign: 'center'}}>
                                 <img src="https://picsum.photos/200/300" />
                                 <br />
-                                <h2>Shu</h2>
+                                <h2>
+                                    Shu
+                                </h2>
                             </Col>
                             <Col style={{textAlign: 'center'}}>
                                 <img src="https://picsum.photos/200/300" />
                                 <br />
-                                <h2>Michael</h2>
+                                <h2>
+                                    Michael
+                                </h2>
                             </Col>
                         </Row>
                         <br />
@@ -60,17 +68,23 @@ function About() {
                             <Col style={{textAlign: 'center'}}>
                                 <img src="https://picsum.photos/200/300" />
                                 <br />
-                                <h2>Taza</h2>
+                                <h2>
+                                    Taza
+                                </h2>
                             </Col>
                             <Col style={{textAlign: 'center'}}>
                                 <img src="https://picsum.photos/200/300" />
                                 <br />
-                                <h2>Terry</h2>
+                                <h2>
+                                    Terry
+                                </h2>
                             </Col>
                             <Col style={{textAlign: 'center'}}>
                                 <img src="https://picsum.photos/200/300" />
                                 <br />
-                                <h2>Julia</h2>
+                                <h2>
+                                    Julia
+                                </h2>
                             </Col>
                         </Row>
                     </Container>

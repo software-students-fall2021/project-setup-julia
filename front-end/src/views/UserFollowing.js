@@ -30,7 +30,9 @@ function UserFollowing() {
       <br></br>
       <Container>
         <Row>
-          <h2>Following:</h2>
+          <h2>
+            Following:
+          </h2>
         </Row>
         <br></br>
         <User_follow_vendors></User_follow_vendors>
