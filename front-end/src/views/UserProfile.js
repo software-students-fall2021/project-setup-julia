@@ -4,6 +4,7 @@ import React from "react";
 import {
   Button,
   Card,
+  CardText,
   CardBody,
   CardFooter,
   CardTitle,
@@ -50,13 +51,24 @@ function UserProfile() {
           </Col>
 
           <Col>
-            <h2>@username</h2>
+            <h2>
+              @username
+            </h2>
             <Button className="btn-link" color="gray" href="/UserFollowing">
-              <h3>Following: </h3>
+              <h3>
+                Following: 
+              </h3>
             </Button>
             <br></br>
             <br></br>
-            <Button color="gray">Edit Profile</Button>
+            <Button color="gray">
+              Edit Profile
+            </Button>
+            <CardText> 
+              <small className="text-muted">
+                Report Profile
+              </small>
+            </CardText>
           </Col>
         </Row>
         <ColoredLine color="gray" />

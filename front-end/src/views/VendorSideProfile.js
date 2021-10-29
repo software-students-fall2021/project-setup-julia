@@ -32,7 +32,9 @@ function VendorSideProfile() {
                     <Container>
                         <Row>
                             <Col style={{textAlign: 'center'}}>
-                                <h2 className="title">My Vendor Profile</h2>
+                                <h2 className="title">
+                                    My Vendor Profile
+                                </h2>
                                 <h5 className="description">
                                 View and edit your Vendor Profile.
                                 </h5>
