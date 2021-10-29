@@ -17,8 +17,6 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    //"start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
-    //Replace the below line with the one above if hashing errors occur - I believe this is a compatibility issue with Windows 11.
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
