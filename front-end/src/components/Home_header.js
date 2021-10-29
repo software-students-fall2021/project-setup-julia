@@ -34,8 +34,12 @@ function Home_header() {
           <div className="filter" />
           <Container>
             <div className="motto text-center">
-              <h1>Whendor</h1>
-              <h3>Finding NYC Vendors Quickly and Cleanly</h3>
+              <h1>
+                Whendor
+              </h1>
+              <h3>
+                Finding NYC Vendors Quickly and Cleanly
+              </h3>
               <br />
               <Button className="btn-round" color="neutral" type="button" outline>
                 Featured Vendor

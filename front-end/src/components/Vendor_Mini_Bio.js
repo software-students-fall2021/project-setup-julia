@@ -1,6 +1,5 @@
 import React from "react";
 
-// reactstrap components
 import {
   Button,
   Card,
@@ -19,25 +18,25 @@ import {
   Col,
 } from "reactstrap";
 
-import Image from "react-bootstrap/Image";
 
-function User_follow_vendors() {
+function Vendor_Mini_Bio() {
   return (
     <>
       <Row>
-        <Card>
-          <CardImg top src="https://picsum.photos/843/180"></CardImg>
+        <Card style={{width: '30rem'}}>
+          <CardImg top src="https://picsum.photos/1200/1200"></CardImg>
           <CardBody>
-            <CardTitle>Vendor 1</CardTitle>
+            <CardTitle>Vendor Name</CardTitle>
             <CardText>
-              Eu ipsum laboris laborum enim voluptate laborum laborum amet est
-              ipsum.
+              Location <br />
+              Today's Business Hours <br />
+              Contact Info
             </CardText>
-            <CardText>
-              <small className="text-muted">
-                Category: Subcategory
+            <Button style={{color: 'lightgray'}}>
+              <small>
+                  Jump to Vendor Profile
               </small>
-            </CardText>
+            </Button>
             <CardText style={{textAlign: 'right'}}>
               <small className="text-muted">
                 Report Vendor
@@ -50,4 +49,4 @@ function User_follow_vendors() {
   );
 }
 
-export default User_follow_vendors;
+export default Vendor_Mini_Bio;

@@ -29,8 +29,9 @@ NYC is a rich and prosperous city that offers almost anything to consumers; mult
 One can contribute to our project through [CONTRIBUTING.md](https://github.com/software-students-fall2021/project-setup-julia/blob/master/CONTRIBUTING.md)
 
 ## Instructions for Building and Testing the Project
-To be added soon.
+- Build and test our [Front End](https://github.com/software-students-fall2021/project-setup-julia/blob/master/front-end/README.md)
 
 ## Additional Markdown Documents and Web Pages
 - [Project Proposal](https://github.com/software-students-fall2021/project-proposal-julia)
 - [App Map and Wireframes](https://github.com/software-students-fall2021/user-experience-design-julia/blob/main/README.md)
+- [Prototype](https://invis.io/7F11VUZD5RBM)

@@ -12,7 +12,9 @@ const Contact_Form = () => {
   return (
     <form>
       <FormGroup>
-        <Label for="exampleEmail">Email address</Label>
+        <Label for="exampleEmail">
+          Email address
+        </Label>
         <Input
           type="email"
           name="email"
@@ -25,7 +27,9 @@ const Contact_Form = () => {
       </FormGroup>
       <br />
       <FormGroup>
-        <Label for="exampleText">Message</Label>
+        <Label for="exampleText">
+          Message
+        </Label>
         <Input type="textarea" name="text" id="exampleText" />
       </FormGroup>
       <br />
