@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState} from "react"
 
 import {
   FormGroup,
@@ -7,8 +7,25 @@ import {
   FormText,
   Button
 } from "reactstrap";
+import "./VendorProfileForm.css"
 
-const VendorProfileForm= () => {
+function VendorProfileForm() {     
+
+  const [stateSubcategories, setStateSubcategories] = useState([]);
+
+  const setSubcategoryOptions = (selectedCategory) =>{
+    let subcategories = []
+    switch (selectedCategory){
+      case "Food":
+        subcategories = ["Snacks", "Breakfast", "Drinks", "Asian", "African", "Latin American", "European"];
+    }
+    setStateSubcategories(subcategories);
+  }
+
+  const handleCategoryInput = async event =>{
+    setSubcategoryOptions(event.target.value);
+  }
+
   return (
     <form>
       <FormGroup>
@@ -23,24 +40,45 @@ const VendorProfileForm= () => {
       <br />
       <FormGroup>
       <Label for="vendorCategory">Category</Label>
-        <Input type="select" name="select" id="vendorCategory">
+        <Input type="select" name="select" id="vendorCategory" onInput={handleCategoryInput}>
+          <option selected>
+            Select a Category
+            </option>
           <option>
             Food
-          </option>
+            </option>
           <option>
             Fruit and Vegetable
-          </option>
+            </option>
           <option>
             Accessories
-          </option>
+            </option>
           <option>
             Art
-          </option>
+            </option>
           <option>
             Other
-          </option>
+            </option>
         </Input>
       </FormGroup>
+      {
+        (stateSubcategories.length>0) ?
+        <FormGroup check>
+        <Label check for="vendorSubcategories" name= "selectMulti" id= "vendorSubcategories">Select Subcategories</Label>
+        {
+          stateSubcategories.map(subcategory => (
+            <FormGroup check>
+              <Label check>
+                <Input type="checkbox" id="subcategory" />{subcategory}          
+                <span className="form-check-sign">
+                <span className="check"></span>
+                </span>
+              </Label>
+            </FormGroup>
+          ))
+        }
+        </FormGroup> : null
+      }
       <FormGroup>
         <Label for="location">
           Location
