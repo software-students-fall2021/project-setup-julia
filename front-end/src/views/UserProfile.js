@@ -51,17 +51,13 @@ function UserProfile() {
           </Col>
 
           <Col>
-            <h2>
-              @username
-            </h2>
+            <h2>@username</h2>
             <Button className="btn-link" color="gray" href="/UserFollowing">
-              <h3>
-                Following: 
-              </h3>
+              <h3>Following:</h3>
             </Button>
             <br></br>
             <br></br>
-            <Button color="gray">
+            <Button color="gray" href="/UserEditProfile">
               Edit Profile
             </Button>
             <CardText> 
