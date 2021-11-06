@@ -24,6 +24,9 @@ import About_header from "components/About_header.js";
 import Footer from "components/Footer.js";
 import Following_row from "components/Following_row";
 
+//Including post request functions from onclick_axios.js
+import {Report_Account, Output_Popup } from "../components/onclick_axios"
+
 const ColoredLine = ({ color }) => (
   <hr
     style={{
@@ -62,7 +65,7 @@ function UserProfile() {
             </Button>
             <CardText> 
               <small className="text-muted">
-                <a href='#ReportProfile'>
+                <a href='#ReportProfile' onclick="Report_Account(true, null, null, '/UserProfile#ReportProfile')">
                   Report Profile
                 </a>
               </small>

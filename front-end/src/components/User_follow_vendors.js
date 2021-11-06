@@ -21,6 +21,9 @@ import {
 
 import Image from "react-bootstrap/Image";
 
+//Including post request functions from onclick_axios.js
+import {Report_Account, Output_Popup } from "./onclick_axios"
+
 function User_follow_vendors() {
   return (
     <>
@@ -38,7 +41,7 @@ function User_follow_vendors() {
                 Category: Subcategory
               </small>
             </CardText>
-            <a href='#ReportVendor'>
+            <a href='#ReportVendor' onclick="Report_Account(false, null, null, '/UserFollowing#ReportVendor')">
               Report Vendor
             </a> 
           </CardBody>

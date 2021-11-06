@@ -18,6 +18,10 @@ import {
   Col,
 } from "reactstrap";
 
+//Including post request functions from onclick_axios.js
+import {Report_Account, Output_Popup } from "./onclick_axios"
+
+
 function Vendor_Mini_Bio() {
   return (
     <>
@@ -35,7 +39,7 @@ function Vendor_Mini_Bio() {
               <small>Jump to Vendor Profile</small>
             </Button>
             <CardText style={{textAlign: 'right'}}>
-              <a href='#ReportVendor'>
+              <a href='#ReportVendor' onclick="Report_Account(false, null, null, '/Subcategories#ReportVendor')">
                 Report Vendor
               </a>
             </CardText>
