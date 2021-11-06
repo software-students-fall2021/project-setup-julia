@@ -34,8 +34,10 @@ function Vendor_Mini_Bio() {
             <Button style={{ color: "lightgray" }} href="/VendorProfile">
               <small>Jump to Vendor Profile</small>
             </Button>
-            <CardText style={{ textAlign: "right" }}>
-              <small className="text-muted">Report Vendor</small>
+            <CardText style={{textAlign: 'right'}}>
+              <a href='#ReportVendor'>
+                Report Vendor
+              </a>
             </CardText>
           </CardBody>
         </Card>

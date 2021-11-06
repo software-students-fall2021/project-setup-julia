@@ -60,8 +60,12 @@ function UserProfile() {
             <Button color="gray" href="/UserEditProfile">
               Edit Profile
             </Button>
-            <CardText>
-              <small className="text-muted">Report Profile</small>
+            <CardText> 
+              <small className="text-muted">
+                <a href='#ReportProfile'>
+                  Report Profile
+                </a>
+              </small>
             </CardText>
           </Col>
         </Row>
