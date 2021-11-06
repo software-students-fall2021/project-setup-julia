@@ -38,11 +38,9 @@ function User_follow_vendors() {
                 Category: Subcategory
               </small>
             </CardText>
-            <CardText style={{textAlign: 'right'}}>
-              <small className="text-muted">
-                Report Vendor
-              </small>
-            </CardText>
+            <a href='#ReportVendor'>
+              Report Vendor
+            </a> 
           </CardBody>
         </Card>
       </Row>

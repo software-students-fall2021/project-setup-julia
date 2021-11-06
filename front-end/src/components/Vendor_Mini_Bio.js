@@ -38,9 +38,9 @@ function Vendor_Mini_Bio() {
               </small>
             </Button>
             <CardText style={{textAlign: 'right'}}>
-              <small className="text-muted">
+              <a href='#ReportVendor'>
                 Report Vendor
-              </small>
+              </a>
             </CardText>
           </CardBody>
         </Card>

@@ -66,7 +66,9 @@ function UserProfile() {
             </Button>
             <CardText> 
               <small className="text-muted">
-                Report Profile
+                <a href='#ReportProfile'>
+                  Report Profile
+                </a>
               </small>
             </CardText>
           </Col>
