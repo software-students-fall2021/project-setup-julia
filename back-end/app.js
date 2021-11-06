@@ -1,33 +1,42 @@
 // import and instantiate express
-const express = require("express"); // CommonJS import style!
-const {
-  default: AvAddToQueue,
-} = require("material-ui/svg-icons/av/add-to-queue");
-const app = express(); // instantiate an Express object
-app.use("/static", express.static("public"));
+const express = require('express') // CommonJS import style!
 
-app.get("/home", (req, res) => {});
+// const {
+//   default: AvAddToQueue,
+// } = require("material-ui/svg-icons/av/add-to-queue");
 
-app.get("/about", (req, res) => {});
+const app = express() // instantiate an Express object
 
-app.get("/contact", (req, res) => {});
+const port = 5000
 
-app.get("/login", (req, res) => {});
+app.get('/', (req, res) => res.send('wasssup bitches '))
 
-app.get("/usersignup", (req, res) => {});
+app.listen(port, () => console.log(`app listening on port ${port}!`))
 
-app.get("/userprofile", (req, res) => {});
+// app.use('/static', express.static('public'))
 
-app.get("/userfollowing", (req, res) => {});
+// app.get('/home', (req, res) => {})
 
-app.get("/searchresults", (req, res) => {});
+// app.get('/about', (req, res) => {})
 
-app.get("/subcategories", (req, res) => {});
+// app.get('/contact', (req, res) => {})
 
-app.get("/vendors", (req, res) => {});
+// app.get('/login', (req, res) => {})
 
-app.get("/vendorprofile", (req, res) => {});
+// app.get('/usersignup', (req, res) => {})
 
-app.get("/vendorsignup", (req, res) => {});
+// app.get('/userprofile', (req, res) => {})
 
-module.exports = app;
+// app.get('/userfollowing', (req, res) => {})
+
+// app.get('/searchresults', (req, res) => {})
+
+// app.get('/subcategories', (req, res) => {})
+
+// app.get('/vendors', (req, res) => {})
+
+// app.get('/vendorprofile', (req, res) => {})
+
+// app.get('/vendorsignup', (req, res) => {})
+
+module.exports = app
