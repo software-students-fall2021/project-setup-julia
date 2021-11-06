@@ -18,11 +18,19 @@ import {
 } from 'reactstrap'
 
 import Footer from 'components/Footer.js'
+import Navigation from 'components/Navigation.js'
+import About_header from 'components/About_header.js'
 import VendorSignUpForm from 'components/VendorSignUpForm.js'
 
 function VendorSignUp() {
   return (
     <>
+      <Navigation />
+      <About_header />
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <div classname='main'>
         <div classname='section text-center'>
           <Container>
