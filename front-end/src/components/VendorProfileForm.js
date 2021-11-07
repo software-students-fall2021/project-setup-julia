@@ -1,4 +1,5 @@
-import React, { useState} from "react"
+import axios from "axios";
+import React, { useState, useEffect} from "react"
 
 import {
   FormGroup,
@@ -9,9 +10,27 @@ import {
 } from "reactstrap";
 import "./VendorProfileForm.css"
 
+const categoriesSubcategories = require("../CategoriesSubcategories.json");
+
 function VendorProfileForm() {     
 
+  const [profile, setProfile] = useState({});
   const [stateSubcategories, setStateSubcategories] = useState([]);
+
+  //from animal.js in sample react app
+  useEffect(() => {
+    // fetch some mock data about animals for sale
+    console.log(`fetching vendor name=${profile.name}...`)
+    axios('/editvendorprofile')
+    .then((response) => {
+      setProfile(response.data);
+    })
+    .catch((err) =>{
+      console.log("error during useEffect axios call");
+      console.error(err);
+    })
+      
+  }, [profile])
 
   const setSubcategoryOptions = (selectedCategory) =>{
     let subcategories = []
@@ -19,7 +38,11 @@ function VendorProfileForm() {
       case "Food":
         subcategories = ["Snacks", "Breakfast", "Drinks", "Asian", "African", "Latin American", "European"];
     }
+    subcategories = categoriesSubcategories.selectedCategory
     setStateSubcategories(subcategories);
+    const newProfile = profile
+    newProfile.subcategories = subcategories
+    setProfile(newProfile)
   }
 
   const handleCategoryInput = async event =>{
@@ -34,7 +57,7 @@ function VendorProfileForm() {
           type="name"
           name="name"
           id="vendorName"
-          placeholder="Julia's Juice Stand"
+          placeholder={profile.name}
         />
       </FormGroup>
       <br />
@@ -48,7 +71,7 @@ function VendorProfileForm() {
             Food
             </option>
           <option>
-            Fruit and Vegetable
+            Produce
             </option>
           <option>
             Accessories

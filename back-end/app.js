@@ -35,6 +35,20 @@ app.listen(port, () => console.log(`app listening on port ${port}!`))
 
 // app.get('/vendors', (req, res) => {})
 
+app.get('/editvendorprofile', (req,res) => {
+    const sampleProfile = {
+        name : "Julia's Juice Stand",
+        category : "Food",
+        subcategories : [],
+        location : "W 4th Street across from Stern Business School",
+        hours : "Monday - Friday 9am-6pm",
+        menu : "Green juice - $5",
+        description : "Convenient, healthy, delicious green juices made to order by Julia!"
+    }
+    res.json(sampleProfile);
+})
+
+
 // app.get('/vendorprofile', (req, res) => {})
 
 // app.get('/vendorsignup', (req, res) => {})
