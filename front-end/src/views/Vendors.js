@@ -25,6 +25,11 @@ import About_header from "components/About_header.js";
 import Footer from "components/Footer.js";
 import Categories_Boxes from "components/Categories_Boxes.js"
 import Category_Search_Bar from "components/Category_Search_Bar.js"
+import FoodBox from "components/FoodBox.js"
+import ProduceBox from "components/ProduceBox.js"
+import AccessoriesBox from "components/AccessoriesBox.js"
+import ArtBox from "components/ArtBox.js"
+import OtherBox from "components/OtherBox.js"
 
 function Vendors() {
     return (
@@ -45,25 +50,31 @@ function Vendors() {
                         <br />
                         <Row>
                             <Col>
-                                <Categories_Boxes />
+                                <FoodBox />
                             </Col>
                         </Row>
                         <br />
                         <Row>
                             <Col>
-                                <Categories_Boxes />
+                                <ProduceBox />
                             </Col>
                         </Row>
                         <br />
                         <Row>
                             <Col>
-                                <Categories_Boxes />
+                                <AccessoriesBox />
                             </Col>
                         </Row>
                         <br />
                         <Row>
                             <Col>
-                                <Categories_Boxes />
+                                <ArtBox />
+                            </Col>
+                        </Row>
+                        <br />
+                        <Row>
+                            <Col>
+                                <OtherBox />
                             </Col>
                         </Row>
                     </Container>   
