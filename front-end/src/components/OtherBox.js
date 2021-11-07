@@ -22,7 +22,7 @@ const OtherBox = () => {
         <CardBody>
           <CardTitle>Other</CardTitle>
           <br />
-          <Button style={{ color: "lightgray" }} href="/VendorProfile">
+          <Button style={{ color: "lightgray" }} href="/Other">
               <small>View Vendors</small>
           </Button>
         </CardBody>
