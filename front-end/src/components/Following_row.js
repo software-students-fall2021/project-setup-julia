@@ -25,19 +25,27 @@ function Following_row() {
       <Row className="justify-content-md-center">
         <Col>
           {" "}
-          <Image src="https://picsum.photos/300/300" />{" "}
+          <a href="/VendorProfile">
+            <Image src="https://picsum.photos/300/300" />{" "}
+          </a>
         </Col>
         <Col>
           {" "}
-          <Image src="https://picsum.photos/300/300" />{" "}
+          <a href="/VendorProfile">
+            <Image src="https://picsum.photos/300/300" />{" "}
+          </a>
         </Col>
         <Col>
           {" "}
-          <Image src="https://picsum.photos/300/300" />{" "}
+          <a href="/VendorProfile">
+            <Image src="https://picsum.photos/300/300" />{" "}
+          </a>
         </Col>
         <Col>
           {" "}
-          <Image src="https://picsum.photos/300/300" />{" "}
+          <a href="/VendorProfile">
+            <Image src="https://picsum.photos/300/300" />{" "}
+          </a>
         </Col>
       </Row>
     </>

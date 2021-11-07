@@ -18,12 +18,11 @@ import {
   Col,
 } from "reactstrap";
 
-
 function Vendor_Mini_Bio() {
   return (
     <>
       <Row>
-        <Card style={{width: '30rem'}}>
+        <Card style={{ width: "30rem" }}>
           <CardImg top src="https://picsum.photos/1200/1200"></CardImg>
           <CardBody>
             <CardTitle>Vendor Name</CardTitle>
@@ -32,15 +31,13 @@ function Vendor_Mini_Bio() {
               Today's Business Hours <br />
               Contact Info
             </CardText>
-            <Button style={{color: 'lightgray'}}>
-              <small>
-                  Jump to Vendor Profile
-              </small>
+            <Button style={{ color: "lightgray" }} href="/VendorProfile">
+              <small>Jump to Vendor Profile</small>
             </Button>
             <CardText style={{textAlign: 'right'}}>
-              <small className="text-muted">
+              <a href='#ReportVendor'>
                 Report Vendor
-              </small>
+              </a>
             </CardText>
           </CardBody>
         </Card>
