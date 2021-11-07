@@ -20,7 +20,7 @@ const app = express() // instantiate an Express object
 
 const port = 5000
 
-app.get('/', (req, res) => res.send('wasssup bitches '))
+app.get('/', (req, res) => res.send('hello world'))
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))
 
