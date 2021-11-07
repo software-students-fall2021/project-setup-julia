@@ -26,12 +26,12 @@ const ProduceBox = () => {
             <DropdownToggle aria-expanded={false} aria-haspopup={true} caret color="secondary" data-toggle="dropdown" href="#pablo" id="dropdownMenuLink" onClick={e => e.preventDefault()} role="button">See all Subcategories</DropdownToggle>
             <DropdownMenu aria-labelledby="dropdownMenuLink">
               <DropdownItem>
-                <a href="/Subcategories">
+                <a href="/Fruits">
                   Fruits
                 </a>
               </DropdownItem>
               <DropdownItem>
-                <a href="/Subcategories">
+                <a href="/Vegetables">
                   Vegetables
                 </a>
               </DropdownItem>

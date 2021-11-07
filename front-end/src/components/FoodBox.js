@@ -26,42 +26,42 @@ const FoodBox = () => {
             <DropdownToggle aria-expanded={false} aria-haspopup={true} caret color="secondary" data-toggle="dropdown" href="#pablo" id="dropdownMenuLink" onClick={e => e.preventDefault()} role="button">See all Subcategories</DropdownToggle>
             <DropdownMenu aria-labelledby="dropdownMenuLink">
               <DropdownItem>
-                <a href="/Subcategories">
+                <a href="/FastFood">
                   Fast Food
                 </a>
               </DropdownItem>
               <DropdownItem>
-                <a href="/Subcategories">
+                <a href="/Snacks">
                   Snacks
                 </a>
               </DropdownItem>
               <DropdownItem>
-                <a href="/Subcategories">
+                <a href="/Breakfast">
                   Breakfast
                 </a>
               </DropdownItem>
               <DropdownItem>
-                <a href="/Subcategories">
+                <a href="/Drinks">
                   Drinks
                 </a>
               </DropdownItem>
               <DropdownItem>
-                <a href="/Subcategories">
+                <a href="/Asian">
                   Asian
                 </a>
               </DropdownItem>
               <DropdownItem>
-                <a href="/Subcategories">
+                <a href="/African">
                   African
                 </a>
               </DropdownItem>
               <DropdownItem>
-                <a href="/Subcategories">
+                <a href="/LatinAmerican">
                   Latin American
                 </a>
               </DropdownItem>
               <DropdownItem>
-                <a href="/Subcategories">
+                <a href="/European">
                   European
                 </a>
               </DropdownItem>
