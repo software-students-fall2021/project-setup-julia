@@ -9,35 +9,15 @@ const app = express() // instantiate an Express object
 
 const port = 5000
 
+
 app.get('/', (req, res) => res.send('Lorem ipsum'))
+
+app.get('/', (req, res) => res.send('hello world'))
+
 
 app.listen(port, () => console.log(`app listening on port ${port}!`))
 
 // app.use('/static', express.static('public'))
-
-// app.get('/home', (req, res) => {})
-
-// app.get('/about', (req, res) => {})
-
-// app.get('/contact', (req, res) => {})
-
-// app.get('/login', (req, res) => {})
-
-// app.get('/usersignup', (req, res) => {})
-
-// app.get('/userprofile', (req, res) => {})
-
-// app.get('/userfollowing', (req, res) => {})
-
-// app.get('/searchresults', (req, res) => {})
-
-// app.get('/subcategories', (req, res) => {})
-
-// app.get('/vendors', (req, res) => {})
-
-// app.get('/vendorprofile', (req, res) => {})
-
-// app.get('/vendorsignup', (req, res) => {})
 
 app.get("/Subcategories#ReportVendor", (req, res) => {
   //TODO: Check if this profile has already reported this user. If they have, do not go through with the report.
@@ -65,4 +45,4 @@ const ReportMessage = (isVendor) => {
                     "Thank you for reporting this user. We will investigate their profile and take appropriate action."
 }
 
-module.exports = app;
+module.exports = app
