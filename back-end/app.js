@@ -11,29 +11,15 @@ app.use((req, res, next) => {
 app.use("/static", express.static("public"));
 app.use(express.json()); // decode JSON-formatted incoming POST data
 
-app.get("/Home", (req, res) => {
-  res.sendFile("../front-end/src/views/Home.js", {root: __dirname})
-});
-
-app.post("/Home_Start", (req, res) => {
-  const selection = req.body.value
-  console.log("success, %s", selection)
-  res.redirect('/About')
-});
-
-app.get("/About", (req, res) => {
-  res.sendFile("../front-end/src/views/About.js", {root: __dirname})
-});
-
-app.get("/Contact", (req, res) => {
-  res.sendFile("../front-end/src/views/Contact.js", {root: __dirname})
-});
-
 app.post("/Contact", (req, res) => {
   const email = req.body.email
   const text = req.body.text
+  const data = {
+    email: email,
+    text: text,
+  };
   console.log("success, %s %s", email, text)
-  res.redirect("/Contact")
+  res.json(data);
 })
 
 app.get('/UserProfileForm', (req, res) => {
