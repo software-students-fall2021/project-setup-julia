@@ -3,21 +3,55 @@ import React from 'react'
 import { FormGroup, Label, Input, FormText, Button } from 'reactstrap'
 
 const VendorSignUpForm = () => {
+  const handleSubmit = async (e) => {
+    // prevent the HTML form from actually submitting... we use React's javascript code instead
+    e.preventDefault()
+
+    try {
+      // create an object with the data we want to send to the server
+      const requestData = {
+        businessName: e.target.businessName.value,
+
+        vendorCategory: e.target.vendorCategory.value,
+
+        location: e.target.location.value,
+
+        hours: e.target.hours.value,
+
+        menu: e.target.menu.value,
+
+        description: e.target.description.value,
+
+        fullName: e.target.fullName.value,
+
+        email: e.target.email.value,
+
+        username: e.target.username.value, // gets the value of the field in the submitted form with name='username'
+        password: e.target.password.value, // gets the value of the field in the submitted form with name='password',
+      }
+
+      // const response = await axios.post(
+      //   'http://localhost:5000/userSignUp',
+      //   requestData
+      // )
+      // store the response data into the data state variable
+      console.log(requestData)
+    } catch (err) {
+      // throw an error
+      throw new Error(err)
+    }
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <FormGroup>
         <Label for='vendorName'>Business Name</Label>
-        <Input
-          type='name'
-          name='name'
-          id='vendorName'
-          placeholder="Julia's Juice Stand"
-        />
+        <Input type='text' name='businessName' />
       </FormGroup>
       <br />
       <FormGroup>
         <Label for='vendorCategory'>Category</Label>
-        <Input type='select' name='select' id='vendorCategory'>
+        <Input type='select' name='vendorCategory'>
           <option>Food</option>
           <option>Fruit and Vegetable</option>
           <option>Accessories</option>
@@ -27,55 +61,35 @@ const VendorSignUpForm = () => {
       </FormGroup>
       <FormGroup>
         <Label for='location'>Location</Label>
-        <Input
-          type='textarea'
-          name='text'
-          id='location'
-          placeholder='W 4th Street across from Stern Business School'
-        />
+        <Input type='textarea' name='location' />
       </FormGroup>
       <FormGroup>
         <Label for='hours'>Hours</Label>
-        <Input
-          type='textarea'
-          name='text'
-          id='hours'
-          placeholder='Mondays-Saturday 9am-6pm'
-        />
+        <Input type='textarea' name='hours' />
       </FormGroup>
       <FormGroup>
         <Label for='menu'>Menu</Label>
-        <Input
-          type='textarea'
-          name='text'
-          id='menu'
-          placeholder='Green juice - $5'
-        />
+        <Input type='textarea' name='menu' />
       </FormGroup>
       <FormGroup>
         <Label for='description'>Description</Label>
-        <Input
-          type='textarea'
-          name='text'
-          id='description'
-          placeholder='Convenient, healthy, delicious green juices made to order by Julia!'
-        />
+        <Input type='textarea' name='description' />
       </FormGroup>
       <FormGroup>
         <Label for='description'>Full Name</Label>
-        <Input type='text' name='text' id='description' />
+        <Input type='text' name='fullName' />
       </FormGroup>
       <FormGroup>
         <Label for='description'>Email</Label>
-        <Input type='text' name='text' id='description' />
+        <Input type='text' name='email' />
       </FormGroup>
       <FormGroup>
         <Label for='description'>Username</Label>
-        <Input type='text' name='text' id='description' />
+        <Input type='text' name='username' />
       </FormGroup>
       <FormGroup>
         <Label for='description'>Password</Label>
-        <Input type='text' name='text' id='description' />
+        <Input type='text' name='password' />
       </FormGroup>
       <br />
       <Button color='primary' type='submit'>
