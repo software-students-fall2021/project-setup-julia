@@ -1,5 +1,5 @@
 import axios from "axios";
-import react from "react";
+import React, { useState, useEffect } from "react";
 
 //Reactstrap components
 import {
@@ -10,22 +10,25 @@ import {
     ModalFooter 
 } from "reactstrap";
 
-const Report_Account = function (reportedIsVendor, reporter, reportee, path) {
+function Report_Account(reportedIsVendor, reporter, reported) {
     console.log("The report function has been run!")
-    axios.post(path, {
+
+    axios.post( 'localhost:5000/reportaccount', {
         isVendor: reportedIsVendor,
         reporterID: reporter,
-        reporteeID: reportee
+        reportedID: reported
     })
     .then((res) => {
         const toggle = (isOpen) => {
             isOpen = !isOpen;
         }
-        return Output_Popup("Reported", res.message, "Okay", toggle, true)
+        return Output_Popup("Reported", res.body.message, "Okay", toggle, true)
     })
+
 }
 
-const Output_Popup = function (HeaderMessage, Message, CloseMessage, toggle, Open) {
+function Output_Popup(HeaderMessage, Message, CloseMessage, toggle, Open) {
+    return ( 
     <Modal isOpen={Open} toggle={toggle(Open)}>
         <ModalHeader toggle={toggle(Open)}>
             {HeaderMessage}
@@ -39,6 +42,7 @@ const Output_Popup = function (HeaderMessage, Message, CloseMessage, toggle, Ope
         </Button>
     </ModalFooter>
    </Modal>
+    );
 }
 
 export { Report_Account, Output_Popup }
