@@ -41,9 +41,9 @@ function User_follow_vendors() {
                 Category: Subcategory
               </small>
             </CardText>
-            <a href='#ReportVendor' onclick="Report_Account(false, null, null, '/UserFollowing#ReportVendor')">
+            <p onClick={() => {Report_Account(false, "testUserFollowedVendors", "testVendor")}}>
               Report Vendor
-            </a> 
+            </p> 
           </CardBody>
         </Card>
       </Row>

@@ -65,9 +65,9 @@ function UserProfile() {
             </Button>
             <CardText> 
               <small className="text-muted">
-                <a href='#ReportProfile' onclick="Report_Account(true, null, null, '/UserProfile#ReportProfile')">
+                <p onClick={() => {Report_Account(true, "testVendorUserProfile", "testUser")}}>
                   Report Profile
-                </a>
+                </p>
               </small>
             </CardText>
           </Col>
