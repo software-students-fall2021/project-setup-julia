@@ -10,6 +10,7 @@ app.use((req, res, next) => {
 
 app.use("/static", express.static("public"));
 app.use(express.json()); // decode JSON-formatted incoming POST data
+app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 
 app.post("/Contact", (req, res) => {
   const email = req.body.email
@@ -25,7 +26,6 @@ app.post("/Contact", (req, res) => {
 app.get('/UserProfileForm', (req, res) => {
   console.log(req.data)
 })
-app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 
 app.post("/UserProfileForm", (req, res) => {
   const body = {
