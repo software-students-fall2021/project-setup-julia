@@ -11,6 +11,12 @@ app.get("/Home", (req, res) => {
   res.sendFile("../front-end/src/views/Home.js", {root: __dirname})
 });
 
+app.post("/Home_Start", (req, res) => {
+  const selection = req.body.value
+  console.log("success, %s", selection)
+  res.redirect('/About')
+});
+
 app.get("/About", (req, res) => {
   res.sendFile("../front-end/src/views/About.js", {root: __dirname})
 });
