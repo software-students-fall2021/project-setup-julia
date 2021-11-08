@@ -7,6 +7,25 @@ app.use(express.json()) // decode JSON-formatted incoming POST data
 
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
 
+app.get("/Home", (req, res) => {
+  res.sendFile("../front-end/src/views/Home.js", {root: __dirname})
+});
+
+app.get("/About", (req, res) => {
+  res.sendFile("../front-end/src/views/About.js", {root: __dirname})
+});
+
+app.get("/Contact", (req, res) => {
+  res.sendFile("../front-end/src/views/Contact.js", {root: __dirname})
+});
+
+app.post("/Contact", (req, res) => {
+  const email = req.body.email
+  const text = req.body.text
+  console.log("success, %s %s", email, text)
+  res.redirect("/Contact")
+})
+
 app.get('/UserProfileForm', (req, res) => {
   console.log(req.data)
 })

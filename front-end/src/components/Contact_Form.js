@@ -10,7 +10,7 @@ import {
 
 const Contact_Form = () => {
   return (
-    <form>
+    <form action="/Contact" method="post">
       <FormGroup>
         <Label for="exampleEmail">
           Email address
