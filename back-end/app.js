@@ -2,30 +2,81 @@
 const express = require("express"); // CommonJS import style!
 const app = express(); // instantiate an Express object
 
-app.use("/static", express.static("public"));
-app.use(express.json()); // decode JSON-formatted incoming POST data
-app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
-
-app.get("/UserProfileForm", (req, res) => {
-  console.log(req.data);
+//this ensures we don't get cors errors
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
 });
 
-const express = require('express') // CommonJS import style!
+app.use("/static", express.static("public"));
+app.use(express.json()); // decode JSON-formatted incoming POST data
 
-// const {
-//   default: AvAddToQueue,
-// } = require("material-ui/svg-icons/av/add-to-queue");
+app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 
-const app = express() // instantiate an Express object
+app.post("/UserProfileForm", (req, res) => {
+  const body = {
+    username: req.body.username,
+    password: req.body.password,
+  };
+  res.json(body);
+});
 
-const port = 5000
+app.post("/VendorProfileForm", (req, res) => {
+  const body = {
+    businessName: req.body.businessName,
+    vendorCategory: req.body.vendorCategory,
+    location: req.body.location,
+    hours: req.body.hours,
+    menu: req.body.menu,
+    description: req.body.description,
+  };
+  //once we have our DB ready will connect this
+  res.json(body);
+});
 
-app.get('/', (req, res) => res.send('hello world'))
+app.get("/", (req, res) => res.send("hello world"));
 
-app.listen(port, () => console.log(`app listening on port ${port}!`))
+// this will handle the post requests to Sign our user up
+app.post("/userSignUp", (req, res) => {
+  const body = {
+    fullName: req.body.fullName,
+    email: req.body.email,
+    username: req.body.username,
+    password: req.body.password,
+  };
+  //once we have our DB ready will connect this
+  res.json(body);
+});
 
-app.use('/static', express.static('public'))
+// this will handle the post requests to Sign Up Vendors
+app.post("/vendorSignUp", (req, res) => {
+  const body = {
+    businessName: req.body.businessName,
+    vendorCategory: req.body.vendorCategory,
+    location: req.body.location,
+    hours: req.body.hours,
+    menu: req.body.menu,
+    description: req.body.description,
+    fullName: req.body.fullName,
+    email: req.body.email,
+    username: req.body.username,
+    password: req.body.password,
+  };
+  //once we have our DB ready will connect this
+  res.json(body);
+});
 
+// this will handle the post requests login
+app.post("/login", (req, res) => {
+  const body = {
+    email: req.body.email,
+    password: req.body.password,
+  };
+  //once we have our DB ready will connect this
+  res.json(body);
+});
+
+app.use("/static", express.static("public"));
 
 app.get('/editvendorprofile', (req,res) => {
     const sampleProfile = {
@@ -42,3 +93,4 @@ app.get('/editvendorprofile', (req,res) => {
 
 
 module.exports = app
+module.exports = app;
