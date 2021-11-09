@@ -123,4 +123,33 @@ describe('Report tests', function () {
       })
       .catch(assert.equal(0, 1, 'Error: POST request failed!'))
   })
+
+  it('Check that the contact form backend works when given required information in fields', function () {
+      axios
+        .post('http://localhost:5000/contact', {
+            email: 'test@gmail.com',
+            text: 'hello world',
+        })
+        .then((res) => {
+            assert.strictEqual(
+                res.data,
+                "Contact form submit succeeded"
+            )
+        })
+        .catch(assert.equal(0, 1, 'Error: POST request failed!'))
+  })
+  it('Check that the contact form backend does not submit when given incomplete or no information in fields', function () {
+    axios
+      .post('http://localhost:5000/contact', {
+          email: 'a',
+          text: ' ',
+      })
+      .then((res) => {
+          assert.strictEqual(
+              0,
+              "Contact form not submit succeeded"
+          )
+      })
+      .catch(assert.equal(0, 1, 'Error: Form submitted'))
+})
 })
