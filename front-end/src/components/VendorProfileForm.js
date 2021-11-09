@@ -42,26 +42,6 @@ function VendorProfileForm() {
       //redirect user to the login page
       history.push("/VendorProfile");
 
-<<<<<<< HEAD
-  //from animal.js in sample react app
-  useEffect(() => {
-    // fetch some mock data about animals for sale
-    console.log(`fetching vendor name=${profile.name}...`)
-    axios('/editvendorprofile')
-    .then((response) => {
-      setProfile(response.data);
-    })
-    .catch((err) =>{
-      console.log("error during useEffect axios call");
-      console.error(err);
-    })
-      
-  }, [profile])
-
-  const setSubcategoryOptions = (selectedCategory) =>{
-    let subcategories = []
-    switch (selectedCategory){
-=======
       // store the response data into the data state variable
     } catch (err) {
       // throw an error
@@ -73,7 +53,6 @@ function VendorProfileForm() {
   const setSubcategoryOptions = (selectedCategory) => {
     let subcategories = [];
     switch (selectedCategory) {
->>>>>>> 35231053535f01a805a25ab73748c7d9871b256a
       case "Food":
         subcategories = [
           "Snacks",
@@ -87,14 +66,7 @@ function VendorProfileForm() {
     }
     subcategories = categoriesSubcategories.selectedCategory
     setStateSubcategories(subcategories);
-<<<<<<< HEAD
-    const newProfile = profile
-    newProfile.subcategories = subcategories
-    setProfile(newProfile)
-  }
-=======
   };
->>>>>>> 35231053535f01a805a25ab73748c7d9871b256a
 
   const handleCategoryInput = async (event) => {
     setSubcategoryOptions(event.target.value);
@@ -113,28 +85,6 @@ function VendorProfileForm() {
       </FormGroup>
       <br />
       <FormGroup>
-<<<<<<< HEAD
-      <Label for="vendorCategory">Category</Label>
-        <Input type="select" name="select" id="vendorCategory" onInput={handleCategoryInput}>
-          <option selected>
-            Select a Category
-            </option>
-          <option>
-            Food
-            </option>
-          <option>
-            Produce
-            </option>
-          <option>
-            Accessories
-            </option>
-          <option>
-            Art
-            </option>
-          <option>
-            Other
-            </option>
-=======
         <Label for="vendorCategory">Category</Label>
         <Input
           type="select"
@@ -148,7 +98,6 @@ function VendorProfileForm() {
           <option>Accessories</option>
           <option>Art</option>
           <option>Other</option>
->>>>>>> 35231053535f01a805a25ab73748c7d9871b256a
         </Input>
       </FormGroup>
       {stateSubcategories.length > 0 ? (
