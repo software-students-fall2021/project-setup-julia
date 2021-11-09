@@ -6,4 +6,3 @@ To run:
 4. Run `npm start` to start the back-end server. 
 You can now make requests to the back-end through the React front-end. 
 
-# Getting Started with Whendor
