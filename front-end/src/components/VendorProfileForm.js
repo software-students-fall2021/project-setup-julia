@@ -1,20 +1,11 @@
+import React, { useState } from "react";
+
+import { FormGroup, Label, Input, FormText, Button } from "reactstrap";
+import "./VendorProfileForm.css";
 import axios from "axios";
-import React, { useState, useEffect} from "react"
+import { useHistory } from "react-router-dom";
 
-import {
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Button
-} from "reactstrap";
-import "./VendorProfileForm.css"
-
-const categoriesSubcategories = require("../CategoriesSubcategories.json");
-
-function VendorProfileForm() {     
-
-  const [profile, setProfile] = useState({});
+function VendorProfileForm() {
   const [stateSubcategories, setStateSubcategories] = useState([]);
   const history = useHistory();
   const handleSubmit = async (e) => {
@@ -64,7 +55,6 @@ function VendorProfileForm() {
           "European",
         ];
     }
-    subcategories = categoriesSubcategories.selectedCategory
     setStateSubcategories(subcategories);
   };
 
@@ -80,7 +70,7 @@ function VendorProfileForm() {
           type="name"
           name="businessName"
           id="vendorName"
-          placeholder={profile.name}
+          placeholder="Julia's Juice Stand"
         />
       </FormGroup>
       <br />
