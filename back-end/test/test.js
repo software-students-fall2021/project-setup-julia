@@ -151,5 +151,5 @@ describe('Report tests', function () {
           )
       })
       .catch(assert.equal(0, 1, 'Error: Form submitted'))
-})
+  })
 })
