@@ -26,6 +26,22 @@ app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')
 })
 
+
+app.post("/Contact", (req, res) => {
+  const email = req.body.email
+  const text = req.body.text
+  const data = {
+    email: email,
+    text: text,
+  };
+  console.log("success, %s %s", email, text)
+  res.json(data);
+})
+
+app.get('/UserProfileForm', (req, res) => {
+  console.log(req.data)
+})
+
 app.get("/", (req, res) => res.send("hello world"));
 
 app.post("/UserProfileForm", (req, res) => {
