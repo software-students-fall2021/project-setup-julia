@@ -17,19 +17,12 @@ import { FormGroup, Label, Input, FormText, Button } from 'reactstrap'
 export default function Login() {
   const history = useHistory()
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
   // function validateForm() {
   //   return email.length > 0 && password.length > 0
   // }
   const handleSubmit = async (e) => {
     // prevent the HTML form from actually submitting... we use React's javascript code instead
-    console.log('hiiiiiii')
-    console.log(e)
     e.preventDefault()
-    console.log(e)
-    console.log('hiiiiiii')
 
     try {
       // create an object with the data we want to send to the server

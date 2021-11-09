@@ -35,7 +35,7 @@ const UserSignUpForm = () => {
         'success'
       )
       //redirect user to the login page
-      history.push('/')
+      history.push('/login')
     } catch (err) {
       // throw an error
       console.log(err)

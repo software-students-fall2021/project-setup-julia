@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import ReactDOM from 'react-dom'
 import { useHistory } from 'react-router-dom'
 import { FormGroup, Label, Input, FormText, Button } from 'reactstrap'
 
