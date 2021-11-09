@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 // reactstrap components
 import {
@@ -24,6 +24,7 @@ import About_header from "components/About_header.js";
 import Footer from "components/Footer.js";
 import Following_row from "components/Following_row";
 import VendorCarousel from "components/VendorCarousel";
+import axios from "axios";
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -36,6 +37,31 @@ const ColoredLine = ({ color }) => (
 );
 
 function VendorProfile() {
+  const [profile, setProfile] = useState({
+    name : "",
+    category: "",
+    subcategories : [],
+    location : "",
+    hours : "",
+    menu : "",
+    description: ""
+  })
+
+  try{
+    console.log("fetching vendor information");
+    const fetchVendor = async() =>{
+      const response = await axios.get('http://localhost:5000/vendorprofile')
+      console.log(response.data);
+      setProfile(response.data)
+    }
+    fetchVendor()
+  }
+  catch (err) {
+    // throw an error
+    console.log(err);
+    throw new Error(err);
+  }
+
   return (
     <>
       <Navigation />
@@ -70,13 +96,7 @@ function VendorProfile() {
             <strong>Description:</strong>
             <div>
               <br></br>
-              Commodo aliqua ad duis aute sunt.Id irure ullamco elit et nisi
-              ipsum Lorem Lorem ea eiusmod minim ad minim aliquip. Consequat
-              occaecat eu dolor minim mollit anim commodo mollit. Cillum est est
-              commodo qui dolor incididunt consectetur laboris consequat. Eu in
-              Lorem tempor sint ut enim nostrud excepteur fugiat consequat nisi
-              consequat. Aliquip voluptate sit ut aliquip et nulla tempor duis
-              qui.
+              {profile.description}
             </div>
           </h4>
         </Row>
@@ -85,23 +105,43 @@ function VendorProfile() {
           <VendorCarousel></VendorCarousel>
         </Row>
         <Row>
-          <h3>Category: </h3>
+          <h4>
+            <strong>Category: </strong>
+            {profile.category}
+          </h4>
         </Row>
         <br></br>
         <Row>
-          <h4>SubCategory: </h4>
+          <h4>
+           <strong>Subcategory: </strong> 
+           <ul>
+           {
+            profile.subcategories.map((subcategory) => (
+             <li key = {subcategory}>{subcategory}</li>)) 
+            }
+          </ul>
+            </h4>
+        </Row>
+       
+        <Row>
+          <h4>
+            <strong>Location: </strong>
+            {profile.location}
+            </h4>
         </Row>
         <br></br>
         <Row>
-          <h4>Location: </h4>
+          <h4>
+            <strong>Hours: </strong>
+            {profile.hours}
+            </h4>
         </Row>
         <br></br>
         <Row>
-          <h4>Hours: </h4>
-        </Row>
-        <br></br>
-        <Row>
-          <h4>Menu: </h4>
+          <h4>
+            <strong>Menu: </strong>
+            {profile.menu}
+            </h4>
         </Row>
       </Container>
 

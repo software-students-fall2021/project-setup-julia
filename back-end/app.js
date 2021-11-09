@@ -17,6 +17,8 @@ app.use('/static', express.static('public'))
 app.use(express.json()) // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
 
+
+
 app.get('/products/:id', function (req, res, next) {
   res.json({msg: 'This is CORS-enabled for all origins!'})
 })
@@ -25,6 +27,7 @@ app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')
 })
 
+app.get("/", (req, res) => res.send("hello world"));
 
 app.post("/UserProfileForm", (req, res) => {
   const body = {
@@ -47,7 +50,20 @@ app.post("/VendorProfileForm", (req, res) => {
   res.json(body);
 });
 
-app.get("/", (req, res) => res.send("hello world"));
+app.get('/vendorprofile', (req, res) =>{
+  const sampleProfile = {
+    name : "Michael's Meringue Menagerie",
+    category : "Food",
+    subcategories : ["Snacks", "European"],
+    location : "W 4th St across from Starbucks",
+    hours : "Saturday-Sunday 12pm-5pm",
+    menu : "Vanilla Meringue box of 10 - $5",
+    description : "Michael's homemade meringues!"
+  }
+  res.json(sampleProfile)
+})
+
+
 
 // this will handle the post requests to Sign our user up
 app.post("/userSignUp", (req, res) => {
@@ -88,8 +104,6 @@ app.post("/login", (req, res) => {
   //once we have our DB ready will connect this
   res.json(body);
 });
-
-app.use("/static", express.static("public"));
 
 app.post('/reportaccount', (req, res) => {
   if(req.hasOwnProperty('body') && req.body.hasOwnProperty('reportedID') && req.body.hasOwnProperty('reporterID')) {
