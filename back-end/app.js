@@ -1,6 +1,10 @@
 // import and instantiate express
-const express = require("express"); // CommonJS import style!
-const app = express(); // instantiate an Express object
+const express = require('express') // CommonJS import style!
+const cors = require('cors')
+const app = express() // instantiate an Express object
+
+
+app.use(cors());
 
 //this ensures we don't get cors errors
 app.use((req, res, next) => {
@@ -8,9 +12,19 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/static", express.static("public"));
-app.use(express.json()); // decode JSON-formatted incoming POST data
-app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
+
+app.use('/static', express.static('public'))
+app.use(express.json()) // decode JSON-formatted incoming POST data
+app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
+
+app.get('/products/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
+
+app.listen(80, function () {
+  console.log('CORS-enabled web server listening on port 80')
+})
+
 
 app.post("/Contact", (req, res) => {
   const email = req.body.email
@@ -92,4 +106,17 @@ app.post("/login", (req, res) => {
 
 app.use("/static", express.static("public"));
 
-module.exports = app;
+app.post('/reportaccount', (req, res) => {
+  if(req.hasOwnProperty('body') && req.body.hasOwnProperty('reportedID') && req.body.hasOwnProperty('reporterID')) {
+    res.report = (req.body.isVendor ? "Thank you for reporting this vendor. We will investigate their profile and take appropriate action." : 
+                                   "Thank you for reporting this user. We will investigate their profile and take appropriate action.")
+ //TODO: Check if this profile has already reported this user. If they have, do not go through with the report.
+ //TODO: Add this report to a database of reported profiles.
+ }
+  else
+    res.report = "Error: Invalid Report"
+res.send(res.report)
+})
+
+module.exports = app
+
