@@ -58,7 +58,7 @@ function VendorProfile() {
             </Button>
             <br></br>
             <br></br>
-            <Button color="gray" href="/VendorSideProfile">
+            <Button color="gray" href="/EditVendorProfile">
               Edit Profile
             </Button>
           </Col>

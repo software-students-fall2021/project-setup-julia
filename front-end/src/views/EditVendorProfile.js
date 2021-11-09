@@ -22,7 +22,7 @@ import About_header from "components/About_header.js";
 import Footer from "components/Footer.js";
 import VendorProfileForm from "components/VendorProfileForm.js";
 
-function VendorSideProfile() {
+function EditVendorProfile() {
     return (
         <>
             <Navigation />
@@ -50,4 +50,4 @@ function VendorSideProfile() {
     );
 }
 
-export default VendorSideProfile;
+export default EditVendorProfile;

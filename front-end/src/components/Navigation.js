@@ -90,7 +90,7 @@ function Navigation() {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/VendorSideProfile" tag={Link}>
+              <NavLink to="/EditVendorProfile" tag={Link}>
                 <i /> Vendor Edit Profile
               </NavLink>
             </NavItem>
