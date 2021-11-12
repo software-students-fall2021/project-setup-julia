@@ -13,7 +13,7 @@ import {
 function Home_dropdown(){
   return (
     <div class="btn-group">
-      <UncontrolledDropdown>
+      <UncontrolledDropdown >
         <DropdownToggle
           aria-expanded={false}
           aria-haspopup={true}
@@ -27,14 +27,14 @@ function Home_dropdown(){
         >
           select one
         </DropdownToggle>
-        <DropdownMenu aria-labelledby="dropdownMenuLink">
-          <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+        <DropdownMenu aria-labelledby="dropdownMenuLink" >
+          <DropdownItem href="#pablo" value="food" onClick={e => e.preventDefault()}>
             Food Vendor
           </DropdownItem>
-          <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+          <DropdownItem href="#pablo" value="grocery" onClick={e => e.preventDefault()}>
             Fresh Grocery Vendor
           </DropdownItem>
-          <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+          <DropdownItem href="#pablo" value="other" onClick={e => e.preventDefault()}>
             Other Vendor
           </DropdownItem>
         </DropdownMenu>
