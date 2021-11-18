@@ -7,5 +7,14 @@ const User = new mongoose.Schema({
   email: { type: String, required: true },
 });
 
+const Vendor = new mongoose.Schema({
+  businessName: { type: String, required: true },
+  vendorCategory: { type: String, required: true },
+  location: { type: String, required: true },
+  hours: { type: String, required: true },
+  menu: { type: String, required: true },
+  description: { type: String, required: true },
+});
+
 mongoose.model("User", User);
 mongoose.connect("mongodb://localhost");
