@@ -14,6 +14,10 @@ const Vendor = new mongoose.Schema({
   hours: { type: String, required: true },
   menu: { type: String, required: true },
   description: { type: String, required: true },
+  fullName: { type: String, required: true },
+  email: { type: String, required: true },
+  username: { type: String, required: true },
+  password: { type: String, required: true },
 });
 
 mongoose.model("User", User);

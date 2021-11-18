@@ -63,6 +63,7 @@ app.post("/VendorProfileForm", (req, res) => {
     description: req.body.description,
   };
   //once we have our DB ready will connect this
+
   res.json(body);
 });
 
@@ -105,7 +106,27 @@ app.post("/vendorSignUp", (req, res) => {
     username: req.body.username,
     password: req.body.password,
   };
-  //once we have our DB ready will connect this
+
+  //making a new vendor using the databse schema
+  const newVendor = new Vendor({
+    businessName: body.businessName,
+    vendorCategory: body.vendorCategory,
+    location: body.location,
+    hours: body.hours,
+    menu: body.menu,
+    description: body.description,
+    fullName: body.fullName,
+    email: body.email,
+    username: body.username,
+    password: body.password,
+  });
+
+  newVendor.save((err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+
   res.json(body);
 });
 
