@@ -94,7 +94,7 @@ app.get('/vendorprofile', (req, res) => {
 // this will handle the post requests to Sign our user up
 app.post('/userSignUp', (req, res) => {
   const newUser = new User({
-    fullName: req.body.fullName,
+    fullname: req.body.fullName,
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
@@ -102,9 +102,10 @@ app.post('/userSignUp', (req, res) => {
   newUser.save((err) => {
     if (err) {
       console.log(err)
+    } else {
+      res.json({ success: 'User data added to server' })
     }
   })
-  res.json({ success: 'User data added to server' })
 })
 
 app.post('/vendorSignUp', (req, res) => {
