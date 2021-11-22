@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import {
   Button,
@@ -26,6 +26,24 @@ import Vendor_Mini_Bio from "components/Vendor_Mini_Bio.js";
 
 
 function Subcategories() {
+  const [title, setTitle] = useState(0);
+  useEffect(() => {
+    let pathnameSections=window.location.pathname.split('/')
+    let lastSection=(pathnameSections[pathnameSections.length-1])
+    if(lastSection=="Fast%20Food")
+    {
+      lastSection="Fast Food"
+    }
+    if(lastSection=="Latin%20American")
+    {
+      lastSection="Latin American"
+    }
+    if(lastSection=="Subcategories")
+    {
+      lastSection="Other"
+    }
+    setTitle(lastSection);
+  })
   return (
     <>
       <Navigation />
@@ -35,7 +53,7 @@ function Subcategories() {
         <Row>
           <Col style={{textAlign: 'center'}}>
             <h2 className="title">
-              Subcategory
+              {title}
             </h2>
             <Subcategories_Search_Bar />
           </Col>
