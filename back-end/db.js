@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const uri =
+  "mongodb+srv://whendorteam:Qy4aTtH4KA2AIOK3@whendor.ds7ji.mongodb.net/Whendor?retryWrites=true&w=majority";
 
 const User = new mongoose.Schema({
   username: { type: String, required: true },
@@ -21,4 +23,5 @@ const Vendor = new mongoose.Schema({
 });
 
 mongoose.model("User", User);
-mongoose.connect("mongodb://localhost");
+mongoose.model("Vendor", Vendor);
+mongoose.connect(uri);
