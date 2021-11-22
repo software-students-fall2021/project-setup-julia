@@ -25,23 +25,6 @@ import UserSignUp from "views/UserSignUp.js";
 import UserEditProfile from "views/UserEditProfile";
 import VendorProfileForm from "components/VendorProfileForm";
 import VendorProfile from "views/VendorProfile.js";
-import FastFood from "views/FastFood.js";
-import Snacks from "views/Snacks.js";
-import Breakfast from "views/Breakfast.js";
-import Drinks from "views/Drinks.js";
-import Asian from "views/Asian.js";
-import African from "views/African.js";
-import LatinAmerican from "views/LatinAmerican.js";
-import European from "views/European.js";
-import Fruits from "views/Fruits.js";
-import Vegetables from "views/Vegetables.js";
-import Jewelry from "views/Jewelry.js";
-import Masks from "views/Masks.js";
-import Hair from "views/Hair.js";
-import Makeup from "views/Makeup.js";
-import Paintings from "views/Paintings.js";
-import Photography from "views/Photography.js";
-import Other from "views/Other.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -82,79 +65,11 @@ ReactDOM.render(
         path="/Subcategories"
         render={(props) => <Subcategories {...props} />}
       />
-
       <Route
         path="/VendorProfile"
         render={(props) => <VendorProfile {...props} />}
       />
-      <Route
-        path="/FastFood"
-        render={(props) => <FastFood {...props} />}
-      />
-      <Route
-        path="/Snacks"
-        render={(props) => <Snacks {...props} />}
-      />
-      <Route
-        path="/Breakfast"
-        render={(props) => <Breakfast {...props} />}
-      />
-      <Route
-        path="/Drinks"
-        render={(props) => <Drinks {...props} />}
-      />
-      <Route
-        path="/Asian"
-        render={(props) => <Asian {...props} />}
-      />
-      <Route
-        path="/African"
-        render={(props) => <African {...props} />}
-      />
-      <Route
-        path="/LatinAmerican"
-        render={(props) => <LatinAmerican {...props} />}
-      />
-      <Route
-        path="/European"
-        render={(props) => <European {...props} />}
-      />
-      <Route
-        path="/Fruits"
-        render={(props) => <Fruits {...props} />}
-      />
-      <Route
-        path="/Vegetables"
-        render={(props) => <Vegetables {...props} />}
-      />
-      <Route
-        path="/Jewelry"
-        render={(props) => <Jewelry {...props} />}
-      />
-      <Route
-        path="/Masks"
-        render={(props) => <Masks {...props} />}
-      />
-      <Route
-        path="/Hair"
-        render={(props) => <Hair {...props} />}
-      />
-      <Route
-        path="/Makeup"
-        render={(props) => <Makeup {...props} />}
-      />
-      <Route
-        path="/Paintings"
-        render={(props) => <Paintings {...props} />}
-      />
-      <Route
-        path="/Photography"
-        render={(props) => <Photography {...props} />}
-      />
-      <Route
-        path="/Other"
-        render={(props) => <Other {...props} />}
-      />
+      
       <Redirect to="/Home" />
     </Switch>
   </BrowserRouter>,
