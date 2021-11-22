@@ -1,8 +1,27 @@
 // import and instantiate express
 const express = require('express') // CommonJS import style!
 const cors = require('cors')
-const { TRUE } = require('node-sass')
+require('dotenv').config({ silent: true }) // load environmental variables from a hidden file named .env
+//const { TRUE } = require('node-sass')
 const app = express() // instantiate an Express object
+
+const db = require('./db.js')
+const mongoose = require('mongoose')
+
+const User = mongoose.model('User')
+const Vendor = mongoose.model('Vendor')
+
+const jwt = require('jsonwebtoken')
+const passport = require('passport')
+const _ = require('lodash')
+app.use(passport.initialize()) // tell express to use passport middleware
+
+// load up some mock user data in an array... this would normally come from a database
+const users = require('./user_data.js')
+
+// use this JWT strategy within passport for authentication handling
+const { jwtOptions, jwtStrategy } = require('./jwt-config.js') // import setup options for using JWT in passport
+passport.use(jwtStrategy)
 
 app.use(cors())
 
@@ -23,6 +42,23 @@ app.get('/products/:id', function (req, res, next) {
 app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')
 })
+
+app.post('/Contact', (req, res) => {
+  const email = req.body.email
+  const text = req.body.text
+  const data = {
+    email: email,
+    text: text,
+  }
+  console.log('success, %s %s', email, text)
+  res.json(data)
+})
+
+app.get('/UserProfileForm', (req, res) => {
+  console.log(req.data)
+})
+
+app.get('/', (req, res) => res.send('hello world'))
 
 app.post('/UserProfileForm', (req, res) => {
   const body = {
@@ -45,28 +81,39 @@ app.post('/VendorProfileForm', (req, res) => {
   res.json(body)
 })
 
-app.get('/', (req, res) => res.send('hello world'))
+app.get('/vendorprofile', (req, res) => {
+  const sampleProfile = {
+    name: "Michael's Meringue Menagerie",
+    category: 'Food',
+    subcategories: ['Snacks', 'European'],
+    location: 'W 4th St across from Starbucks',
+    hours: 'Saturday-Sunday 12pm-5pm',
+    menu: 'Vanilla Meringue box of 10 - $5',
+    description: "Michael's homemade meringues!",
+  }
+  res.json(sampleProfile)
+})
 
 // this will handle the post requests to Sign our user up
 app.post('/userSignUp', (req, res) => {
-  const body = {
+  const newUser = new User({
     fullName: req.body.fullName,
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
-  }
-  //once we have our DB ready will connect this
-
-  //if our db successfullly uploads the user info it should respond with result being true
-  result = TRUE
-
-  res.send(result)
-  //res.json(body)
+  })
+  newUser.save((err) => {
+    if (err) {
+      console.log(err)
+    }
+  })
+  res.json({ success: 'User data added to server' })
 })
 
 // this will handle the post requests to Sign Up Vendors
 app.post('/vendorSignUp', (req, res) => {
-  const body = {
+  //console.log(req)
+  const newVendor = new Vendor({
     businessName: req.body.businessName,
     vendorCategory: req.body.vendorCategory,
     location: req.body.location,
@@ -77,25 +124,74 @@ app.post('/vendorSignUp', (req, res) => {
     email: req.body.email,
     username: req.body.username,
     password: req.body.password,
-  }
-  //once we have our DB ready will connect this
-  res.json(body)
+  })
+
+  newVendor.save((err) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.json({ success: 'Vendor data added to server' })
+    }
+  })
 })
 
 // this will handle the post requests login
+// app.post('/login', (req, res) => {
+//   const body = {
+//     email: req.body.email,
+//     password: req.body.password,
+//   }
+//   //I will check the Db if these credentials match any one. the response will either be true or false
+
+//   res.result = 'TRUE'
+//   //once we have our DB ready will connect this
+//   res.send(res.result)
+// })
+
+// a route to handle a login attempt
 app.post('/login', (req, res) => {
-  const body = {
-    email: req.body.email,
-    password: req.body.password,
+  console.log(req)
+  // brab the name and password that were submitted as POST body data
+  const username = req.body.username
+
+  const password = req.body.password
+
+  console.log(`${username}, ${password}`)
+  console.log(`${req.body}`)
+
+  if (!username || !password) {
+    // no username or password received in the POST body... send an error
+    res.status(401).json({
+      success: false,
+      message: `no username or password supplied.`,
+      username,
+      password,
+    })
   }
-  //I will check the Db if these credentials match any one. the response will either be true or false
 
-  result = TRUE
-  //once we have our DB ready will connect this
-  res.send(result)
+  // usually this would be a database call, but here we look for a matching user in our mock data
+  //error thrown here
+  const user = users[_.findIndex(users, { username: username })]
+  if (!user) {
+    // no user found with this name... send an error
+    res
+      .status(401)
+      .json({ success: false, message: `user not found: ${username}.` })
+  }
+
+  // assuming we found the user, check the password is correct
+  // we would normally encrypt the password the user submitted to check it against an encrypted copy of the user's password we keep in the database... but here we just compare two plain text versions for simplicity
+  else if (req.body.password == user.password) {
+    // the password the user entered matches the password in our "database" (mock data in this case)
+    // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
+    const payload = { id: user.id } // some data we'll encode into the token
+    const token = jwt.sign(payload, jwtOptions.secretOrKey) // create a signed token
+    res.json({ success: true, username: user.username, token: token }) // send the token to the client to store
+  } else {
+    // the password did not match
+    res.status(401).json({ success: false, message: 'passwords did not match' })
+  }
 })
-
-app.use('/static', express.static('public'))
 
 app.post('/reportaccount', (req, res) => {
   if (
@@ -111,5 +207,25 @@ app.post('/reportaccount', (req, res) => {
   } else res.report = 'Error: Invalid Report'
   res.send(res.report)
 })
+
+// a route that is protected... only authenticated users can access it.
+app.get(
+  '/protected',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    // our jwt passport config will send error responses to unauthenticated users will
+    // so we only need to worry about sending data to properly authenticated users!
+
+    res.json({
+      success: true,
+      user: {
+        id: req.user.id,
+        username: req.user.username,
+      },
+      message:
+        'Congratulations: you have accessed this route because you have a valid JWT token!',
+    })
+  }
+)
 
 module.exports = app
