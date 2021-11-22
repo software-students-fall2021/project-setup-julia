@@ -16,6 +16,7 @@
     "cors-anywhere": "^0.4.4",
     "expect": "^27.3.1",
     "express": "^4.17.1",
+    "mongoose": "^6.0.13",
     "node-sass": "^6.0.1",
     "nyc": "^15.1.0"
   },
