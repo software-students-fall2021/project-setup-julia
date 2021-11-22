@@ -1,7 +1,7 @@
 // import and instantiate express
 const express = require('express') // CommonJS import style!
 const cors = require('cors')
-//const { TRUE } = require('node-sass')
+const { TRUE } = require('node-sass')
 const app = express() // instantiate an Express object
 
 app.use(cors())
@@ -16,8 +16,6 @@ app.use('/static', express.static('public'))
 app.use(express.json()) // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })) // decode url-encoded incoming POST data
 
-
-
 app.get('/products/:id', function (req, res, next) {
   res.json({ msg: 'This is CORS-enabled for all origins!' })
 })
@@ -26,25 +24,7 @@ app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')
 })
 
-
-app.post("/Contact", (req, res) => {
-  const email = req.body.email
-  const text = req.body.text
-  const data = {
-    email: email,
-    text: text,
-  };
-  console.log("success, %s %s", email, text)
-  res.json(data);
-})
-
-app.get('/UserProfileForm', (req, res) => {
-  console.log(req.data)
-})
-
-app.get("/", (req, res) => res.send("hello world"));
-
-app.post("/UserProfileForm", (req, res) => {
+app.post('/UserProfileForm', (req, res) => {
   const body = {
     username: req.body.username,
     password: req.body.password,
@@ -65,20 +45,7 @@ app.post('/VendorProfileForm', (req, res) => {
   res.json(body)
 })
 
-app.get('/vendorprofile', (req, res) =>{
-  const sampleProfile = {
-    name : "Michael's Meringue Menagerie",
-    category : "Food",
-    subcategories : ["Snacks", "European"],
-    location : "W 4th St across from Starbucks",
-    hours : "Saturday-Sunday 12pm-5pm",
-    menu : "Vanilla Meringue box of 10 - $5",
-    description : "Michael's homemade meringues!"
-  }
-  res.json(sampleProfile)
-})
-
-
+app.get('/', (req, res) => res.send('hello world'))
 
 // this will handle the post requests to Sign our user up
 app.post('/userSignUp', (req, res) => {
@@ -89,8 +56,11 @@ app.post('/userSignUp', (req, res) => {
     password: req.body.password,
   }
   //once we have our DB ready will connect this
-  res.result = "TRUE"
-  res.send(res.result)
+
+  //if our db successfullly uploads the user info it should respond with result being true
+  result = TRUE
+
+  res.send(result)
   //res.json(body)
 })
 
@@ -109,9 +79,7 @@ app.post('/vendorSignUp', (req, res) => {
     password: req.body.password,
   }
   //once we have our DB ready will connect this
-  res.result = "TRUE"
-  res.send(res.result)
-  //res.json(body)
+  res.json(body)
 })
 
 // this will handle the post requests login
@@ -122,10 +90,12 @@ app.post('/login', (req, res) => {
   }
   //I will check the Db if these credentials match any one. the response will either be true or false
 
-  res.result = "TRUE"
+  result = TRUE
   //once we have our DB ready will connect this
-  res.send(res.result)
+  res.send(result)
 })
+
+app.use('/static', express.static('public'))
 
 app.post('/reportaccount', (req, res) => {
   if (
