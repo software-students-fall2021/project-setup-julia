@@ -25,11 +25,6 @@ import About_header from "components/About_header.js";
 import Footer from "components/Footer.js";
 import Categories_Boxes from "components/Categories_Boxes.js"
 import Category_Search_Bar from "components/Category_Search_Bar.js"
-import FoodBox from "components/FoodBox.js"
-import ProduceBox from "components/ProduceBox.js"
-import AccessoriesBox from "components/AccessoriesBox.js"
-import ArtBox from "components/ArtBox.js"
-import OtherBox from "components/OtherBox.js"
 
 function Vendors() {
     return (
@@ -50,31 +45,31 @@ function Vendors() {
                         <br />
                         <Row>
                             <Col>
-                                <FoodBox />
+                                <Categories_Boxes category="Food" num="8" subcat1="Fast Food" subcat2="Snacks" subcat3="Breakfast" subcat4="Drinks" subcat5="Asian" subcat6="African" subcat7="Latin American" subcat8="European" />
                             </Col>
                         </Row>
                         <br />
                         <Row>
                             <Col>
-                                <ProduceBox />
+                                <Categories_Boxes category="Produce" num="2" subcat1="Fruits" subcat2="Vegetables" />
                             </Col>
                         </Row>
                         <br />
                         <Row>
                             <Col>
-                                <AccessoriesBox />
+                                <Categories_Boxes category="Accessories" num="4" subcat1="Jewelry" subcat2="Masks" subcat3="Hair" subcat4="Makeup" />
                             </Col>
                         </Row>
                         <br />
                         <Row>
                             <Col>
-                                <ArtBox />
+                                <Categories_Boxes category="Art" num="2" subcat1="Paintings" subcat2="Photography" />
                             </Col>
                         </Row>
                         <br />
                         <Row>
                             <Col>
-                                <OtherBox />
+                                <Categories_Boxes category="Other" num="0" />
                             </Col>
                         </Row>
                     </Container>   

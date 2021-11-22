@@ -89,8 +89,11 @@ app.post("/userSignUp", (req, res) => {
     password: req.body.password,
   };
   //once we have our DB ready will connect this
-  res.json(body);
-});
+  res.result = "TRUE"
+  res.send(res.result)
+  //res.json(body)
+})
+
 
 // this will handle the post requests to Sign Up Vendors
 app.post("/vendorSignUp", (req, res) => {
@@ -138,9 +141,9 @@ app.post("/login", (req, res) => {
   };
   //I will check the Db if these credentials match any one. the response will either be true or false
 
-  result = TRUE;
+  res.result = "TRUE"
   //once we have our DB ready will connect this
-  res.send(result);
+  res.send(res.result)
 });
 
 app.post("/reportaccount", (req, res) => {
