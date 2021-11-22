@@ -14,6 +14,8 @@ import {
     UncontrolledDropdown
 } from "reactstrap";
 
+import Subcategories from "views/Subcategories.js"
+
 const Categories_Boxes = ({category, num, subcat1, subcat2, subcat3, subcat4, subcat5, subcat6, subcat7, subcat8}) => {
     if(num=="0")
     {
@@ -62,10 +64,10 @@ const Categories_Boxes = ({category, num, subcat1, subcat2, subcat3, subcat4, su
               <DropdownToggle aria-expanded={false} aria-haspopup={true} caret color="secondary" data-toggle="dropdown" href="#pablo" id="dropdownMenuLink" onClick={e => e.preventDefault()} role="button">See all Subcategories</DropdownToggle>
               <DropdownMenu aria-labelledby="dropdownMenuLink">
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat1}</a>
+                  <a href={`/Subcategories/${subcat1}`}>{subcat1}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat2}</a>
+                  <a href={`/Subcategories/${subcat2}`}>{subcat2}</a>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -85,13 +87,13 @@ const Categories_Boxes = ({category, num, subcat1, subcat2, subcat3, subcat4, su
               <DropdownToggle aria-expanded={false} aria-haspopup={true} caret color="secondary" data-toggle="dropdown" href="#pablo" id="dropdownMenuLink" onClick={e => e.preventDefault()} role="button">See all Subcategories</DropdownToggle>
               <DropdownMenu aria-labelledby="dropdownMenuLink">
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat1}</a>
+                  <a href={`/Subcategories/${subcat1}`}>{subcat1}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat2}</a>
+                  <a href={`/Subcategories/${subcat2}`}>{subcat2}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat3}</a>
+                  <a href={`/Subcategories/${subcat3}`}>{subcat3}</a>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -111,16 +113,16 @@ const Categories_Boxes = ({category, num, subcat1, subcat2, subcat3, subcat4, su
               <DropdownToggle aria-expanded={false} aria-haspopup={true} caret color="secondary" data-toggle="dropdown" href="#pablo" id="dropdownMenuLink" onClick={e => e.preventDefault()} role="button">See all Subcategories</DropdownToggle>
               <DropdownMenu aria-labelledby="dropdownMenuLink">
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat1}</a>
+                  <a href={`/Subcategories/${subcat1}`}>{subcat1}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat2}</a>
+                  <a href={`/Subcategories/${subcat2}`}>{subcat2}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat3}</a>
+                  <a href={`/Subcategories/${subcat3}`}>{subcat3}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat4}</a>
+                  <a href={`/Subcategories/${subcat4}`}>{subcat4}</a>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -140,19 +142,19 @@ const Categories_Boxes = ({category, num, subcat1, subcat2, subcat3, subcat4, su
               <DropdownToggle aria-expanded={false} aria-haspopup={true} caret color="secondary" data-toggle="dropdown" href="#pablo" id="dropdownMenuLink" onClick={e => e.preventDefault()} role="button">See all Subcategories</DropdownToggle>
               <DropdownMenu aria-labelledby="dropdownMenuLink">
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat1}</a>
+                  <a href={`/Subcategories/${subcat1}`}>{subcat1}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat2}</a>
+                  <a href={`/Subcategories/${subcat2}`}>{subcat2}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat3}</a>
+                  <a href={`/Subcategories/${subcat3}`}>{subcat3}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat4}</a>
+                  <a href={`/Subcategories/${subcat4}`}>{subcat4}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat5}</a>
+                  <a href={`/Subcategories/${subcat5}`}>{subcat5}</a>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -172,22 +174,22 @@ const Categories_Boxes = ({category, num, subcat1, subcat2, subcat3, subcat4, su
               <DropdownToggle aria-expanded={false} aria-haspopup={true} caret color="secondary" data-toggle="dropdown" href="#pablo" id="dropdownMenuLink" onClick={e => e.preventDefault()} role="button">See all Subcategories</DropdownToggle>
               <DropdownMenu aria-labelledby="dropdownMenuLink">
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat1}</a>
+                  <a href={`/Subcategories/${subcat1}`}>{subcat1}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat2}</a>
+                  <a href={`/Subcategories/${subcat2}`}>{subcat2}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat3}</a>
+                  <a href={`/Subcategories/${subcat3}`}>{subcat3}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat4}</a>
+                  <a href={`/Subcategories/${subcat4}`}>{subcat4}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat5}</a>
+                  <a href={`/Subcategories/${subcat5}`}>{subcat5}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat6}</a>
+                  <a href={`/Subcategories/${subcat6}`}>{subcat6}</a>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -207,25 +209,25 @@ const Categories_Boxes = ({category, num, subcat1, subcat2, subcat3, subcat4, su
               <DropdownToggle aria-expanded={false} aria-haspopup={true} caret color="secondary" data-toggle="dropdown" href="#pablo" id="dropdownMenuLink" onClick={e => e.preventDefault()} role="button">See all Subcategories</DropdownToggle>
               <DropdownMenu aria-labelledby="dropdownMenuLink">
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat1}</a>
+                  <a href={`/Subcategories/${subcat1}`}>{subcat1}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat2}</a>
+                  <a href={`/Subcategories/${subcat2}`}>{subcat2}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat3}</a>
+                  <a href={`/Subcategories/${subcat3}`}>{subcat3}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat4}</a>
+                  <a href={`/Subcategories/${subcat4}`}>{subcat4}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat5}</a>
+                  <a href={`/Subcategories/${subcat5}`}>{subcat5}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat6}</a>
+                  <a href={`/Subcategories/${subcat6}`}>{subcat6}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat7}</a>
+                  <a href={`/Subcategories/${subcat7}`}>{subcat7}</a>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
@@ -245,28 +247,28 @@ const Categories_Boxes = ({category, num, subcat1, subcat2, subcat3, subcat4, su
               <DropdownToggle aria-expanded={false} aria-haspopup={true} caret color="secondary" data-toggle="dropdown" href="#pablo" id="dropdownMenuLink" onClick={e => e.preventDefault()} role="button">See all Subcategories</DropdownToggle>
               <DropdownMenu aria-labelledby="dropdownMenuLink">
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat1}</a>
+                  <a href={`/Subcategories/${subcat1}`}>{subcat1}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat2}</a>
+                  <a href={`/Subcategories/${subcat2}`}>{subcat2}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat3}</a>
+                  <a href={`/Subcategories/${subcat3}`}>{subcat3}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat4}</a>
+                  <a href={`/Subcategories/${subcat4}`}>{subcat4}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat5}</a>
+                  <a href={`/Subcategories/${subcat5}`}>{subcat5}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat6}</a>
+                  <a href={`/Subcategories/${subcat6}`}>{subcat6}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat7}</a>
+                  <a href={`/Subcategories/${subcat7}`}>{subcat7}</a>
                 </DropdownItem>
                 <DropdownItem>
-                  <a href="/Subcategories">{subcat8}</a>
+                  <a href={`/Subcategories/${subcat8}`}>{subcat8}</a>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
