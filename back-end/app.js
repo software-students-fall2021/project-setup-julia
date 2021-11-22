@@ -1,8 +1,12 @@
+require('./db');
 // import and instantiate express
 const express = require('express') // CommonJS import style!
+const mongoose = require('mongoose');
 const cors = require('cors')
 const { TRUE } = require('node-sass')
 const app = express() // instantiate an Express object
+
+const Vendor = mongoose.model('Vendor');
 
 app.use(cors())
 
