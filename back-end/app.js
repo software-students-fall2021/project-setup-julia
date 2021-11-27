@@ -7,6 +7,11 @@ require('dotenv').config({ silent: true })
 const app = express() // instantiate an Express object
 const db = require('./db.js')
 const mongoose = require('mongoose')
+const uri =
+  'mongodb+srv://whendorteam:Qy4aTtH4KA2AIOK3@whendor.ds7ji.mongodb.net/Whendor?retryWrites=true&w=majority'
+
+mongoose.connect(uri)
+
 const User = mongoose.model('User')
 const Vendor = mongoose.model('Vendor')
 
@@ -138,41 +143,36 @@ app.post('/login', (req, res) => {
 
   //get the request and assign them to variables
   const username = req.body.email
-
   const password = req.body.password
 
-  console.log(`${username}, Hi ${password}`)
   //console.log(`${req.body}`)
 
   if (!username || !password) {
     // no username or password received in the POST body... send an error
     res.json({
       success: false,
+      message: 'no username or password provided',
     })
-  }
-
-  // usually this would be a database call, but here we look for a matching user in our mock data
-  //error thrown here
-  const user = users[_.findIndex(users, { username: username })]
-  if (!user) {
-    // no user found with this name... send an error
-    res.json({
-      success: false,
-    })
-  }
-
-  // assuming we found the user, check the password is correct
-  // we would normally encrypt the password the user submitted to check it against an encrypted copy of the user's password we keep in the database... but here we just compare two plain text versions for simplicity
-  else if (req.body.password == user.password) {
-    // the password the user entered matches the password in our "database" (mock data in this case)
-    // from now on we'll identify the user by the id and the id is the only personalized value that goes into our token
-    const payload = { id: user.id } // some data we'll encode into the token
-    const token = jwt.sign(payload, jwtOptions.secretOrKey) // create a signed token
-    res.json({ success: true, username: user.username, token: token }) // send the token to the client to store
   } else {
-    // the password did not match
-    res.json({
-      success: false,
+    User.findOne({ username: username }, function (err, user) {
+      if (err) {
+        res.json({
+          success: false,
+          message: 'Error has occured',
+        })
+      } else if (!user) {
+        res.json({
+          success: false,
+          message: 'User not found',
+        })
+      } else if (user.password == password) {
+        const payload = { id: user.id } // some data we'll encode into the token
+        const token = jwt.sign(payload, jwtOptions.secretOrKey) // create a signed token
+
+        res.json({ success: true, username: user.username, token: token })
+      } else {
+        res.json({ success: false, message: 'wrong password' })
+      }
     })
   }
 })

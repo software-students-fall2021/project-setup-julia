@@ -39,9 +39,11 @@ export default function Login() {
         requestData
       )
       // store the response data into the data state variable
-      console.log('this is the response', response)
-      if (!response.success) {
-        Swal.fire('wrong password')
+
+      console.log(response)
+      console.log('this is the response', response.data.success)
+      if (!response.data.success) {
+        Swal.fire('Wrong Password or Username', 'Try again')
       } else {
         Swal.fire('Awesome!', "You're successfully logged in!", 'success')
         //redirect user to the login page
