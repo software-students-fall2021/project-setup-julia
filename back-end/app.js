@@ -134,22 +134,20 @@ app.post('/vendorSignUp', (req, res) => {
 
 // a route to handle a login attempt
 app.post('/login', (req, res) => {
-  console.log(req)
+  //console.log(req)
 
-  const username = req.body.username
+  //get the request and assign them to variables
+  const username = req.body.email
 
   const password = req.body.password
 
-  console.log(`${username}, ${password}`)
-  console.log(`${req.body}`)
+  console.log(`${username}, Hi ${password}`)
+  //console.log(`${req.body}`)
 
   if (!username || !password) {
     // no username or password received in the POST body... send an error
-    res.status(401).json({
+    res.json({
       success: false,
-      message: `no username or password supplied.`,
-      username,
-      password,
     })
   }
 
@@ -158,9 +156,9 @@ app.post('/login', (req, res) => {
   const user = users[_.findIndex(users, { username: username })]
   if (!user) {
     // no user found with this name... send an error
-    res
-      .status(401)
-      .json({ success: false, message: `user not found: ${username}.` })
+    res.json({
+      success: false,
+    })
   }
 
   // assuming we found the user, check the password is correct
@@ -173,7 +171,9 @@ app.post('/login', (req, res) => {
     res.json({ success: true, username: user.username, token: token }) // send the token to the client to store
   } else {
     // the password did not match
-    res.status(401).json({ success: false, message: 'passwords did not match' })
+    res.json({
+      success: false,
+    })
   }
 })
 

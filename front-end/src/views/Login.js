@@ -31,18 +31,22 @@ export default function Login() {
 
         password: e.target.password.value, // gets the value of the field in the submitted form with name='password',
       }
-      //console.log(requestData)
+
+      console.log(requestData)
 
       const response = await axios.post(
-        'http://localhost:5000/login',
+        'http://localhost:8000/login',
         requestData
       )
       // store the response data into the data state variable
-      console.log(response)
-
-      Swal.fire('Awesome!', "You're successfully logged in!", 'success')
-      //redirect user to the login page
-      history.push('/')
+      console.log('this is the response', response)
+      if (!response.success) {
+        Swal.fire('wrong password')
+      } else {
+        Swal.fire('Awesome!', "You're successfully logged in!", 'success')
+        //redirect user to the login page
+        history.push('/')
+      }
     } catch (err) {
       // throw an error
       console.log(err)
