@@ -49,6 +49,7 @@ app.post("/UserProfileForm", (req, res) => {
   const body = {
     username: req.body.username,
     password: req.body.password,
+    newPassword : req.body.newPassword1
   };
   res.json(body);
 });

@@ -57,6 +57,7 @@ function UserProfile() {
   const [message, setMessage] = useState("Report Failed!")
 
   const handleReports = (reporter, reported) => {
+    console.log("The report function has been run!")
     setReported(reported)
     setReporter(reporter)
   } ;
@@ -78,7 +79,7 @@ function UserProfile() {
 
   useEffect(() => {
 
-    console.log("The report function has been run!")
+    
     if(reportedName !== null)
     {
       axios.post( 'http://localhost:5000/reportaccount', {

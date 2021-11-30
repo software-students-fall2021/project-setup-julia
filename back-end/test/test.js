@@ -179,3 +179,20 @@ describe('Contact Form Tests', () => {
       })
   })
 })
+
+describe('User Edit Tests', () => {
+  it('Check that the new user passwords must match', done => {
+    chai
+      .request(app)
+      .post('/UserProfileForm')
+      .send({
+            newPassword1: 'bobby',
+            newPassword2: 'bobby',
+      })
+      .end((err, res) => {
+        res.should.have.status(200) // use 'should' to make BDD-style assertions
+        done() // resolve the Promise that these tests create so mocha can move on
+      })
+  })
+})
+
