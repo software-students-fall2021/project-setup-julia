@@ -31,18 +31,24 @@ export default function Login() {
 
         password: e.target.password.value, // gets the value of the field in the submitted form with name='password',
       }
-      //console.log(requestData)
+
+      console.log(requestData)
 
       const response = await axios.post(
         'http://localhost:5000/login',
         requestData
       )
       // store the response data into the data state variable
-      console.log(response)
 
-      Swal.fire('Awesome!', "You're successfully logged in!", 'success')
-      //redirect user to the login page
-      history.push('/')
+      console.log(response)
+      console.log('this is the response', response.data.success)
+      if (!response.data.success) {
+        Swal.fire('Wrong Password or Username', 'Try again')
+      } else {
+        Swal.fire('Awesome!', "You're successfully logged in!", 'success')
+        //redirect user to the login page
+        history.push('/')
+      }
     } catch (err) {
       // throw an error
       console.log(err)
@@ -65,7 +71,7 @@ export default function Login() {
 
         <form onSubmit={handleSubmit}>
           <FormGroup>
-            <Label for='description'>Email</Label>
+            <Label for='description'>Username</Label>
             <Input type='text' name='email' />
           </FormGroup>
           <FormGroup>

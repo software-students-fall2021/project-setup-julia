@@ -22,6 +22,13 @@ const Vendor = new mongoose.Schema({
   password: { type: String, required: true },
 });
 
+const Contact_Message = new mongoose.Schema({
+  email: {type: String, required: true },
+  message: {type: String, required: true}
+});
+
 mongoose.model("User", User);
 mongoose.model("Vendor", Vendor);
+mongoose.model("Contact_Message", Contact_Message);
+
 mongoose.connect(uri);
