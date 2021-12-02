@@ -35,7 +35,7 @@ export default function Login() {
       console.log(requestData)
 
       const response = await axios.post(
-        'http://localhost:8000/login',
+        'http://localhost:5000/login',
         requestData
       )
       // store the response data into the data state variable
@@ -71,7 +71,7 @@ export default function Login() {
 
         <form onSubmit={handleSubmit}>
           <FormGroup>
-            <Label for='description'>Email</Label>
+            <Label for='description'>Username</Label>
             <Input type='text' name='email' />
           </FormGroup>
           <FormGroup>
