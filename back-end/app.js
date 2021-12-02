@@ -83,7 +83,17 @@ app.post('/VendorProfileForm', (req, res) => {
   res.json(body)
 })
 
-app.get('/vendorprofile', (req, res) => {
+app.get("/minibio", (req, res) => {
+  const minibio = {
+    name: "Bob",
+    location: "Main Street & Roosevelt Avenue",
+    hours: "Monday-Friday 9am-5pm",
+    contactinfo: "boband@gmail.com",
+  };
+  res.json(minibio);
+});
+
+app.get("/vendorprofile", (req, res) => {
   const sampleProfile = {
     name: "Michael's Meringue Menagerie",
     category: 'Food',
@@ -192,4 +202,4 @@ app.post('/reportaccount', (req, res) => {
   res.send(res.report)
 })
 
-module.exports = app
+module.exports = app;

@@ -76,17 +76,38 @@ function Vendor_Mini_Bio() {
       })
     }
   }, [reporterName])
+
+  const [bio, setBio]=useState({
+    name: "",
+    category: "",
+    location: "",
+    hours: "",
+    contactinfo: ""
+  })
+  try{
+    console.log("fetching vendor information");
+    const fetchBio = async() =>{
+      const response = await axios.get('http://localhost:5000/minibio')
+      setBio(response.data)
+    }
+    fetchBio()
+  }
+  catch (err) {
+    // throw an error
+    console.log(err);
+    throw new Error(err);
+  }
   return (
     <>
       <Row>
         <Card style={{ width: "30rem" }}>
           <CardImg top src="https://picsum.photos/1200/1200"></CardImg>
           <CardBody>
-            <CardTitle>Vendor Name</CardTitle>
+            <CardTitle>{bio.name}</CardTitle>
             <CardText>
-              Location <br />
-              Today's Business Hours <br />
-              Contact Info
+              {bio.location} <br />
+              {bio.hours} <br />
+              {bio.contactinfo}
             </CardText>
             <Button style={{ color: "lightgray" }} href="/VendorProfile">
               <small>Jump to Vendor Profile</small>
