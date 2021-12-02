@@ -31,12 +31,20 @@ app.listen(80, function () {
 });
 
 app.post("/Contact", (req, res) => {
-  const newContact = new Contact_Message({
-    email: req.body.email,
-    message: req.body.text,
-  })
-  console.log("success, %s %s", newContact);
-  res.json(newContact);
+  const email = req.body.email
+  const message = req.body.text
+  if (!email || !message){
+    res
+    .status(401)
+    .json({ success: false, text: "email and message cannot be empty" })
+  }
+  else{
+    const newContact = new Contact_Message({
+      email: email,
+      message: message,
+    })
+    res.json({success: true, text: "Contact form submit succeeded", form: newContact})
+  }
 });
 
 app.get("/UserProfileForm", (req, res) => {

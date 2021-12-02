@@ -157,10 +157,10 @@ describe('Contact Form Tests', () => {
       .post('/Contact')
       .send({
             email: 'test@gmail.com',
-            text: 'hello world',
+            text: 'test@gmail.com',
       })
       .end(function (err, res) {
-        expect(res.text).to.equal("Contact form submit succeeded")
+        expect(res.body.text).to.equal("Contact form submit succeeded")
         done()
       })
   })
@@ -171,10 +171,10 @@ describe('Contact Form Tests', () => {
       .post('/Contact')
       .send({
           email: 'a',
-          text: ' ',
+          text: '',
       })
       .end(function (err, res) {
-        expect(res.text).to.equal("Contact form not submit succeeded")
+        res.should.have.status(401)
         done()
       })
   })
