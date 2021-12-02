@@ -22,13 +22,11 @@ const Contact_Message = mongoose.model("Contact_Message");
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const _ = require('lodash')
-
+app.use(passport.initialize()) // tell express to use passport middleware
 const users = require('./user_data.js')
 
 const { jwtOptions, jwtStrategy } = require('./jwt-config.js') // import setup options for using JWT in passport
-
-
-passport.use(jwtStrategy)
+//passport.use(jwtStrategy)
 
 app.use(cors())
 
