@@ -6,6 +6,8 @@ const ExtractJwt = passportJWT.ExtractJwt
 
 const JwtStrategy = passportJWT.Strategy
 
+const _ = require("lodash") // the lodash module has some convenience functions for arrays that we use to sift through our mock user data... you don't need this if using a real database with user info
+
 // set up some JWT authentication options
 let jwtOptions = {}
 

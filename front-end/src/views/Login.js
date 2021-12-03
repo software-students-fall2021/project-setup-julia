@@ -38,7 +38,6 @@ export default function Login() {
         'http://localhost:5000/login',
         requestData
       )
-      // store the response data into the data state variable
 
       console.log(response)
       console.log('this is the response', response.data.success)
@@ -46,6 +45,8 @@ export default function Login() {
         Swal.fire('Wrong Password or Username', 'Try again')
       } else {
         Swal.fire('Awesome!', "You're successfully logged in!", 'success')
+        //store login token
+        localStorage.setItem("token", response.data.token)
         //redirect user to the login page
         history.push('/')
       }
@@ -80,7 +81,7 @@ export default function Login() {
           </FormGroup>
           <br />
           <Button color='primary' type='submit'>
-            Sign Up
+            Log In
           </Button>
         </form>
       </div>

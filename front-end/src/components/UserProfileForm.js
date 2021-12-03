@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FormGroup, Label, Input, FormText, Button } from "reactstrap";
 import "./VendorProfileForm.css";

@@ -19,6 +19,8 @@ const Vendor = mongoose.model('Vendor')
 
 const Contact_Message = mongoose.model("Contact_Message");
 
+const User_Profile = mongoose.model("User_Profile");
+
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const _ = require('lodash')
@@ -26,7 +28,7 @@ app.use(passport.initialize()) // tell express to use passport middleware
 const users = require('./user_data.js')
 
 const { jwtOptions, jwtStrategy } = require('./jwt-config.js') // import setup options for using JWT in passport
-//passport.use(jwtStrategy)
+passport.use(jwtStrategy)
 
 app.use(cors())
 
@@ -65,9 +67,23 @@ app.post("/Contact", (req, res) => {
   }
 });
 
-app.get('/UserProfileForm', (req, res) => {
-  console.log(req.data)
-})
+
+
+app.get('/UserProfile', 
+passport.authenticate("jwt", {session: false}), 
+(req, res) => {
+    res.json({
+      success: true,
+      user: {
+        id: req.user.id,
+        username: req.user.username,
+      },
+      message:
+        "logged in - valid JWT token",
+    })
+  }
+)
+
 
 app.get('/', (req, res) => res.send('hello world'))
 
