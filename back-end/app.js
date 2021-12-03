@@ -14,6 +14,7 @@ mongoose.connect(uri)
 
 const User = mongoose.model('User')
 const Vendor = mongoose.model('Vendor')
+const Report = mongoose.model('Report')
 
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
@@ -188,18 +189,42 @@ app.post('/login', (req, res) => {
 })
 
 app.post('/reportaccount', (req, res) => {
+  let reportMsg = "Error: Invalid Report"
   if (
     req.hasOwnProperty('body') &&
     req.body.hasOwnProperty('reportedID') &&
     req.body.hasOwnProperty('reporterID')
   ) {
-    res.report = req.body.isVendor
+  Report.findOne({ businessName: req.body.reportedID }, function (error, found) {
+    if (error) {
+      console.log("We've got an error!")
+      res.send ({ report: "Invalid Report"})
+    } else if (found === null) {
+      const newReport = new Report({
+        businessName: req.body.reportedID,
+        businessIsVendor: req.body.isVendor,
+        reporterNames: [req.body.reporerID],
+        reportCount: 1,
+    })
+      newReport.save();
+      console.log("New report created!")
+      res.send({ report: req.body.isVendor
       ? 'Thank you for reporting this vendor. We will investigate their profile and take appropriate action.'
-      : 'Thank you for reporting this user. We will investigate their profile and take appropriate action.'
-    //TODO: Check if this profile has already reported this user. If they have, do not go through with the report.
-    //TODO: Add this report to a database of reported profiles.
-  } else res.report = 'Error: Invalid Report'
-  res.send(res.report)
+      : 'Thank you for reporting this user. We will investigate their profile and take appropriate action.'})
+    } else if (typeof found.reporterNames.find(element => element === req.body.reporterID) !== 'undefined') {
+      console.log("Repeat report encountered!")
+      res.send({ report: "We're still processing your previous report of this account - please be patient!" })
+    } else {
+      found.reporterNames.push(req.body.reporterID)
+      found.reportCount += 1
+      found.save()
+      console.log("New report on existing account made!")
+      res.send({ report: req.body.isVendor
+      ? 'Thank you for reporting this vendor. We will investigate their profile and take appropriate action.'
+      : 'Thank you for reporting this user. We will investigate their profile and take appropriate action.' })
+      }
+    })
+  } 
 })
 
 module.exports = app;

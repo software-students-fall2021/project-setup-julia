@@ -71,7 +71,7 @@ function Vendor_Mini_Bio() {
           reportedID: reportedName
       })
       .then((res) => {
-          setMessage(res.data)
+          setMessage(res.data.report)
           openModal()
       })
     }

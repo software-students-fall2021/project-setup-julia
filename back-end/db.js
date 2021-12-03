@@ -22,6 +22,14 @@ const Vendor = new mongoose.Schema({
   password: { type: String, required: true },
 });
 
+const Report = new mongoose.Schema({
+  businessName: { type: String, required: true },
+  businessIsVendor: { type: Boolean, required: true },
+  reporterNames: { type: [String], required: true },
+  reportCount: { type: Number, required: true },
+});
+
 mongoose.model("User", User);
 mongoose.model("Vendor", Vendor);
+mongoose.model("Report", Report);
 mongoose.connect(uri);
