@@ -19,8 +19,6 @@ const Vendor = mongoose.model('Vendor')
 
 const Contact_Message = mongoose.model("Contact_Message");
 
-const User_Profile = mongoose.model("User_Profile");
-
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const _ = require('lodash')
@@ -83,7 +81,7 @@ passport.authenticate("jwt", {session: false}),
     })
   }
 )
-
+    
 
 app.get('/', (req, res) => res.send('hello world'))
 
