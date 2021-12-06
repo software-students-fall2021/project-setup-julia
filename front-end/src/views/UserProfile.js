@@ -55,8 +55,30 @@ function UserProfile() {
   const [reporterName, setReporter] = useState(null)
   const [reportedName, setReported] = useState(null)
   const [message, setMessage] = useState("Report Failed!")
+  const [profile, setProfile] = useState("");
+
+  const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
+  console.log(`JWT token: ${jwtToken}`) // debugging
+
+  //load user data
+  /*
+  useEffect(() =>{
+    axios.get('http://localhost:5000/UserProfile', 
+    {headers: {Authorization: `JWT ${jwtToken}`}},
+    )
+    .then(res =>{
+      console.log(res);
+      setProfile(res.data);
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+    
+  }, [])
+*/
 
   const handleReports = (reporter, reported) => {
+    console.log("The report function has been run!")
     setReported(reported)
     setReporter(reporter)
   } ;
@@ -78,7 +100,7 @@ function UserProfile() {
 
   useEffect(() => {
 
-    console.log("The report function has been run!")
+    
     if(reportedName !== null)
     {
       axios.post( 'http://localhost:5000/reportaccount', {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FormGroup, Label, Input, FormText, Button } from "reactstrap";
 import "./VendorProfileForm.css";
@@ -11,10 +11,20 @@ const UserProfileForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //TO-DO: check currentPassword with database, make sure logged in
+    if (e.target.newPassword1.value!=e.target.newPassword2.value){
+      const error = new Error("New passwords do not match. Please try again.")
+      alert(error)
+      console.log(error)
+      return error
+    }
     const requestData = {
-      username: e.target.username.value, // gets the value of the field in the submitted form with name='username'
-      password: e.target.password.value, // gets the value of the field in the submitted form with name='password',
+      username: e.target.username.value,    //submitted value with name = "username"
+      currentPassword: e.target.password.value,
+      newPassword1: e.target.newPassword1.value,
+      newPassword2: e.target.newPassword2.value
     };
+
 
     try {
       const response = await axios.post(
@@ -38,10 +48,18 @@ const UserProfileForm = () => {
         <Label for="username">Name</Label>
         <Input type="text" name="name" id="username" />
       </FormGroup>
+      <FormGroup>
+        <Label for="password">Current Password</Label>
+        <Input type="password" name="password" id="password" autoComplete="off"/>
+      </FormGroup>
       <br />
       <FormGroup>
-        <Label for="password">Password</Label>
-        <Input type="text" name="password" id="password" />
+        <Label for="newPassword1">New Password</Label>
+        <Input type="text" name="newPassword1" id="newPassword1" />
+      </FormGroup>
+      <FormGroup>
+        <Label for="newPassword2">Confirm New Password</Label>
+        <Input type="text" name="newPassword2" id="newPassword2" />
       </FormGroup>
       <br />
       <Button color="primary" type="submit">

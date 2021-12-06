@@ -157,10 +157,10 @@ describe('Contact Form Tests', () => {
       .post('/Contact')
       .send({
             email: 'test@gmail.com',
-            text: 'hello world',
+            text: 'test@gmail.com',
       })
       .end(function (err, res) {
-        expect(res.text).to.equal("Contact form submit succeeded")
+        expect(res.body.text).to.equal("Contact form submit succeeded")
         done()
       })
   })
@@ -171,11 +171,28 @@ describe('Contact Form Tests', () => {
       .post('/Contact')
       .send({
           email: 'a',
-          text: ' ',
+          text: '',
       })
       .end(function (err, res) {
-        expect(res.text).to.equal("Contact form not submit succeeded")
+        res.should.have.status(401)
         done()
       })
   })
 })
+
+describe('User Edit Tests', () => {
+  it('Check that the new user passwords must match', done => {
+    chai
+      .request(app)
+      .post('/UserProfileForm')
+      .send({
+            newPassword1: 'bobby',
+            newPassword2: 'bobby',
+      })
+      .end((err, res) => {
+        res.should.have.status(200) // use 'should' to make BDD-style assertions
+        done() // resolve the Promise that these tests create so mocha can move on
+      })
+  })
+})
+

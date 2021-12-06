@@ -22,6 +22,11 @@ const Vendor = new mongoose.Schema({
   password: { type: String, required: true },
 });
 
+const Contact_Message = new mongoose.Schema({
+  email: {type: String, required: true },
+  message: {type: String, required: true}
+});
+
 const Report = new mongoose.Schema({
   businessName: { type: String, required: true },
   businessIsVendor: { type: Boolean, required: true },
@@ -31,5 +36,6 @@ const Report = new mongoose.Schema({
 
 mongoose.model("User", User);
 mongoose.model("Vendor", Vendor);
+mongoose.model("Contact_Message", Contact_Message);
 mongoose.model("Report", Report);
 mongoose.connect(uri);

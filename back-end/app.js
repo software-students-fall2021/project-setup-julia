@@ -1,9 +1,11 @@
+require('./db');
 // import and instantiate express
 const express = require('express') // CommonJS import style!
 const cors = require('cors')
 
 require('dotenv').config({ silent: true })
 //const { TRUE } = require('node-sass')
+
 const app = express() // instantiate an Express object
 const db = require('./db.js')
 const mongoose = require('mongoose')
@@ -16,14 +18,15 @@ const User = mongoose.model('User')
 const Vendor = mongoose.model('Vendor')
 const Report = mongoose.model('Report')
 
+const Contact_Message = mongoose.model("Contact_Message");
+
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
 const _ = require('lodash')
-
+app.use(passport.initialize()) // tell express to use passport middleware
 const users = require('./user_data.js')
 
 const { jwtOptions, jwtStrategy } = require('./jwt-config.js') // import setup options for using JWT in passport
-
 passport.use(jwtStrategy)
 
 app.use(cors())
@@ -46,20 +49,40 @@ app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')
 })
 
-app.post('/Contact', (req, res) => {
+app.post("/Contact", (req, res) => {
   const email = req.body.email
-  const text = req.body.text
-  const data = {
-    email: email,
-    text: text,
+  const message = req.body.text
+  if (!email || !message){
+    res
+    .status(401)
+    .json({ success: false, text: "email and message cannot be empty" })
   }
-  console.log('success, %s %s', email, text)
-  res.json(data)
-})
+  else{
+    const newContact = new Contact_Message({
+      email: email,
+      message: message,
+    })
+    res.json({success: true, text: "Contact form submit succeeded", form: newContact})
+  }
+});
 
-app.get('/UserProfileForm', (req, res) => {
-  console.log(req.data)
-})
+
+
+app.get('/UserProfile', 
+passport.authenticate("jwt", {session: false}), 
+(req, res) => {
+    res.json({
+      success: true,
+      user: {
+        id: req.user.id,
+        username: req.user.username,
+      },
+      message:
+        "logged in - valid JWT token",
+    })
+  }
+)
+    
 
 app.get('/', (req, res) => res.send('hello world'))
 
@@ -67,9 +90,10 @@ app.post('/UserProfileForm', (req, res) => {
   const body = {
     username: req.body.username,
     password: req.body.password,
-  }
-  res.json(body)
-})
+    newPassword : req.body.newPassword1
+  };
+  res.json(body);
+});
 
 app.post('/VendorProfileForm', (req, res) => {
   const body = {
