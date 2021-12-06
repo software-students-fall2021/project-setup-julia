@@ -74,7 +74,7 @@ function User_follow_vendors() {
           reportedID: reportedName
       })
       .then((res) => {
-          setMessage(res.data)
+          setMessage(res.data.report)
           openModal()
       })
     }
