@@ -10,6 +10,11 @@ const users = [
     username: 'baz',
     password: 'bum', // you would normally encrypt the password using bcrypt() rather than keep it as plain text in the database
   },
+  {
+    id: '61aa550376d9fcba917d0b77',
+    username: 'blah',
+    password: 'blah'
+  }
 ]
 
 module.exports = users

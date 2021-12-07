@@ -2,11 +2,15 @@ require('./db');
 // import and instantiate express
 const express = require('express') // CommonJS import style!
 const cors = require('cors')
-
+const morgan = require('morgan')
 require('dotenv').config({ silent: true })
 //const { TRUE } = require('node-sass')
 
+
+ 
 const app = express() // instantiate an Express object
+app.use(morgan('dev'));
+
 const db = require('./db.js')
 const mongoose = require('mongoose')
 const uri =
@@ -68,13 +72,13 @@ app.post("/Contact", (req, res) => {
 
 
 
-app.get('/UserProfile', 
+app.get('/user-profile', 
 passport.authenticate("jwt", {session: false}), 
 (req, res) => {
     res.json({
       success: true,
       user: {
-        id: req.user.id,
+        id: req.user._id,
         username: req.user.username,
       },
       message:
@@ -86,7 +90,7 @@ passport.authenticate("jwt", {session: false}),
 
 app.get('/', (req, res) => res.send('hello world'))
 
-app.post('/UserProfileForm', (req, res) => {
+app.post('/user-profile-form', (req, res) => {
   const body = {
     username: req.body.username,
     password: req.body.password,
