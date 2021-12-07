@@ -34,7 +34,7 @@ const VendorSignUpForm = () => {
       }
 
       const response = await axios.post(
-        'http://localhost:8000/vendorSignUp',
+        'http://localhost:5000/vendorSignUp',
         requestData
       )
       console.log(response)
