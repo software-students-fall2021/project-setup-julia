@@ -153,6 +153,7 @@ app.post('/vendorSignUp', (req, res) => {
   const newVendor = new Vendor({
     businessName: req.body.businessName,
     vendorCategory: req.body.vendorCategory,
+    vendorSubcategory: req.body.vendorSubcategory,
     location: req.body.location,
     hours: req.body.hours,
     menu: req.body.menu,
