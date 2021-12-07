@@ -55,7 +55,7 @@ function UserProfile() {
   const [reporterName, setReporter] = useState(null)
   const [reportedName, setReported] = useState(null)
   const [message, setMessage] = useState("Report Failed!")
-  const [profile, setProfile] = useState("");
+  const [profile, setProfile] = useState({});
 
   const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
   console.log(`JWT token: ${jwtToken}`) // debugging
@@ -68,7 +68,7 @@ function UserProfile() {
     )
     .then(res =>{
       console.log(res);
-      setProfile(res.data);
+      setProfile(res.data.user);
     })
     .catch(err =>{
       console.log(err)
@@ -130,7 +130,7 @@ function UserProfile() {
           </Col>
 
           <Col>
-            <h2>@username</h2>
+            <h2>@{profile.username}</h2>
             <Button className="btn-link" color="gray" href="/UserFollowing">
               <h3>Following:</h3>
             </Button>
