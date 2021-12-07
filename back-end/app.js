@@ -2,11 +2,15 @@ require('./db');
 // import and instantiate express
 const express = require('express') // CommonJS import style!
 const cors = require('cors')
-
+const morgan = require('morgan')
 require('dotenv').config({ silent: true })
 //const { TRUE } = require('node-sass')
 
+
+ 
 const app = express() // instantiate an Express object
+app.use(morgan('dev'));
+
 const db = require('./db.js')
 const mongoose = require('mongoose')
 const uri =

@@ -61,7 +61,7 @@ function UserProfile() {
   console.log(`JWT token: ${jwtToken}`) // debugging
 
   //load user data
-  /*
+
   useEffect(() =>{
     axios.get('http://localhost:5000/UserProfile', 
     {headers: {Authorization: `JWT ${jwtToken}`}},
@@ -75,7 +75,7 @@ function UserProfile() {
     })
     
   }, [])
-*/
+
 
   const handleReports = (reporter, reported) => {
     console.log("The report function has been run!")
