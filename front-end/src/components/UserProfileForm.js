@@ -28,7 +28,7 @@ const UserProfileForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/UserProfileForm",
+        "http://localhost:5000/user-profile-form",
         requestData
       );
 

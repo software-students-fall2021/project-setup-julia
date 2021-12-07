@@ -72,13 +72,13 @@ app.post("/Contact", (req, res) => {
 
 
 
-app.get('/UserProfile', 
+app.get('/user-profile', 
 passport.authenticate("jwt", {session: false}), 
 (req, res) => {
     res.json({
       success: true,
       user: {
-        id: req.user.id,
+        id: req.user._id,
         username: req.user.username,
       },
       message:
@@ -90,7 +90,7 @@ passport.authenticate("jwt", {session: false}),
 
 app.get('/', (req, res) => res.send('hello world'))
 
-app.post('/UserProfileForm', (req, res) => {
+app.post('/user-profile-form', (req, res) => {
   const body = {
     username: req.body.username,
     password: req.body.password,

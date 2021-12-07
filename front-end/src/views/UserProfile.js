@@ -63,7 +63,7 @@ function UserProfile() {
   //load user data
 
   useEffect(() =>{
-    axios.get('http://localhost:5000/UserProfile', 
+    axios.get('http://localhost:5000/user-profile', 
     {headers: {Authorization: `JWT ${jwtToken}`}},
     )
     .then(res =>{
