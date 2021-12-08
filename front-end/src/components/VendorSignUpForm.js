@@ -17,6 +17,8 @@ const VendorSignUpForm = () => {
 
         vendorCategory: e.target.vendorCategory.value,
 
+        vendorSubcategory: e.target.vendorSubcategory.value,
+
         location: e.target.location.value,
 
         hours: e.target.hours.value,
@@ -71,6 +73,10 @@ const VendorSignUpForm = () => {
           <option>Art</option>
           <option>Other</option>
         </Input>
+      </FormGroup>
+      <FormGroup>
+        <Label for='vendorSubcategory'>Subcategory</Label>
+        <Input type='textarea' name='vendorSubcategory' />
       </FormGroup>
       <FormGroup>
         <Label for='location'>Location</Label>

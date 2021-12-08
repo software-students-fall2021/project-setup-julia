@@ -12,6 +12,7 @@ const User = new mongoose.Schema({
 const Vendor = new mongoose.Schema({
   businessName: { type: String, required: true },
   vendorCategory: { type: String, required: true },
+  vendorSubcategory: { type: String, required: true },
   location: { type: String, required: true },
   hours: { type: String, required: true },
   menu: { type: String, required: true },
