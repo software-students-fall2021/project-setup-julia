@@ -14,6 +14,7 @@ import About_header from 'components/About_header.js'
 
 import { FormGroup, Label, Input, FormText, Button } from 'reactstrap'
 
+const PORT = 8000
 export default function Login() {
   const history = useHistory()
 
@@ -35,7 +36,7 @@ export default function Login() {
       console.log(requestData)
 
       const response = await axios.post(
-        'http://localhost:5000/login',
+        `http://localhost:${PORT}/login`,
         requestData
       )
 
@@ -46,7 +47,7 @@ export default function Login() {
       } else {
         Swal.fire('Awesome!', "You're successfully logged in!", 'success')
         //store login token
-        localStorage.setItem("token", response.data.token)
+        localStorage.setItem('token', response.data.token)
         //redirect user to the login page
         history.push('/')
       }
@@ -79,6 +80,7 @@ export default function Login() {
             <Label for='description'>Password</Label>
             <Input type='password' name='password' />
           </FormGroup>
+
           <br />
           <Button color='primary' type='submit'>
             Log In
