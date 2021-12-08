@@ -77,6 +77,25 @@ function Vendor_Mini_Bio() {
     }
   }, [reporterName])
 
+  const [subcat, setSubcat] = useState(0);
+  useEffect(() => {
+    let pathnameSections=window.location.pathname.split('/')
+    let lastSection=(pathnameSections[pathnameSections.length-1])
+    if(lastSection=="Fast%20Food")
+    {
+      lastSection="Fast Food"
+    }
+    if(lastSection=="Latin%20American")
+    {
+      lastSection="Latin American"
+    }
+    if(lastSection=="Subcategories")
+    {
+      lastSection="Other"
+    }
+    setSubcat(lastSection);
+  })
+
   const [bio, setBio]=useState({
     name: "",
     category: "",
@@ -87,7 +106,7 @@ function Vendor_Mini_Bio() {
   try{
     console.log("fetching vendor information");
     const fetchBio = async() =>{
-      const response = await axios.get('http://localhost:5000/minibio')
+      const response = await axios.get('http://localhost:5000/minibio', {vendorSubcategory: subcat})
       setBio(response.data)
     }
     fetchBio()
