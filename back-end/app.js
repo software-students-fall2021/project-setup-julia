@@ -230,22 +230,22 @@ app.post('/vendorLogin', (req, res) => {
       message: 'no username or password provided',
     })
   } else {
-    Vendor.findOne({ username: username }, function (err, user) {
+    Vendor.findOne({ username: username }, function (err, vendor) {
       if (err) {
         res.json({
           success: false,
           message: 'Error has occured',
         })
-      } else if (!user) {
+      } else if (!vendor) {
         res.json({
           success: false,
           message: 'Vendor not found',
         })
-      } else if (user.password == password) {
-        const payload = { id: user.id } // some data we'll encode into the token
+      } else if (vendor.password == password) {
+        const payload = { id: vendor.id } // some data we'll encode into the token
         const token = jwt.sign(payload, jwtOptions.secretOrKey) // create a signed token
 
-        res.json({ success: true, username: user.username, token: token })
+        res.json({ success: true, username: vendor.username, token: token })
       } else {
         res.json({ success: false, message: 'wrong password' })
       }

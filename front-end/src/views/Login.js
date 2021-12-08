@@ -17,6 +17,12 @@ import { FormGroup, Label, Input, FormText, Button } from 'reactstrap'
 const PORT = 8000
 export default function Login() {
   const history = useHistory()
+  //checkbox selection
+  const [checked, setChecked] = React.useState(false)
+
+  const handleChange = () => {
+    setChecked(!checked)
+  }
 
   // function validateForm() {
   //   return email.length > 0 && password.length > 0
@@ -35,21 +41,38 @@ export default function Login() {
 
       console.log(requestData)
 
-      const response = await axios.post(
-        `http://localhost:${PORT}/login`,
-        requestData
-      )
-
-      console.log(response)
-      console.log('this is the response', response.data.success)
-      if (!response.data.success) {
-        Swal.fire('Wrong Password or Username', 'Try again')
+      if (checked) {
+        const response = await axios.post(
+          `http://localhost:${PORT}/userLogin`,
+          requestData
+        )
+        console.log(response)
+        console.log('this is the response', response.data.success)
+        if (!response.data.success) {
+          Swal.fire('Wrong Password or Username', 'Try again')
+        } else {
+          Swal.fire('Awesome!', "You're successfully logged in!", 'success')
+          //store login token
+          localStorage.setItem('token', response.data.token)
+          //redirect user to the login page
+          history.push('/')
+        }
       } else {
-        Swal.fire('Awesome!', "You're successfully logged in!", 'success')
-        //store login token
-        localStorage.setItem('token', response.data.token)
-        //redirect user to the login page
-        history.push('/')
+        const response = await axios.post(
+          `http://localhost:${PORT}/vendorLogin`,
+          requestData
+        )
+        console.log(response)
+        console.log('this is the response', response.data.success)
+        if (!response.data.success) {
+          Swal.fire('Wrong Password or Username', 'Try again')
+        } else {
+          Swal.fire('Awesome!', "You're successfully logged in!", 'success')
+          //store login token
+          localStorage.setItem('token', response.data.token)
+          //redirect user to the login page
+          history.push('/')
+        }
       }
     } catch (err) {
       // throw an error
@@ -80,6 +103,19 @@ export default function Login() {
             <Label for='description'>Password</Label>
             <Input type='password' name='password' />
           </FormGroup>
+          <label>
+            select checkbox if you are a user
+            <br></br>
+            <input
+              name='user'
+              type='checkbox'
+              checked={checked}
+              onChange={handleChange}
+            />
+          </label>
+          {/* <p>
+            Is "select checkbox if you are a user" checked? {checked.toString()}
+          </p> */}
 
           <br />
           <Button color='primary' type='submit'>
