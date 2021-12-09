@@ -103,6 +103,7 @@ app.post('/VendorProfileForm', (req, res) => {
   const body = {
     businessName: req.body.businessName,
     vendorCategory: req.body.vendorCategory,
+    vendorSubcategory: req.body.vendorSubcategory,
     location: req.body.location,
     hours: req.body.hours,
     menu: req.body.menu,
@@ -113,7 +114,7 @@ app.post('/VendorProfileForm', (req, res) => {
 })
 
 app.get("/minibio", (req, res) => {
-  Vendor.findOne({vendorSubcategory: req.body.vendorSubcategory}, function(err, vendor){
+  Vendor.findOne({vendorCategory: req.body.vendorCategory}, function(err, vendor){
     if(err){
       console.log(err)
     }

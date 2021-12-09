@@ -4,6 +4,7 @@ import { FormGroup, Label, Input, FormText, Button } from "reactstrap";
 import "./VendorProfileForm.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Select from 'react-select'
 
 function VendorProfileForm() {
   const [stateSubcategories, setStateSubcategories] = useState([]);
@@ -14,9 +15,12 @@ function VendorProfileForm() {
 
     try {
       // create an object with the data we want to send to the server
+      let selectedSubcategories = stateSubcategories.filter(subcat => subcat.checked)
+      //console.log(`selectedSubcategories\n ${selectedSubcategories}`)
       const requestData = {
         businessName: e.target.businessName.value,
         vendorCategory: e.target.vendorCategory.value,
+        vendorSubcategory: JSON.stringify(selectedSubcategories),
         location: e.target.location.value,
         hours: e.target.hours.value,
         menu: e.target.menu.value,
@@ -40,27 +44,43 @@ function VendorProfileForm() {
       throw new Error(err);
     }
   };
-
-  const setSubcategoryOptions = (selectedCategory) => {
+  const loadSubcategoryOptions = (selectedCategory) => {
+    //gets subcategory options from external file
     let subcategories = [];
-    switch (selectedCategory) {
-      case "Food":
-        subcategories = [
-          "Snacks",
-          "Breakfast",
-          "Drinks",
-          "Asian",
-          "African",
-          "Latin American",
-          "European",
-        ];
-    }
-    setStateSubcategories(subcategories);
+    const subcatFile = require ('../CategoriesSubcategories.json')
+    subcategories = subcatFile[selectedCategory]
+    let arr = []
+    subcategories.map(subcat =>{
+      //arr.push({name:subcat, checked : false})
+      arr.push({value: subcat, label: subcat, checked:false})
+    })
+    console.log(arr)
+    setStateSubcategories(arr);    
   };
 
   const handleCategoryInput = async (event) => {
-    setSubcategoryOptions(event.target.value);
+    if (event.target.value!="Select a Category")
+    {
+      loadSubcategoryOptions(event.target.value);
+      //console.log(`handleCategory state: \n ${JSON.stringify(stateSubcategories)}`)
+    }
   };
+
+  const handleSubcategoryInput = async(inputs) =>{
+    console.log(inputs)
+    let arr = stateSubcategories
+    arr.map( element => {
+      element.checked = false
+    })
+    inputs.map(input =>{
+      let index = arr.findIndex((subcat)=> subcat.label == input.label)
+      arr[index].checked = true
+    })
+    console.log(`temp array \n ${JSON.stringify(arr)}`)
+    setStateSubcategories(arr)
+    
+  }
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -84,7 +104,7 @@ function VendorProfileForm() {
         >
           <option selected>Select a Category</option>
           <option>Food</option>
-          <option>Fruit and Vegetable</option>
+          <option>Produce</option>
           <option>Accessories</option>
           <option>Art</option>
           <option>Other</option>
@@ -100,17 +120,10 @@ function VendorProfileForm() {
           >
             Select Subcategories
           </Label>
-          {stateSubcategories.map((subcategory) => (
-            <FormGroup check>
-              <Label check>
-                <Input type="checkbox" id="subcategory" />
-                {subcategory}
-                <span className="form-check-sign">
-                  <span className="check"></span>
-                </span>
-              </Label>
-            </FormGroup>
-          ))}
+          <Select isMulti
+          name = "subcategoriesMulti"
+          options = {stateSubcategories}
+          onChange = {handleSubcategoryInput}/>
         </FormGroup>
       ) : null}
       <FormGroup>
