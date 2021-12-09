@@ -1,4 +1,4 @@
-require('./db');
+require('./db')
 // import and instantiate express
 const express = require('express') // CommonJS import style!
 const cors = require('cors')
@@ -6,10 +6,8 @@ const morgan = require('morgan')
 require('dotenv').config({ silent: true })
 //const { TRUE } = require('node-sass')
 
-
- 
 const app = express() // instantiate an Express object
-app.use(morgan('dev'));
+app.use(morgan('dev'))
 
 const db = require('./db.js')
 const mongoose = require('mongoose')
@@ -22,7 +20,7 @@ const User = mongoose.model('User')
 const Vendor = mongoose.model('Vendor')
 const Report = mongoose.model('Report')
 
-const Contact_Message = mongoose.model("Contact_Message");
+const Contact_Message = mongoose.model('Contact_Message')
 
 const jwt = require('jsonwebtoken')
 const passport = require('passport')
@@ -53,40 +51,40 @@ app.listen(80, function () {
   console.log('CORS-enabled web server listening on port 80')
 })
 
-app.post("/Contact", (req, res) => {
+app.post('/Contact', (req, res) => {
   const email = req.body.email
   const message = req.body.text
-  if (!email || !message){
+  if (!email || !message) {
     res
-    .status(401)
-    .json({ success: false, text: "email and message cannot be empty" })
-  }
-  else{
+      .status(401)
+      .json({ success: false, text: 'email and message cannot be empty' })
+  } else {
     const newContact = new Contact_Message({
       email: email,
       message: message,
     })
-    res.json({success: true, text: "Contact form submit succeeded", form: newContact})
+    res.json({
+      success: true,
+      text: 'Contact form submit succeeded',
+      form: newContact,
+    })
   }
-});
+})
 
-
-
-app.get('/user-profile', 
-passport.authenticate("jwt", {session: false}), 
-(req, res) => {
+app.get(
+  '/user-profile',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
     res.json({
       success: true,
       user: {
         id: req.user._id,
         username: req.user.username,
       },
-      message:
-        "logged in - valid JWT token",
+      message: 'logged in - valid JWT token',
     })
   }
 )
-    
 
 app.get('/', (req, res) => res.send('hello world'))
 
@@ -94,10 +92,10 @@ app.post('/user-profile-form', (req, res) => {
   const body = {
     username: req.body.username,
     password: req.body.password,
-    newPassword : req.body.newPassword1
-  };
-  res.json(body);
-});
+    newPassword: req.body.newPassword1,
+  }
+  res.json(body)
+})
 
 app.post('/VendorProfileForm', (req, res) => {
   const body = {
@@ -184,8 +182,8 @@ app.post('/vendorSignUp', (req, res) => {
   })
 })
 
-// a route to handle a login attempt
-app.post('/login', (req, res) => {
+// a route to handle a users login attempt
+app.post('/userLogin', (req, res) => {
   //console.log(req)
 
   //get the request and assign them to variables
@@ -223,44 +221,97 @@ app.post('/login', (req, res) => {
     })
   }
 })
+// a route to handle a vendors login attempt
+app.post('/vendorLogin', (req, res) => {
+  //console.log(req)
+
+  //get the request and assign them to variables
+  const username = req.body.email
+  const password = req.body.password
+
+  //console.log(`${req.body}`)
+
+  if (!username || !password) {
+    // no username or password received in the POST body... send an error
+    res.json({
+      success: false,
+      message: 'no username or password provided',
+    })
+  } else {
+    Vendor.findOne({ username: username }, function (err, vendor) {
+      if (err) {
+        res.json({
+          success: false,
+          message: 'Error has occured',
+        })
+      } else if (!vendor) {
+        res.json({
+          success: false,
+          message: 'Vendor not found',
+        })
+      } else if (vendor.password == password) {
+        const payload = { id: vendor.id } // some data we'll encode into the token
+        const token = jwt.sign(payload, jwtOptions.secretOrKey) // create a signed token
+
+        res.json({ success: true, username: vendor.username, token: token })
+      } else {
+        res.json({ success: false, message: 'wrong password' })
+      }
+    })
+  }
+})
 
 app.post('/reportaccount', (req, res) => {
-  let reportMsg = "Error: Invalid Report"
+  let reportMsg = 'Error: Invalid Report'
   if (
     req.hasOwnProperty('body') &&
     req.body.hasOwnProperty('reportedID') &&
     req.body.hasOwnProperty('reporterID')
   ) {
-  Report.findOne({ businessName: req.body.reportedID }, function (error, found) {
-    if (error) {
-      console.log("We've got an error!")
-      res.send ({ report: "Invalid Report"})
-    } else if (found === null) {
-      const newReport = new Report({
-        businessName: req.body.reportedID,
-        businessIsVendor: req.body.isVendor,
-        reporterNames: [req.body.reporerID],
-        reportCount: 1,
-    })
-      newReport.save();
-      console.log("New report created!")
-      res.send({ report: req.body.isVendor
-      ? 'Thank you for reporting this vendor. We will investigate their profile and take appropriate action.'
-      : 'Thank you for reporting this user. We will investigate their profile and take appropriate action.'})
-    } else if (typeof found.reporterNames.find(element => element === req.body.reporterID) !== 'undefined') {
-      console.log("Repeat report encountered!")
-      res.send({ report: "We're still processing your previous report of this account - please be patient!" })
-    } else {
-      found.reporterNames.push(req.body.reporterID)
-      found.reportCount += 1
-      found.save()
-      console.log("New report on existing account made!")
-      res.send({ report: req.body.isVendor
-      ? 'Thank you for reporting this vendor. We will investigate their profile and take appropriate action.'
-      : 'Thank you for reporting this user. We will investigate their profile and take appropriate action.' })
+    Report.findOne(
+      { businessName: req.body.reportedID },
+      function (error, found) {
+        if (error) {
+          console.log("We've got an error!")
+          res.send({ report: 'Invalid Report' })
+        } else if (found === null) {
+          const newReport = new Report({
+            businessName: req.body.reportedID,
+            businessIsVendor: req.body.isVendor,
+            reporterNames: [req.body.reporerID],
+            reportCount: 1,
+          })
+          newReport.save()
+          console.log('New report created!')
+          res.send({
+            report: req.body.isVendor
+              ? 'Thank you for reporting this vendor. We will investigate their profile and take appropriate action.'
+              : 'Thank you for reporting this user. We will investigate their profile and take appropriate action.',
+          })
+        } else if (
+          typeof found.reporterNames.find(
+            (element) => element === req.body.reporterID
+          ) !== 'undefined'
+        ) {
+          console.log('Repeat report encountered!')
+          res.send({
+            report:
+              "We're still processing your previous report of this account - please be patient!",
+          })
+        } else {
+          found.reporterNames.push(req.body.reporterID)
+          found.reportCount += 1
+          found.save()
+          console.log('New report on existing account made!')
+          res.send({
+            report: req.body.isVendor
+              ? 'Thank you for reporting this vendor. We will investigate their profile and take appropriate action.'
+              : 'Thank you for reporting this user. We will investigate their profile and take appropriate action.',
+          })
+        }
       }
-    })
-  } 
+    )
+  }
 })
 
-module.exports = app;
+module.exports = app
