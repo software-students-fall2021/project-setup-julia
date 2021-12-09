@@ -5,6 +5,7 @@ import "./VendorProfileForm.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Select from 'react-select'
+import { Profiler } from "react";
 
 function VendorProfileForm() {
   const [stateSubcategories, setStateSubcategories] = useState([]);
@@ -15,12 +16,20 @@ function VendorProfileForm() {
   const history = useHistory();
 
   useEffect(() =>{
-    axios.get('http://localhost:5000/vendor-auth', 
+    /*axios.get('http://localhost:5000/vendor-auth', 
     {headers: {Authorization: `JWT ${jwtToken}`}},
-    )
+    )*/
+    axios.get('http://localhost:5000/samplevendorprofile')
     .then(res =>{
       console.log(res);
-      //setProfile(res.data.user);
+      const subcategories = loadSubcategoryOptions(res.data.vendorCategory)
+      res.data.vendorSubcategory.map(selected => {
+          const index = subcategories.findIndex(subcat => subcat.label == selected)
+          subcategories[index].checked = true;
+          console.log(subcategories)
+        })
+      setProfile(res.data);
+      setStateSubcategories(subcategories)
     })
     .catch(err =>{
       console.log(err)
@@ -63,6 +72,7 @@ function VendorProfileForm() {
       throw new Error(err);
     }
   };
+
   const loadSubcategoryOptions = (selectedCategory) => {
     //gets subcategory options from external file
     let subcategories = [];
@@ -74,14 +84,14 @@ function VendorProfileForm() {
       arr.push({value: subcat, label: subcat, checked:false})
     })
     console.log(arr)
-    setStateSubcategories(arr);    
+    return arr;
   };
 
   const handleCategoryInput = async (event) => {
     if (event.target.value!="Select a Category")
     {
-      loadSubcategoryOptions(event.target.value);
-      //console.log(`handleCategory state: \n ${JSON.stringify(stateSubcategories)}`)
+      const arr = loadSubcategoryOptions(event.target.value);
+      setStateSubcategories(arr);    
     }
   };
 
@@ -109,7 +119,7 @@ function VendorProfileForm() {
           type="name"
           name="businessName"
           id="vendorName"
-          placeholder="Julia's Juice Stand"
+          value = {profile.businessName}
         />
       </FormGroup>
       <br />
@@ -120,8 +130,8 @@ function VendorProfileForm() {
           name="vendorCategory"
           id="vendorCategory"
           onInput={handleCategoryInput}
+          value = {profile.vendorCategory}
         >
-          <option selected>Select a Category</option>
           <option>Food</option>
           <option>Produce</option>
           <option>Accessories</option>
@@ -136,12 +146,14 @@ function VendorProfileForm() {
             for="vendorSubcategories"
             name="selectMulti"
             id="vendorSubcategories"
+            value = {profile.vendorSubcategory}
           >
             Select Subcategories
           </Label>
           <Select isMulti
           name = "subcategoriesMulti"
-          options = {stateSubcategories}
+          value = {stateSubcategories.filter(subcat => subcat.checked)}
+          options = {stateSubcategories.filter(subcat => !subcat.checked)}
           onChange = {handleSubcategoryInput}/>
         </FormGroup>
       ) : null}

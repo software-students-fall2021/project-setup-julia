@@ -74,19 +74,19 @@ const VendorSignUpForm = () => {
       arr.push({value: subcat, label: subcat, checked:false})
     })
     console.log(arr)
-    setStateSubcategories(arr);    
+    return arr;
   };
 
   const handleCategoryInput = async (event) => {
     if (event.target.value!="Select a Category")
     {
-      loadSubcategoryOptions(event.target.value);
-      //console.log(`handleCategory state: \n ${JSON.stringify(stateSubcategories)}`)
+      const arr = loadSubcategoryOptions(event.target.value);
+      setStateSubcategories(arr);    
     }
   };
 
   const handleSubcategoryInput = async(inputs) =>{
-    console.log(inputs)
+    console.log(`subcategory input ${JSON.stringify(inputs)}`)
     let arr = stateSubcategories
     arr.map( element => {
       element.checked = false
