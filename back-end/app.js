@@ -130,11 +130,27 @@ app.get("/minibio", (req, res) => {
   })
 });
 
-app.get("/vendorprofile", (req, res) => {
+
+app.get('/vendor-profile', 
+passport.authenticate("jwt", {session: false}), 
+(req, res) => {
+    res.json({
+      success: true,
+      user: {
+        id: req.user._id,
+        username: req.user.username,
+      },
+      message:
+        "logged in - valid JWT token",
+    })
+  }
+)
+
+app.get("/samplevendorprofile", (req, res) => {
   const sampleProfile = {
-    name: "Michael's Meringue Menagerie",
-    category: 'Food',
-    subcategories: ['Snacks', 'European'],
+    businessName: "Michael's Meringue Menagerie",
+    vendorCategory: 'Food',
+    vendorSubcategory: ['Snacks', 'European'],
     location: 'W 4th St across from Starbucks',
     hours: 'Saturday-Sunday 12pm-5pm',
     menu: 'Vanilla Meringue box of 10 - $5',
