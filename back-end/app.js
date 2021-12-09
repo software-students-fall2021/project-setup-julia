@@ -110,17 +110,24 @@ app.post('/VendorProfileForm', (req, res) => {
   res.json(body)
 })
 
-app.get('/minibio', (req, res) => {
-  const minibio = {
-    name: 'Bob',
-    location: 'Main Street & Roosevelt Avenue',
-    hours: 'Monday-Friday 9am-5pm',
-    contactinfo: 'boband@gmail.com',
-  }
-  res.json(minibio)
-})
+app.get("/minibio", (req, res) => {
+  Vendor.findOne({vendorSubcategory: req.body.vendorSubcategory}, function(err, vendor){
+    if(err){
+      console.log(err)
+    }
+    else{
+      res.json({
+        name: vendor.fullName,
+        location: vendor.location,
+        hours: vendor.hours,
+        contactinfo: vendor.email,
+      })
+    }
+    
+  })
+});
 
-app.get('/vendorprofile', (req, res) => {
+app.get("/vendorprofile", (req, res) => {
   const sampleProfile = {
     name: "Michael's Meringue Menagerie",
     category: 'Food',
@@ -155,6 +162,7 @@ app.post('/vendorSignUp', (req, res) => {
   const newVendor = new Vendor({
     businessName: req.body.businessName,
     vendorCategory: req.body.vendorCategory,
+    vendorSubcategory: req.body.vendorSubcategory,
     location: req.body.location,
     hours: req.body.hours,
     menu: req.body.menu,
