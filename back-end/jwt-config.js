@@ -28,15 +28,13 @@ const jwtStrategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
 
   // load up some mock user data in an array... we only need this because we're mocking the data from a database
   const User = mongoose.model('User')
-
-  // try to find a matching user in our "database"
-
-  // usually we would do this by finding matching records in a real database... here we're searching the hard-coded mock data in our 'user_data.js' file
+  const Vendor = mongoose.model('Vendor')
+  // try to find a matching user in our database
 
   const user = User.findById( jwt_payload.id , 
     function (err, user) {
       if (err){
-        next(null, false)
+        next(null,false)
       }
       else if (user) {
         console.log(`User ID: ${jwt_payload.id}, name: ${user.username}`)
@@ -44,6 +42,8 @@ const jwtStrategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
         next(null, user)
       } 
     })
+
+
 })
 
 module.exports = {

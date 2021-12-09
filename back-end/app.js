@@ -129,13 +129,14 @@ app.get("/minibio", (req, res) => {
 });
 
 
-app.get('/vendor-profile', 
+app.get('/vendor-auth', 
 passport.authenticate("jwt", {session: false}), 
 (req, res) => {
+  console.log(req)
     res.json({
       success: true,
       user: {
-        id: req.user._id,
+        id: req.user.id,
         username: req.user.username,
       },
       message:

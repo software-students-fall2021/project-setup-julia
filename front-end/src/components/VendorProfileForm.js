@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { FormGroup, Label, Input, FormText, Button } from "reactstrap";
 import "./VendorProfileForm.css";
@@ -8,7 +8,26 @@ import Select from 'react-select'
 
 function VendorProfileForm() {
   const [stateSubcategories, setStateSubcategories] = useState([]);
+  const [profile, setProfile] = useState({});
+  const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
+  console.log(`JWT token: ${jwtToken}`) // debugging
+
   const history = useHistory();
+
+  useEffect(() =>{
+    axios.get('http://localhost:5000/vendor-auth', 
+    {headers: {Authorization: `JWT ${jwtToken}`}},
+    )
+    .then(res =>{
+      console.log(res);
+      //setProfile(res.data.user);
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+    
+  }, [])
+
   const handleSubmit = async (e) => {
     // prevent the HTML form from actually submitting... we use React's javascript code instead
     e.preventDefault();
