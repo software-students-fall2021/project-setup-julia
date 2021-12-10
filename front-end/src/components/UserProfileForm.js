@@ -4,9 +4,39 @@ import { FormGroup, Label, Input, FormText, Button } from "reactstrap";
 import "./VendorProfileForm.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const UserProfileForm = () => {
   const history = useHistory();
+  const [profile, setProfile] = useState({
+    username : "",
+    fullname: "",
+    password :"",
+    email:""
+  });
+  const jwtToken = localStorage.getItem("token")
+  const [authorized, setAuthorized] = useState(false)
+
+  useEffect(() =>{
+    axios.get('http://localhost:5000/user-profile', 
+    {headers: {Authorization: `JWT ${jwtToken}`}},
+    )
+    .then(res =>{
+      console.log(res)
+      if (res.data.success){
+        setProfile(res.data.user);
+        setAuthorized(true)
+      }
+      else{
+        console.log(res.data.message)
+        setAuthorized(false)
+      }
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+    
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +48,13 @@ const UserProfileForm = () => {
       console.log(error)
       return error
     }
+    else if (e.target.password.value != profile.password){
+      const error = new Error("Incorrect current password.")
+      alert(error)
+      return error
+    }
     const requestData = {
+      id: profile.id,
       username: e.target.username.value,    //submitted value with name = "username"
       currentPassword: e.target.password.value,
       newPassword1: e.target.newPassword1.value,
@@ -32,7 +68,16 @@ const UserProfileForm = () => {
         requestData
       );
 
-      console.log(response);
+      if (response.data.success){
+        Swal.fire(
+          'Nice!',
+          "You have successfully updated your user information!",
+          'success'
+        )
+      }
+      else{
+        Swal.fire("Oops!","We were unable to update your user information.", "You'll have to try again.")
+      } 
 
       history.push("/UserProfile");
     } catch (err) {
@@ -45,8 +90,12 @@ const UserProfileForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <FormGroup>
-        <Label for="username">Name</Label>
-        <Input type="text" name="name" id="username" />
+        <Label for="username">Full Name</Label>
+        <Input type="text" name="fullname" id="fullname" defaultValue = {profile.fullname} />
+      </FormGroup>
+      <FormGroup>
+        <Label for="username">Username</Label>
+        <Input type="text" name="username" id="username" defaultValue = {profile.username} />
       </FormGroup>
       <FormGroup>
         <Label for="password">Current Password</Label>

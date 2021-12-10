@@ -185,7 +185,7 @@ describe('User Edit Tests', () => {
   it('Check that the new user passwords must match', done => {
     chai
       .request(app)
-      .post('/UserProfileForm')
+      .post('/user-profile-form')
       .send({
             newPassword1: 'bobby',
             newPassword2: 'bobby',

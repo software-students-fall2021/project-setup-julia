@@ -85,7 +85,10 @@ app.get(
         success: true,
         user: {
           id: req.user._id,
+          email: req.user.email,
+          fullname: req.user.fullname,
           username: req.user.username,
+          password: req.user.password
         },
         message: 'logged in - valid JWT token',
       })
@@ -96,12 +99,28 @@ app.get(
 app.get('/', (req, res) => res.send('hello world'))
 
 app.post('/user-profile-form', (req, res) => {
-  const body = {
+  const newUser = {
     username: req.body.username,
-    password: req.body.password,
-    newPassword: req.body.newPassword1,
+    password: req.body.newPassword1,
   }
-  res.json(body)
+  User.findByIdAndUpdate(req.body.id,
+    newUser,
+    function(err, user){
+      if (err){
+        res.json({
+          success:false,
+          user:null,
+          message: "unable to update user information"
+        })
+      }
+      else if (user){
+        res.json({
+          success: true,
+          user : user,
+          message : "successfully updated user information"
+        })
+      }
+    })
 })
 
 app.post('/VendorProfileForm', (req, res) => {
