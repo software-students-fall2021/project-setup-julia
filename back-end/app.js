@@ -73,14 +73,23 @@ app.get(
   '/user-profile',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    res.json({
-      success: true,
-      user: {
-        id: req.user._id,
-        username: req.user.username,
-      },
-      message: 'logged in - valid JWT token',
-    })
+    if (req.user.businessName){
+      res.json({
+        success : false,
+        user : null,
+        message : "must be logged in as user"
+      })
+    }
+    else{
+      res.json({
+        success: true,
+        user: {
+          id: req.user._id,
+          username: req.user.username,
+        },
+        message: 'logged in - valid JWT token',
+      })
+    }
   }
 )
 
@@ -96,17 +105,37 @@ app.post('/user-profile-form', (req, res) => {
 })
 
 app.post('/VendorProfileForm', (req, res) => {
-  const body = {
+
+  const newVendor = {
+    id: req.body.id,
     businessName: req.body.businessName,
     vendorCategory: req.body.vendorCategory,
     vendorSubcategory: req.body.vendorSubcategory,
     location: req.body.location,
     hours: req.body.hours,
     menu: req.body.menu,
-    description: req.body.description,
+    description: req.body.description
   }
-  //once we have our DB ready will connect this
-  res.json(body)
+
+  Vendor.findByIdAndUpdate(req.body.id,
+    newVendor,
+    function(err, vendor){
+      if (err){
+        res.json({
+          success:false,
+          vendor: null,
+          message: err
+        })
+      }
+      else if (vendor){
+        res.json({
+          success:true,
+          vendor: newVendor,
+          message: "successfully updated vendor profile"
+        })
+      }
+    }
+  )
 })
 
 app.get("/minibio", (req, res) => {
@@ -127,19 +156,34 @@ app.get("/minibio", (req, res) => {
 });
 
 
-app.get('/vendor-auth', 
-passport.authenticate("jwt", {session: false}), 
-(req, res) => {
-  console.log(req)
-    res.json({
-      success: true,
-      user: {
-        id: req.user.id,
-        username: req.user.username,
-      },
-      message:
-        "logged in - valid JWT token",
-    })
+app.get('/vendor-profile', 
+  passport.authenticate("jwt", {session: false}), 
+  (req, res) => {
+    //if req has no businessName, then is not a vendor account logged in
+    if (!req.user.businessName){
+      res.json({
+        success : false,
+        vendor : null,
+        message : "must be logged in as vendor"
+      })
+    }
+    else{
+      res.json({
+        success: true,
+        vendor: {
+          id: req.user.id,
+          businessName : req.user.businessName,
+          vendorCategory : req.user.vendorCategory,
+          vendorSubcategory: req.user.vendorSubcategory,
+          location: req.user.location,
+          hours: req.user.hours,
+          menu: req.user.menu,
+          description:req.user.description,
+        },
+        message:
+          "logged in - valid JWT token",
+      })
+    }
   }
 )
 

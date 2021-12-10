@@ -15,7 +15,11 @@ const VendorSignUpForm = () => {
     try {
       // create an object with the data we want to send to the server
 
-      let selectedSubcategories = stateSubcategories.filter(subcat => subcat.checked)
+      let selectedSubcategories = []
+      stateSubcategories.filter(subcat => subcat.checked).map(subcatObject =>{
+        selectedSubcategories.push(subcatObject.label)
+      })
+    
       console.log(`selectedSubcategories\n ${selectedSubcategories}`)
 
       const requestData = {
@@ -23,7 +27,7 @@ const VendorSignUpForm = () => {
 
         vendorCategory: e.target.vendorCategory.value,
 
-        vendorSubcategory: JSON.stringify(selectedSubcategories),
+        vendorSubcategory: selectedSubcategories,
 
         location: e.target.location.value,
 

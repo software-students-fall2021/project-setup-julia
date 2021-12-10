@@ -38,29 +38,40 @@ const ColoredLine = ({ color }) => (
 
 function VendorProfile() {
   const [profile, setProfile] = useState({
-    name : "",
-    category: "",
-    subcategories : [],
+    businessName : "",
+    vendorCategory: "",
+    vendorSubcategory : [""],
     location : "",
     hours : "",
     menu : "",
     description: ""
   })
+  const [authorized, setAuthorized] = useState(false);
 
-  try{
-    console.log("fetching vendor information");
-    const fetchVendor = async() =>{
-      const response = await axios.get('http://localhost:5000/vendorprofile')
-      console.log(response.data);
-      setProfile(response.data)
-    }
-    fetchVendor()
-  }
-  catch (err) {
-    // throw an error
-    console.log(err);
-    throw new Error(err);
-  }
+
+  const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
+  console.log(jwtToken)
+  useEffect(() =>{
+    axios.get('http://localhost:5000/vendor-profile', 
+    {headers: {Authorization: `JWT ${jwtToken}`}},
+    )
+    //axios.get('http://localhost:5000/samplevendorprofile')
+    .then(res =>{
+      console.log(res);
+      if (res.data.success){
+        setProfile(res.data.vendor);
+        setAuthorized(true);
+      }
+      else{
+        console.log(res.data.message)
+        setAuthorized(false)
+      }
+    })
+    .catch(err =>{
+      console.log(err)
+    })
+    
+  }, [])
 
   return (
     <>
@@ -78,13 +89,13 @@ function VendorProfile() {
           </Col>
 
           <Col>
-            <h2>Vendor Name</h2>
+            <h2>{profile.businessName}</h2>
             <Button className="btn-link" color="gray" href="/UserFollowing">
               <h3>Followers</h3>
             </Button>
             <br></br>
             <br></br>
-            <Button color="gray" href="/EditVendorProfile">
+            <Button color="gray" href="/EditVendorProfile" disabled={!authorized}>
               Edit Profile
             </Button>
           </Col>
@@ -107,7 +118,7 @@ function VendorProfile() {
         <Row>
           <h4>
             <strong>Category: </strong>
-            {profile.category}
+            {profile.vendorCategory}
           </h4>
         </Row>
         <br></br>
@@ -116,7 +127,7 @@ function VendorProfile() {
            <strong>Subcategory: </strong> 
            <ul>
            {
-            profile.subcategories.map((subcategory) => (
+            profile.vendorSubcategory.map((subcategory) => (
              <li key = {subcategory}>{subcategory}</li>)) 
             }
           </ul>

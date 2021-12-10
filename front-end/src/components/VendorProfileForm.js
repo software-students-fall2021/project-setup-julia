@@ -6,6 +6,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Select from 'react-select'
 import { Profiler } from "react";
+import Swal from 'sweetalert2'
 
 function VendorProfileForm() {
   const [stateSubcategories, setStateSubcategories] = useState([]);
@@ -16,20 +17,25 @@ function VendorProfileForm() {
   const history = useHistory();
 
   useEffect(() =>{
-    /*axios.get('http://localhost:5000/vendor-auth', 
+    axios.get('http://localhost:5000/vendor-profile', 
     {headers: {Authorization: `JWT ${jwtToken}`}},
-    )*/
-    axios.get('http://localhost:5000/samplevendorprofile')
+    )
+    //axios.get('http://localhost:5000/samplevendorprofile')
     .then(res =>{
-      console.log(res);
-      const subcategories = loadSubcategoryOptions(res.data.vendorCategory)
-      res.data.vendorSubcategory.map(selected => {
-          const index = subcategories.findIndex(subcat => subcat.label == selected)
-          subcategories[index].checked = true;
-          console.log(subcategories)
-        })
-      setProfile(res.data);
-      setStateSubcategories(subcategories)
+      //account type authentication already allowed from previous page, but will put for redundancy here
+      if (res.data.success && res.data.vendor){
+        const subcategories = loadSubcategoryOptions(res.data.vendor.vendorCategory)
+        res.data.vendor.vendorSubcategory.map(selected => {
+            const index = subcategories.findIndex(subcat => subcat.label == selected)
+            subcategories[index].checked = true;
+          })
+          console.log(res.data.vendor)
+        setProfile(res.data.vendor);
+        setStateSubcategories(subcategories)
+      }
+      else{
+        console.log(res.data.message)
+      }
     })
     .catch(err =>{
       console.log(err)
@@ -43,12 +49,16 @@ function VendorProfileForm() {
 
     try {
       // create an object with the data we want to send to the server
-      let selectedSubcategories = stateSubcategories.filter(subcat => subcat.checked)
+      let selectedSubcategories = []
+      stateSubcategories.filter(subcat => subcat.checked).map(subcatObject =>{
+        selectedSubcategories.push(subcatObject.label)
+      })
       //console.log(`selectedSubcategories\n ${selectedSubcategories}`)
       const requestData = {
+        id : profile.id,
         businessName: e.target.businessName.value,
         vendorCategory: e.target.vendorCategory.value,
-        vendorSubcategory: JSON.stringify(selectedSubcategories),
+        vendorSubcategory: selectedSubcategories,
         location: e.target.location.value,
         hours: e.target.hours.value,
         menu: e.target.menu.value,
@@ -59,11 +69,19 @@ function VendorProfileForm() {
         "http://localhost:5000/VendorProfileForm",
         requestData
       );
-      console.log(response);
-      console.log("hello");
-
-      //redirect user to the login page
+      console.log(response)
+      if (response.data.success){
+        Swal.fire(
+          'Nice!',
+          "You have successfully updated your vendor profile!",
+          'success'
+        )
+      }
+      else{
+        Swal.fire("Oops!","We were unable to update your profile.", "You'll have to try again.")
+      } 
       history.push("/VendorProfile");
+      
 
       // store the response data into the data state variable
     } catch (err) {
@@ -83,7 +101,6 @@ function VendorProfileForm() {
       //arr.push({name:subcat, checked : false})
       arr.push({value: subcat, label: subcat, checked:false})
     })
-    console.log(arr)
     return arr;
   };
 
@@ -96,7 +113,6 @@ function VendorProfileForm() {
   };
 
   const handleSubcategoryInput = async(inputs) =>{
-    console.log(inputs)
     let arr = stateSubcategories
     arr.map( element => {
       element.checked = false
@@ -105,7 +121,6 @@ function VendorProfileForm() {
       let index = arr.findIndex((subcat)=> subcat.label == input.label)
       arr[index].checked = true
     })
-    console.log(`temp array \n ${JSON.stringify(arr)}`)
     setStateSubcategories(arr)
     
   }
@@ -114,12 +129,12 @@ function VendorProfileForm() {
   return (
     <form onSubmit={handleSubmit}>
       <FormGroup>
-        <Label for="vendorName">Name</Label>
+        <Label for="businessName">Name</Label>
         <Input
-          type="name"
+          type="text"
           name="businessName"
-          id="vendorName"
-          value = {profile.businessName}
+          id="businessName"
+          defaultValue = {profile.businessName}
         />
       </FormGroup>
       <br />
@@ -130,7 +145,7 @@ function VendorProfileForm() {
           name="vendorCategory"
           id="vendorCategory"
           onInput={handleCategoryInput}
-          value = {profile.vendorCategory}
+          defaultValue = {profile.vendorCategory}
         >
           <option>Food</option>
           <option>Produce</option>
@@ -146,13 +161,13 @@ function VendorProfileForm() {
             for="vendorSubcategories"
             name="selectMulti"
             id="vendorSubcategories"
-            value = {profile.vendorSubcategory}
+            defaultValue = {profile.vendorSubcategory}
           >
             Select Subcategories
           </Label>
           <Select isMulti
           name = "subcategoriesMulti"
-          value = {stateSubcategories.filter(subcat => subcat.checked)}
+          defaultValue = {stateSubcategories.filter(subcat => subcat.checked)}
           options = {stateSubcategories.filter(subcat => !subcat.checked)}
           onChange = {handleSubcategoryInput}/>
         </FormGroup>
@@ -163,7 +178,7 @@ function VendorProfileForm() {
           type="textarea"
           name="location"
           id="location"
-          placeholder="W 4th Street across from Stern Business School"
+          defaultValue={profile.location}
         />
       </FormGroup>
       <FormGroup>
@@ -172,7 +187,7 @@ function VendorProfileForm() {
           type="textarea"
           name="hours"
           id="hours"
-          placeholder="Mondays-Saturday 9am-6pm"
+          value={profile.hours}
         />
       </FormGroup>
       <FormGroup>
@@ -181,7 +196,7 @@ function VendorProfileForm() {
           type="textarea"
           name="menu"
           id="menu"
-          placeholder="Green juice - $5"
+          defaultValue={profile.menu}
         />
       </FormGroup>
       <FormGroup>
@@ -190,7 +205,7 @@ function VendorProfileForm() {
           type="textarea"
           name="description"
           id="description"
-          placeholder="Convenient, healthy, delicious green juices made to order by Julia!"
+          defaultValue={profile.description}
         />
       </FormGroup>
       <br />

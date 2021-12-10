@@ -63,6 +63,7 @@ describe('Login Tests', () => {
       .send({
         businessName: "Joe's pizza",
         vendorCategory: 'Pizza',
+        vendorSubcategory: ["Snacks"],
         location: 'Greenwhich Village',
         hours: 'Mon-Friday 9am-9pm',
         menu: 'pizza pizza pizza',
