@@ -25,6 +25,7 @@ import UserSignUp from "views/UserSignUp.js";
 import UserEditProfile from "views/UserEditProfile";
 import VendorProfileForm from "components/VendorProfileForm";
 import VendorProfile from "views/VendorProfile.js";
+import SignUp from "views/SignUp.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -40,7 +41,10 @@ ReactDOM.render(
         render={(props) => <VendorSignUp {...props} />}
       />
       <Route path="/UserSignUp" render={(props) => <UserSignUp {...props} />} />
-
+      <Route
+        path="/SignUp"
+        render={(props) => <SignUp {...props} />}
+      />
       <Route
         path="/UserProfile"
         render={(props) => <UserProfile {...props} />}

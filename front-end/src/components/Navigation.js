@@ -85,35 +85,18 @@ function Navigation() {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#Vendors" active>
-                <i /> Settings
+              <NavLink to="/Login" tag={Link}>
+                <i /> Login
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink to="/EditVendorProfile" tag={Link}>
-                <i /> Vendor Edit Profile
+              <NavLink to="/SignUp" tag={Link}>
+                <i /> Sign Up
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/UserProfile" active>
                 <i /> User Profile
-              </NavLink>
-            </NavItem>
-
-            <NavItem>
-              <NavLink to="/Login" tag={Link}>
-                <i /> Login
-              </NavLink>
-            </NavItem>
-
-            <NavItem>
-              <NavLink to="/VendorSignUp" tag={Link}>
-                <i /> Vendor-SignUp
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/UserSignUp" tag={Link}>
-                <i /> User-SignUp
               </NavLink>
             </NavItem>
             <NavItem>

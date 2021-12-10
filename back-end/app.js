@@ -11,9 +11,7 @@ app.use(morgan('dev'))
 
 const db = require('./db.js')
 const mongoose = require('mongoose')
-const uri =
-  'mongodb+srv://whendorteam:Qy4aTtH4KA2AIOK3@whendor.ds7ji.mongodb.net/Whendor?retryWrites=true&w=majority'
-
+const uri = process.env.MONGOOSE_URI
 mongoose.connect(uri)
 
 const User = mongoose.model('User')
