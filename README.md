@@ -35,3 +35,5 @@ One can contribute to our project through [CONTRIBUTING.md](https://github.com/s
 - [Project Proposal](https://github.com/software-students-fall2021/project-proposal-julia)
 - [App Map and Wireframes](https://github.com/software-students-fall2021/user-experience-design-julia/blob/main/README.md)
 - [Prototype](https://invis.io/7F11VUZD5RBM)
+- deployment: http://143.198.184.212:3000/
+- static deployment: http://143.198.184.212:8080/
