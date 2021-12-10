@@ -183,16 +183,18 @@ describe('Contact Form Tests', () => {
 
 describe('User Edit Tests', () => {
   it('Check that the new user passwords must match', done => {
+    const newPW = Math.floor(Math.random() * 100000).toString()
     chai
       .request(app)
       .post('/user-profile-form')
       .send({
-            newPassword1: 'bobby',
-            newPassword2: 'bobby',
+          id: "61aa550376d9fcba917d0b77",
+          newPassword: newPW,
       })
       .end((err, res) => {
-        res.should.have.status(200) // use 'should' to make BDD-style assertions
-        done() // resolve the Promise that these tests create so mocha can move on
+          console.log(res.body.user.password)
+          res.body.user.password.should.equal(newPW) // use 'should' to make BDD-style assertions
+          done() // resolve the Promise that these tests create so mocha can move on
       })
   })
 })

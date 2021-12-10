@@ -101,7 +101,9 @@ app.get('/', (req, res) => res.send('hello world'))
 app.post('/user-profile-form', (req, res) => {
   const newUser = {
     username: req.body.username,
-    password: req.body.newPassword1,
+    fullname: req.body.fullname,
+    email: req.body.email,
+    password: req.body.newPassword,
   }
   User.findByIdAndUpdate(req.body.id,
     newUser,

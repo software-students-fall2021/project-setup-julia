@@ -56,9 +56,9 @@ const UserProfileForm = () => {
     const requestData = {
       id: profile.id,
       username: e.target.username.value,    //submitted value with name = "username"
-      currentPassword: e.target.password.value,
-      newPassword1: e.target.newPassword1.value,
-      newPassword2: e.target.newPassword2.value
+      fullname: e.target.fullname.value,
+      email: e.target.email.value,
+      newPassword: e.target.newPassword1.value,
     };
 
 
@@ -90,12 +90,16 @@ const UserProfileForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <FormGroup>
-        <Label for="username">Full Name</Label>
+        <Label for="fullname">Full Name</Label>
         <Input type="text" name="fullname" id="fullname" defaultValue = {profile.fullname} />
       </FormGroup>
       <FormGroup>
         <Label for="username">Username</Label>
         <Input type="text" name="username" id="username" defaultValue = {profile.username} />
+      </FormGroup>
+      <FormGroup>
+        <Label for="email">Email</Label>
+        <Input type="text" name="email" id="email" defaultValue = {profile.email} />
       </FormGroup>
       <FormGroup>
         <Label for="password">Current Password</Label>
