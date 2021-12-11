@@ -307,7 +307,7 @@ app.post('/vendorLogin', (req, res) => {
   //console.log(req)
 
   //get the request and assign them to variables
-  const username = req.body.email
+  const username = req.body.username
   const password = req.body.password
 
   //console.log(`${req.body}`)
