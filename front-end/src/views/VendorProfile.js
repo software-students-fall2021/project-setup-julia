@@ -95,9 +95,14 @@ function VendorProfile() {
             </Button>
             <br></br>
             <br></br>
-            <Button color="gray" href="/EditVendorProfile" disabled={!authorized}>
-              Edit Profile
-            </Button>
+            {
+              authorized? 
+                <Button color="gray" href="/EditVendorProfile">
+                Edit Profile
+              </Button>
+              : null
+            }
+
           </Col>
         </Row>
         <br></br>

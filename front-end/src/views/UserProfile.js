@@ -145,9 +145,11 @@ function UserProfile() {
             </Button>
             <br></br>
             <br></br>
-            <Button color="gray" href="/UserEditProfile" disabled = {!authorized}>
-              Edit Profile
-            </Button>
+            {authorized?
+              <Button color="gray" href="/UserEditProfile">
+                Edit Profile
+              </Button>
+            : null}
             <CardText> 
               <small className="text-muted">
                 <p onClick={() => handleReports("test", "test")}>
