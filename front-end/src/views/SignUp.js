@@ -34,10 +34,14 @@ function SignUp() {
 
     const handleSignup = async(event) =>{
         switch (accountType){
-            case "User":
-                history.push('/UserSignUp')
-            case "Vendor":
-                history.push('/VendorSignUp')
+            case "User":{
+              history.push('/UserSignUp')
+              break;
+            }
+            case "Vendor":{
+              history.push('/VendorSignUp')
+              break;
+            }
         }
     }
     
@@ -62,6 +66,7 @@ function SignUp() {
                     id="accountType"
                     onInput={handleInput}
                     >
+                    <option selected>Select an Account Type</option>
                     <option>User</option>
                     <option>Vendor</option>
                     </Input>
