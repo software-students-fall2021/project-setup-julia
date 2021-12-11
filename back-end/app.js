@@ -106,7 +106,7 @@ app.post('/user-profile-form', (req, res) => {
     password: req.body.newPassword,
   }
   User.findByIdAndUpdate(req.body.id,
-    newUser,
+    newUser, {new:true},
     function(err, user){
       if (err){
         res.json({
@@ -164,9 +164,9 @@ app.get("/minibio", (req, res) => {
     if(err){
       console.log(err)
     }
-    else{
+    else if (vendor){
       res.json({
-        name: vendor.fullName,
+        name: vendor.fullname,
         location: vendor.location,
         hours: vendor.hours,
         contactinfo: vendor.email,
@@ -268,7 +268,7 @@ app.post('/userLogin', (req, res) => {
   //console.log(req)
 
   //get the request and assign them to variables
-  const username = req.body.email
+  const username = req.body.username
   const password = req.body.password
 
   //console.log(`${req.body}`)
@@ -359,7 +359,7 @@ app.post('/reportaccount', (req, res) => {
           const newReport = new Report({
             businessName: req.body.reportedID,
             businessIsVendor: req.body.isVendor,
-            reporterNames: [req.body.reporerID],
+            reporterNames: [req.body.reporterID],
             reportCount: 1,
           })
           newReport.save()

@@ -67,7 +67,8 @@ const UserProfileForm = () => {
         "http://localhost:5000/user-profile-form",
         requestData
       );
-
+      
+      console.log(response.data.user)
       if (response.data.success){
         Swal.fire(
           'Nice!',
