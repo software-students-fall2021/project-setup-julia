@@ -24,6 +24,7 @@ jwtOptions.secretOrKey = process.env.JWT_SECRET // an arbitrary string used duri
 // passport can work with many authentication systems... here we are setting some middleware code for using JWT that we'll pass to passport to use
 
 const jwtStrategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
+  
   // console.log("JWT payload received", jwt_payload) // debugging
 
   // load up some mock user data in an array... we only need this because we're mocking the data from a database
@@ -40,7 +41,7 @@ const jwtStrategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
       }
       else if (user) {
         console.log(`ID: ${jwt_payload.id}, user name: ${user.username}`)
-        next(null, user)
+        next(null, user, "User")
       }
       else{
         Vendor.findById(jwt_payload.id, 
@@ -51,7 +52,7 @@ const jwtStrategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
             }
             else if (vendor){
               console.log(`ID: ${jwt_payload.id}, vendor name: ${vendor.username}`)
-              next(null, vendor)
+              next(null, vendor,"Vendor")
             }
           }
         )
