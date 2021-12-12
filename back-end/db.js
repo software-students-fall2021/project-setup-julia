@@ -1,7 +1,6 @@
+require('dotenv').config({ silent: true })
 const mongoose = require("mongoose");
-const uri =
-  "mongodb+srv://whendorteam:Qy4aTtH4KA2AIOK3@whendor.ds7ji.mongodb.net/Whendor?retryWrites=true&w=majority";
-
+const uri = process.env.MONGOOSE_URI
 const User = new mongoose.Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
@@ -12,10 +11,10 @@ const User = new mongoose.Schema({
 const Vendor = new mongoose.Schema({
   businessName: { type: String, required: true },
   vendorCategory: { type: String, required: true },
-  vendorSubcategory: { type: String, required: true },
-  location: { type: String, required: true },
-  hours: { type: String, required: true },
-  menu: { type: String, required: true },
+  vendorSubcategory: [{type: String, required: false, default : undefined }],
+  location: { type: String, required: false },
+  hours: { type: String, required: false },
+  menu: { type: String, required: false },
   description: { type: String, required: true },
   fullName: { type: String, required: true },
   email: { type: String, required: true },

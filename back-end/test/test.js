@@ -24,14 +24,14 @@ describe('Login Tests', () => {
   it('Check that the login backend return the correct response if credentials are accurate', done => {
     chai
       .request(app)
-      .post('/login')
+      .post('/userLogin')
       .send({
-        email: 'tazasahar@gmail.com',
+        username: 'tazrbazr',
         password: 'bobisurUncle',
       })
       .end(function (err, res) {
         //console.log(res)
-        expect(res.text).to.equal("TRUE")
+        expect(res.body.success).to.equal(true)
         done()
       })
   })
@@ -49,7 +49,7 @@ describe('Login Tests', () => {
         password: 'bobisurUncle',
       })
       .end(function (err, res) {
-        expect(res.text).to.equal("TRUE")
+        expect(res.body.success).to.equal('User data added to server')
         done()
       })
   })
@@ -63,6 +63,7 @@ describe('Login Tests', () => {
       .send({
         businessName: "Joe's pizza",
         vendorCategory: 'Pizza',
+        vendorSubcategory: ["Snacks"],
         location: 'Greenwhich Village',
         hours: 'Mon-Friday 9am-9pm',
         menu: 'pizza pizza pizza',
@@ -73,13 +74,14 @@ describe('Login Tests', () => {
         password: 'bobisurUncle',
       })
       .end(function (err, res) {
-        expect(res.text).to.equal("TRUE")
+        expect(res.body.success).to.equal('Vendor data added to server')
         done()
       })
   })
 })
 
 describe('Report Tests', () => {
+  /*
   it('Check that the report backend returns without a proper req parameter.', done => {
     chai
       .request(app)
@@ -89,7 +91,7 @@ describe('Report Tests', () => {
       })
       .end(function (err, res) {
         //console.log(res)
-        expect(res.text).to.equal('Error: Invalid Report')
+        expect(res.body.report).to.equal('Error: Invalid Report')
         done()
       })
   })
@@ -104,8 +106,9 @@ describe('Report Tests', () => {
         reportedID: 'test2',
       })
       .end(function (err, res) {
-        expect(res.text).to.equal('Thank you for reporting this vendor. We will investigate their profile and take appropriate action.')
+        expect(res.body.report).to.equal('Thank you for reporting this vendor. We will investigate their profile and take appropriate action.')
         //TODO: remove "test1" and "test2" from database once database is implemented
+        done()
       })
       
     chai
@@ -117,12 +120,13 @@ describe('Report Tests', () => {
         reportedID: 'test2',
       })
       .end(function (err, res) {
-        expect(res.text).to.equal('Thank you for reporting this user. We will investigate their profile and take appropriate action.')
+        expect(res.body.report).to.equal('Thank you for reporting this user. We will investigate their profile and take appropriate action.')
         //TODO: remove "test1" and "test2" from database once database is implemented
         done()
       })
   })
 
+  */
   it('Check that the report backend behaves as expected when a user repeatedly reports the same account.', done => {
     chai
       .request(app)
@@ -132,18 +136,8 @@ describe('Report Tests', () => {
         reporterID: 'test1',
         reportedID: 'test2',
       })
-      //.catch(assert.equal(0, 1, 'Error: POST request failed!'))
-
-    chai
-      .request(app)
-      .post('/reportaccount')
-      .send({
-        isVendor: true,
-        reporterID: 'test1',
-        reportedID: 'test2',
-      })
       .end(function (err, res) {
-        expect(res.text).to.equal("We're still processing your previous report of this account - please be patient!")
+        expect(res.body.report).to.equal("We're still processing your previous report of this account - please be patient!")
         //TODO: remove "test1" and "test2" from the database once the database is implemented.
         done()
       })
@@ -182,16 +176,19 @@ describe('Contact Form Tests', () => {
 
 describe('User Edit Tests', () => {
   it('Check that the new user passwords must match', done => {
+    const newPW = Math.floor(Math.random() * 100000).toString()
     chai
       .request(app)
-      .post('/UserProfileForm')
+      .post('/user-profile-form')
       .send({
-            newPassword1: 'bobby',
-            newPassword2: 'bobby',
+          id: "61aa550376d9fcba917d0b77",
+          newPassword: newPW,
       })
       .end((err, res) => {
-        res.should.have.status(200) // use 'should' to make BDD-style assertions
-        done() // resolve the Promise that these tests create so mocha can move on
+          //console.log(res.body.user.password)
+          res.body.user.password.should.equal(newPW) // use 'should' to make BDD-style assertions
+          //res.body.success.should.equal(true);
+          done() // resolve the Promise that these tests create so mocha can move on
       })
   })
 })

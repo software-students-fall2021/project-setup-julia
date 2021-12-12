@@ -11,9 +11,7 @@ app.use(morgan('dev'))
 
 const db = require('./db.js')
 const mongoose = require('mongoose')
-const uri =
-  'mongodb+srv://whendorteam:Qy4aTtH4KA2AIOK3@whendor.ds7ji.mongodb.net/Whendor?retryWrites=true&w=majority'
-
+const uri = process.env.MONGOOSE_URI
 mongoose.connect(uri)
 
 const User = mongoose.model('User')
@@ -75,49 +73,100 @@ app.get(
   '/user-profile',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    res.json({
-      success: true,
-      user: {
-        id: req.user._id,
-        username: req.user.username,
-      },
-      message: 'logged in - valid JWT token',
-    })
+    if (req.user.businessName){
+      res.json({
+        success : false,
+        user : null,
+        message : "must be logged in as user"
+      })
+    }
+    else{
+      res.json({
+        success: true,
+        user: {
+          id: req.user._id,
+          email: req.user.email,
+          fullname: req.user.fullname,
+          username: req.user.username,
+          password: req.user.password
+        },
+        message: 'logged in - valid JWT token',
+      })
+    }
   }
 )
 
 app.get('/', (req, res) => res.send('hello world'))
 
 app.post('/user-profile-form', (req, res) => {
-  const body = {
+  const newUser = {
     username: req.body.username,
-    password: req.body.password,
-    newPassword: req.body.newPassword1,
+    fullname: req.body.fullname,
+    email: req.body.email,
+    password: req.body.newPassword,
   }
-  res.json(body)
+  User.findByIdAndUpdate(req.body.id,
+    newUser, {new:true},
+    function(err, user){
+      if (err){
+        res.json({
+          success:false,
+          user:null,
+          message: "unable to update user information"
+        })
+      }
+      else if (user){
+        res.json({
+          success: true,
+          user : user,
+          message : "successfully updated user information"
+        })
+      }
+    })
 })
 
 app.post('/VendorProfileForm', (req, res) => {
-  const body = {
+
+  const newVendor = {
+    id: req.body.id,
     businessName: req.body.businessName,
     vendorCategory: req.body.vendorCategory,
+    vendorSubcategory: req.body.vendorSubcategory,
     location: req.body.location,
     hours: req.body.hours,
     menu: req.body.menu,
-    description: req.body.description,
+    description: req.body.description
   }
-  //once we have our DB ready will connect this
-  res.json(body)
+
+  Vendor.findByIdAndUpdate(req.body.id,
+    newVendor,
+    function(err, vendor){
+      if (err){
+        res.json({
+          success:false,
+          vendor: null,
+          message: err
+        })
+      }
+      else if (vendor){
+        res.json({
+          success:true,
+          vendor: newVendor,
+          message: "successfully updated vendor profile"
+        })
+      }
+    }
+  )
 })
 
 app.get("/minibio", (req, res) => {
-  Vendor.findOne({vendorSubcategory: req.body.vendorSubcategory}, function(err, vendor){
+  Vendor.findOne({vendorCategory: req.body.vendorCategory}, function(err, vendor){
     if(err){
       console.log(err)
     }
-    else{
+    else if (vendor){
       res.json({
-        name: vendor.fullName,
+        name: vendor.fullname,
         location: vendor.location,
         hours: vendor.hours,
         contactinfo: vendor.email,
@@ -127,11 +176,43 @@ app.get("/minibio", (req, res) => {
   })
 });
 
-app.get("/vendorprofile", (req, res) => {
+
+app.get('/vendor-profile', 
+  passport.authenticate("jwt", {session: false}), 
+  (req, res) => {
+    //if req has no businessName, then is not a vendor account logged in
+    if (!req.user.businessName){
+      res.json({
+        success : false,
+        vendor : null,
+        message : "must be logged in as vendor"
+      })
+    }
+    else{
+      res.json({
+        success: true,
+        vendor: {
+          id: req.user.id,
+          businessName : req.user.businessName,
+          vendorCategory : req.user.vendorCategory,
+          vendorSubcategory: req.user.vendorSubcategory,
+          location: req.user.location,
+          hours: req.user.hours,
+          menu: req.user.menu,
+          description:req.user.description,
+        },
+        message:
+          "logged in - valid JWT token",
+      })
+    }
+  }
+)
+
+app.get("/samplevendorprofile", (req, res) => {
   const sampleProfile = {
-    name: "Michael's Meringue Menagerie",
-    category: 'Food',
-    subcategories: ['Snacks', 'European'],
+    businessName: "Michael's Meringue Menagerie",
+    vendorCategory: 'Food',
+    vendorSubcategory: ['Snacks', 'European'],
     location: 'W 4th St across from Starbucks',
     hours: 'Saturday-Sunday 12pm-5pm',
     menu: 'Vanilla Meringue box of 10 - $5',
@@ -187,7 +268,7 @@ app.post('/userLogin', (req, res) => {
   //console.log(req)
 
   //get the request and assign them to variables
-  const username = req.body.email
+  const username = req.body.username
   const password = req.body.password
 
   //console.log(`${req.body}`)
@@ -226,7 +307,7 @@ app.post('/vendorLogin', (req, res) => {
   //console.log(req)
 
   //get the request and assign them to variables
-  const username = req.body.email
+  const username = req.body.username
   const password = req.body.password
 
   //console.log(`${req.body}`)
@@ -278,7 +359,7 @@ app.post('/reportaccount', (req, res) => {
           const newReport = new Report({
             businessName: req.body.reportedID,
             businessIsVendor: req.body.isVendor,
-            reporterNames: [req.body.reporerID],
+            reporterNames: [req.body.reporterID],
             reportCount: 1,
           })
           newReport.save()

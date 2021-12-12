@@ -55,7 +55,10 @@ function UserProfile() {
   const [reporterName, setReporter] = useState(null)
   const [reportedName, setReported] = useState(null)
   const [message, setMessage] = useState("Report Failed!")
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState({
+    username : ""
+  });
+  const [authorized, setAuthorized] = useState(false)
 
   const jwtToken = localStorage.getItem("token") // the JWT token, if we have already received one and stored it in localStorage
   console.log(`JWT token: ${jwtToken}`) // debugging
@@ -67,8 +70,15 @@ function UserProfile() {
     {headers: {Authorization: `JWT ${jwtToken}`}},
     )
     .then(res =>{
-      console.log(res);
-      setProfile(res.data.user);
+      console.log(res)
+      if (res.data.success){
+        setProfile(res.data.user);
+        setAuthorized(true)
+      }
+      else{
+        console.log(res.data.message)
+        setAuthorized(false)
+      }
     })
     .catch(err =>{
       console.log(err)
@@ -98,9 +108,7 @@ function UserProfile() {
     setIsOpen(false);
   }
 
-  useEffect(() => {
-
-    
+  useEffect(() => {    
     if(reportedName !== null)
     {
       axios.post( 'http://localhost:5000/reportaccount', {
@@ -114,6 +122,7 @@ function UserProfile() {
       })
     }
   }, [reporterName])
+
   return (
     <>
       <Navigation />
@@ -136,9 +145,11 @@ function UserProfile() {
             </Button>
             <br></br>
             <br></br>
-            <Button color="gray" href="/UserEditProfile">
-              Edit Profile
-            </Button>
+            {authorized?
+              <Button color="gray" href="/UserEditProfile">
+                Edit Profile
+              </Button>
+            : null}
             <CardText> 
               <small className="text-muted">
                 <p onClick={() => handleReports("test", "test")}>

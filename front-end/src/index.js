@@ -23,6 +23,7 @@ import Subcategories from "views/Subcategories.js";
 import Login from "views/Login.js";
 import VendorSignUp from "views/VendorSignUp.js";
 import UserSignUp from "views/UserSignUp.js";
+import SignUp from "views/SignUp.js";
 import UserEditProfile from "views/UserEditProfile";
 import VendorProfileForm from "components/VendorProfileForm";
 import VendorProfile from "views/VendorProfile.js";
@@ -41,7 +42,10 @@ ReactDOM.render(
         render={(props) => <VendorSignUp {...props} />}
       />
       <Route path="/UserSignUp" render={(props) => <UserSignUp {...props} />} />
-
+      <Route
+        path="/SignUp"
+        render={(props) => <SignUp {...props} />}
+      />
       <Route
         path="/UserProfile"
         render={(props) => <UserProfile {...props} />}

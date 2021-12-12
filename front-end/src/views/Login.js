@@ -34,7 +34,7 @@ export default function Login() {
     try {
       // create an object with the data we want to send to the server
       const requestData = {
-        email: e.target.email.value,
+        username: e.target.username.value,
 
         password: e.target.password.value, // gets the value of the field in the submitted form with name='password',
       }
@@ -97,7 +97,7 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
           <FormGroup>
             <Label for='description'>Username</Label>
-            <Input type='text' name='email' />
+            <Input type='text' name='username' />
           </FormGroup>
           <FormGroup>
             <Label for='description'>Password</Label>
