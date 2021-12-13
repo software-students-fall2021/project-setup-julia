@@ -73,11 +73,12 @@ app.get(
   '/user-profile',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    if (req.user.businessName){
+    console.log(req)
+    if (req.authInfo != "User"){
       res.json({
         success : false,
         user : null,
-        message : "must be logged in as user"
+        message : "You must be logged in as a user to access this page."
       })
     }
     else{
@@ -214,12 +215,11 @@ app.get("/minibio/:subcat", (req, res) => {
 app.get('/vendor-profile', 
   passport.authenticate("jwt", {session: false}), 
   (req, res) => {
-    //if req has no businessName, then is not a vendor account logged in
-    if (!req.user.businessName){
+    if (req.authInfo != "Vendor"){
       res.json({
         success : false,
         vendor : null,
-        message : "must be logged in as vendor"
+        message : "You must be logged in as a vendor to access this page."
       })
     }
     else{
