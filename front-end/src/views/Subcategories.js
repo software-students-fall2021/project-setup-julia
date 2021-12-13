@@ -51,9 +51,11 @@ function Subcategories() {
     hours: "",
     email: "",
   })
+
   let pathnameSections=window.location.pathname.split('/')
   let lastSection=(pathnameSections[pathnameSections.length-1])
-
+  
+  useEffect(() => {
   if(lastSection=="Fast%20Food")
   {
     lastSection="Fast Food"
@@ -402,6 +404,7 @@ function Subcategories() {
       throw new Error(err);
     }
   }
+}, []);
 
   /*try{
     console.log("fetching vendor information");
