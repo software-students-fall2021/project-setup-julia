@@ -437,60 +437,96 @@ function Subcategories() {
     throw new Error(err);
   }*/
 
-  return (
-    <>
-      <Navigation />
-      <About_header />
-      <br />
-      <Container>
-        <Row>
-          <Col style={{textAlign: 'center'}}>
-            <h2 className="title">
-              {lastSection}
-            </h2>
-            <Subcategories_Search_Bar />
-          </Col>
-        </Row>
+  if(bio1 && bio1.fullName && bio1.fullName.length !== 0) {
+    return (
+      <>
+        <Navigation />
+        <About_header />
         <br />
-        <Row>
-          <Col>
-            <Subcategories_Dropdown />
-          </Col>
-        </Row>
+        <Container>
+          <Row>
+            <Col style={{textAlign: 'center'}}>
+              <h2 className="title">
+                {lastSection}
+              </h2>
+              <Subcategories_Search_Bar />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col>
+              <Subcategories_Dropdown />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col>
+              <Vendor_Mini_Bio fullName={bio1.fullName} location={bio1.location} hours={bio1.hours} email={bio1.email} />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col>
+              <Vendor_Mini_Bio fullName={bio2.fullName} location={bio2.location} hours={bio2.hours} email={bio2.email} />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col>
+              <Vendor_Mini_Bio fullName={bio3.fullName} location={bio3.location} hours={bio3.hours} email={bio3.email} />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col>
+              <Vendor_Mini_Bio fullName={bio4.fullName} location={bio4.location} hours={bio4.hours} email={bio4.email} />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col>
+              <Vendor_Mini_Bio />
+            </Col>
+          </Row>
+        </Container>
+        <Footer />
+      </>
+    );
+  }
+  else {
+    return (
+      <>
+        <Navigation />
+        <About_header />
         <br />
-        <Row>
-          <Col>
-            <Vendor_Mini_Bio fullName={bio1.fullName} location={bio1.location} hours={bio1.hours} email={bio1.email} />
-          </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col>
-            <Vendor_Mini_Bio fullName={bio2.fullName} location={bio2.location} hours={bio2.hours} email={bio2.email} />
-          </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col>
-            <Vendor_Mini_Bio fullName={bio3.fullName} location={bio3.location} hours={bio3.hours} email={bio3.email} />
-          </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col>
-            <Vendor_Mini_Bio fullName={bio4.fullName} location={bio4.location} hours={bio4.hours} email={bio4.email} />
-          </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col>
-            <Vendor_Mini_Bio />
-          </Col>
-        </Row>
-      </Container>
-      <Footer />
-    </>
-  );
+        <Container>
+          <Row>
+            <Col style={{textAlign: 'center'}}>
+              <h2 className="title">
+                {lastSection}
+              </h2>
+              <Subcategories_Search_Bar />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col>
+              <Subcategories_Dropdown />
+            </Col>
+          </Row>
+          <br />
+          <Row>
+            <Col>
+              <h3>
+                There are no vendors of this type in our database. Please try again later.
+              </h3>
+            </Col>
+          </Row>
+        </Container>
+        <Footer />
+      </>
+    );
+  }
 }
 
 export default Subcategories;
