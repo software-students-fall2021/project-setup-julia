@@ -160,22 +160,30 @@ app.post('/VendorProfileForm', (req, res) => {
 })
 
 app.get("/minibio", (req, res) => {
-  Vendor.findOne({vendorCategory: req.body.vendorCategory}, function(err, vendor){
+  /*Vendor.findOne({vendorSubcategory: ['Fast Food']}, function(err, vendor){
     if(err){
       console.log(err)
     }
     else if (vendor){
       res.json({
-        name: vendor.fullname,
+        name: vendor.fullName,
         location: vendor.location,
         hours: vendor.hours,
-        contactinfo: vendor.email,
+        contactInfo: vendor.email,
       })
     }
-    
-  })
+  })*/
+  Vendor.find({vendorSubcategory: ['Fast Food']}, {fullName: 1, location: 1, hours: 1, email: 1}, function(err, vendor){
+    if(err)
+    {
+      console.log(err)
+    }
+    else
+    {
+      res.json(vendor)
+    }
+  }).limit(4)
 });
-
 
 app.get('/vendor-profile', 
   passport.authenticate("jwt", {session: false}), 

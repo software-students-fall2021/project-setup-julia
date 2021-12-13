@@ -34,7 +34,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-function Vendor_Mini_Bio() {
+function Vendor_Mini_Bio({fullName, location, hours, email}) {
   let subtitle;
   const [reporterName, setReporter] = useState(null)
   const [reportedName, setReported] = useState(null)
@@ -77,7 +77,7 @@ function Vendor_Mini_Bio() {
     }
   }, [reporterName])
 
-  const [subcat, setSubcat] = useState(0);
+  /*const [subcat, setSubcat] = useState(0);
   useEffect(() => {
     let pathnameSections=window.location.pathname.split('/')
     let lastSection=(pathnameSections[pathnameSections.length-1])
@@ -98,7 +98,7 @@ function Vendor_Mini_Bio() {
 
   const [bio, setBio]=useState({
     name: "",
-    category: "",
+    //category: "",
     location: "",
     hours: "",
     contactinfo: ""
@@ -106,7 +106,7 @@ function Vendor_Mini_Bio() {
   try{
     console.log("fetching vendor information");
     const fetchBio = async() =>{
-      const response = await axios.get('http://localhost:5000/minibio', {vendorSubcategory: subcat})
+      const response = await axios.get('http://localhost:5000/minibio')
       setBio(response.data)
     }
     fetchBio()
@@ -115,18 +115,18 @@ function Vendor_Mini_Bio() {
     // throw an error
     console.log(err);
     throw new Error(err);
-  }
+  }*/
   return (
     <>
       <Row>
         <Card style={{ width: "30rem" }}>
           <CardImg top src="https://picsum.photos/1200/1200"></CardImg>
           <CardBody>
-            <CardTitle>{bio.name}</CardTitle>
+            <CardTitle>{fullName}</CardTitle>
             <CardText>
-              {bio.location} <br />
-              {bio.hours} <br />
-              {bio.contactinfo}
+              {location} <br />
+              {hours} <br />
+              {email}
             </CardText>
             <Button style={{ color: "lightgray" }} href="/VendorProfile">
               <small>Jump to Vendor Profile</small>
