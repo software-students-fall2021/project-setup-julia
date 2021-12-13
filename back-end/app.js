@@ -219,7 +219,7 @@ app.get('/vendor-profile',
       res.json({
         success : false,
         vendor : null,
-        message : "You must be logged in as a vendor to access this page."
+        message : "Logged in as User - Could not load vendor from database"
       })
     }
     else{
