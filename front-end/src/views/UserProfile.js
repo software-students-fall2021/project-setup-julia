@@ -25,6 +25,8 @@ import Navigation from "components/Navigation.js";
 import About_header from "components/About_header.js";
 import Footer from "components/Footer.js";
 import Following_row from "components/Following_row";
+import Swal from "sweetalert2";
+import { useHistory } from 'react-router-dom'
 
 const customStyles = {
   content: {
@@ -51,6 +53,7 @@ const ColoredLine = ({ color }) => (
 );
 
 function UserProfile() {
+  const history = useHistory()
   let subtitle;
   const [reporterName, setReporter] = useState(null)
   const [reportedName, setReported] = useState(null)
@@ -76,8 +79,12 @@ function UserProfile() {
         setAuthorized(true)
       }
       else{
+        Swal.fire(
+          res.data.message
+        )
         console.log(res.data.message)
         setAuthorized(false)
+        history.push("/Login");
       }
     })
     .catch(err =>{

@@ -25,6 +25,8 @@ import Footer from "components/Footer.js";
 import Following_row from "components/Following_row";
 import VendorCarousel from "components/VendorCarousel";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useHistory } from 'react-router-dom'
 
 const ColoredLine = ({ color }) => (
   <hr
@@ -37,6 +39,7 @@ const ColoredLine = ({ color }) => (
 );
 
 function VendorProfile() {
+  const history = useHistory()
   const [profile, setProfile] = useState({
     businessName : "",
     vendorCategory: "",
@@ -63,8 +66,12 @@ function VendorProfile() {
         setAuthorized(true);
       }
       else{
+        Swal.fire(
+          res.data.message
+        )
         console.log(res.data.message)
         setAuthorized(false)
+        history.push("/Login")
       }
     })
     .catch(err =>{
