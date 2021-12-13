@@ -66,12 +66,8 @@ function VendorProfile() {
         setAuthorized(true);
       }
       else{
-        Swal.fire(
-          res.data.message
-        )
-        console.log(res.data.message)
+        
         setAuthorized(false)
-        history.push("/Login")
       }
     })
     .catch(err =>{

@@ -54,6 +54,7 @@ function Subcategories() {
 
   let pathnameSections=window.location.pathname.split('/')
   let lastSection=(pathnameSections[pathnameSections.length-1])
+  
   useEffect(() => {
   if(lastSection=="Fast%20Food")
   {
@@ -66,8 +67,10 @@ function Subcategories() {
         let resLen=response.data.length
         if(resLen=2)
         {
-          setBio1(response.data[0])
-          setBio2(response.data[1])
+          if(bio1 != response.data[0])
+            setBio1(response.data[0])
+          if(bio2 != response.data[1])
+            setBio2(response.data[1])
         }
       }
       fetchBio()

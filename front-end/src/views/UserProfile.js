@@ -55,9 +55,6 @@ const ColoredLine = ({ color }) => (
 function UserProfile() {
   const history = useHistory()
   let subtitle;
-  const [reporterName, setReporter] = useState(null)
-  const [reportedName, setReported] = useState(null)
-  const [message, setMessage] = useState("Report Failed!")
   const [profile, setProfile] = useState({
     username : ""
   });
@@ -93,43 +90,6 @@ function UserProfile() {
     
   }, [])
 
-
-  const handleReports = (reporter, reported) => {
-    console.log("The report function has been run!")
-    setReported(reported)
-    setReporter(reporter)
-  } ;
-
-  const [modalIsOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  useEffect(() => {    
-    if(reportedName !== null)
-    {
-      axios.post( 'http://localhost:5000/reportaccount', {
-          isVendor: false,
-          reporterID: reporterName,
-          reportedID: reportedName
-      })
-      .then((res) => {
-          setMessage(res.data)
-          openModal()
-      })
-    }
-  }, [reporterName])
-
   return (
     <>
       <Navigation />
@@ -157,13 +117,6 @@ function UserProfile() {
                 Edit Profile
               </Button>
             : null}
-            <CardText> 
-              <small className="text-muted">
-                <p onClick={() => handleReports("test", "test")}>
-                  Report Profile
-                </p>
-              </small>
-            </CardText>
           </Col>
         </Row>
         <ColoredLine color="gray" />
@@ -179,23 +132,6 @@ function UserProfile() {
       </Container>
       <Footer />
 
-      <div>
-      <Modal
-        isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Report"
-      >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>
-          {message}
-        </h2>
-        <br></br>
-        <button onClick={closeModal}>
-          Okay
-        </button>
-      </Modal>
-    </div>
     </>
   );
 }
