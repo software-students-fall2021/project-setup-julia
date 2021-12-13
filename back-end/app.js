@@ -378,6 +378,7 @@ app.post('/vendorLogin', (req, res) => {
 
 app.post('/reportaccount', (req, res) => {
   let reportMsg = 'Error: Invalid Report'
+  console.log(req)
   if (
     req.hasOwnProperty('body') &&
     req.body.hasOwnProperty('reportedID') &&

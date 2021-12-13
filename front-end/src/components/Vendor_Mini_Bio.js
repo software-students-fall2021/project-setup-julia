@@ -33,6 +33,7 @@ const customStyles = {
 };
 
 Modal.setAppElement('#root');
+const jwtToken = localStorage.getItem("token")
 
 function Vendor_Mini_Bio({fullName, location, hours, email}) {
   let subtitle;
@@ -40,9 +41,22 @@ function Vendor_Mini_Bio({fullName, location, hours, email}) {
   const [reportedName, setReported] = useState(null)
   const [message, setMessage] = useState("Report Failed!")
 
-  const handleReports = (reporter, reported) => {
-    setReported(reported)
-    setReporter(reporter)
+  const handleReports = (reported) => {
+    axios.get('http://localhost:5000/user-profile', 
+    {headers: {Authorization: `JWT ${jwtToken}`}},
+    )
+    .then(res =>{
+      if (res.data.success){
+        console.log(res.data.user.fullname)
+        console.log(reported)
+        setReporter(res.data.user.fullname)
+        setReported(reported)
+      }
+      else{
+        setReporter(null)
+        setReported(reported)
+      }
+    })
   } ;
 
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -75,7 +89,7 @@ function Vendor_Mini_Bio({fullName, location, hours, email}) {
           openModal()
       })
     }
-  }, [reporterName])
+  }, [reportedName])
 
   /*const [subcat, setSubcat] = useState(0);
   useEffect(() => {
@@ -132,7 +146,7 @@ function Vendor_Mini_Bio({fullName, location, hours, email}) {
               <small>Jump to Vendor Profile</small>
             </Button>
             <CardText style={{textAlign: 'right'}}>
-              <p onClick={() => handleReports("test", "test")}>
+              <p onClick={() => handleReports(fullName)}>
                 Report Vendor
               </p>
             </CardText>

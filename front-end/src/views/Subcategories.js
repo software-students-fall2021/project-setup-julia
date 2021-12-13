@@ -53,6 +53,7 @@ function Subcategories() {
   })
   let pathnameSections=window.location.pathname.split('/')
   let lastSection=(pathnameSections[pathnameSections.length-1])
+
   if(lastSection=="Fast%20Food")
   {
     lastSection="Fast Food"
@@ -60,12 +61,14 @@ function Subcategories() {
       console.log("fetching vendor information");
       const fetchBio = async() =>{
         const response = await axios.get('http://localhost:5000/minibio/fastFood')
-        console.log(response)
+        //console.log(response)
         let resLen=response.data.length
         if(resLen=2)
         {
-          setBio1(response.data[0])
-          setBio2(response.data[1])
+          if(bio1 != response.data[0])
+            setBio1(response.data[0])
+          if(bio2 != response.data[1])
+            setBio2(response.data[1])
         }
       }
       fetchBio()
@@ -399,6 +402,7 @@ function Subcategories() {
       throw new Error(err);
     }
   }
+
   /*try{
     console.log("fetching vendor information");
     const fetchBio = async() =>{
