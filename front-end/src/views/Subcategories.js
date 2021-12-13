@@ -27,38 +27,6 @@ import Vendor_Mini_Bio from "components/Vendor_Mini_Bio.js";
 
 
 function Subcategories() {
-  /*const [title, setTitle] = useState(0);
-  useEffect(() => {
-    let pathnameSections=window.location.pathname.split('/')
-    let lastSection=(pathnameSections[pathnameSections.length-1])
-    if(lastSection=="Fast%20Food")
-    {
-      lastSection="Fast Food"
-    }
-    if(lastSection=="Latin%20American")
-    {
-      lastSection="Latin American"
-    }
-    if(lastSection=="Subcategories")
-    {
-      lastSection="Other"
-    }
-    setTitle(lastSection);
-  })*/
-  let pathnameSections=window.location.pathname.split('/')
-  let lastSection=(pathnameSections[pathnameSections.length-1])
-  if(lastSection=="Fast%20Food")
-  {
-    lastSection="Fast Food"
-  }
-  if(lastSection=="Latin%20American")
-  {
-    lastSection="Latin American"
-  }
-  if(lastSection=="Subcategories")
-  {
-    lastSection="Other"
-  }
   const [bio1, setBio1]=useState({
     fullName: "",
     location: "",
@@ -71,13 +39,395 @@ function Subcategories() {
     hours: "",
     email: "",
   })
-  try{
+  const [bio3, setBio3]=useState({
+    fullName: "",
+    location: "",
+    hours: "",
+    email: "",
+  })
+  const [bio4, setBio4]=useState({
+    fullName: "",
+    location: "",
+    hours: "",
+    email: "",
+  })
+  let pathnameSections=window.location.pathname.split('/')
+  let lastSection=(pathnameSections[pathnameSections.length-1])
+  if(lastSection=="Fast%20Food")
+  {
+    lastSection="Fast Food"
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/fastFood')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=2)
+        {
+          setBio1(response.data[0])
+          setBio2(response.data[1])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Latin%20American")
+  {
+    lastSection="Latin American"
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/latinAmerican')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=2)
+        {
+          setBio1(response.data[0])
+          setBio2(response.data[1])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Subcategories")
+  {
+    lastSection="Other"
+  }
+  if(lastSection=="Snacks")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Snacks')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=2)
+        {
+          setBio1(response.data[0])
+          setBio2(response.data[1])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Breakfast")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Breakfast')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=2)
+        {
+          setBio1(response.data[0])
+          setBio2(response.data[1])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Drinks")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Drinks')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Asian")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Asian')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="African")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/African')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="European")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/European')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Fruits")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Fruits')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Vegetables")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Vegetables')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Jewelry")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Jewelry')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Masks")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Masks')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Hair")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Hair')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Makeup")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Makeup')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Paintings")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Paintings')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  if(lastSection=="Photography")
+  {
+    try{
+      console.log("fetching vendor information");
+      const fetchBio = async() =>{
+        const response = await axios.get('http://localhost:5000/minibio/Photography')
+        console.log(response)
+        let resLen=response.data.length
+        if(resLen=1)
+        {
+          setBio1(response.data[0])
+        }
+      }
+      fetchBio()
+    }
+    catch (err) {
+      // throw an error
+      console.log(err);
+      throw new Error(err);
+    }
+  }
+  /*try{
     console.log("fetching vendor information");
     const fetchBio = async() =>{
-      const response = await axios.get('http://localhost:5000/minibio')
+      const response = await axios.get('http://localhost:5000/minibio/Snacks')
       console.log(response)
-      setBio1(response.data[0])
-      setBio2(response.data[1])
+      let resLen=response.data.length
+      if(resLen=1)
+      {
+        setBio1(response.data[0])
+      }
+      else if(resLen=2)
+      {
+        setBio1(response.data[0])
+        setBio2(response.data[1])
+      }
+      else if(resLen=3)
+      {
+        setBio1(response.data[0])
+        setBio2(response.data[1])
+        setBio3(response.data[2])
+      }
+      else if(resLen=4)
+      {
+        setBio1(response.data[0])
+        setBio2(response.data[1])
+        setBio3(response.data[2])
+        setBio4(response.data[3])
+      }
+      
     }
     fetchBio()
   }
@@ -85,7 +435,7 @@ function Subcategories() {
     // throw an error
     console.log(err);
     throw new Error(err);
-  }
+  }*/
 
   return (
     <>
@@ -122,13 +472,13 @@ function Subcategories() {
         <br />
         <Row>
           <Col>
-            <Vendor_Mini_Bio />
+            <Vendor_Mini_Bio fullName={bio3.fullName} location={bio3.location} hours={bio3.hours} email={bio3.email} />
           </Col>
         </Row>
         <br />
         <Row>
           <Col>
-            <Vendor_Mini_Bio />
+            <Vendor_Mini_Bio fullName={bio4.fullName} location={bio4.location} hours={bio4.hours} email={bio4.email} />
           </Col>
         </Row>
         <br />

@@ -159,21 +159,47 @@ app.post('/VendorProfileForm', (req, res) => {
   )
 })
 
-app.get("/minibio", (req, res) => {
-  /*Vendor.findOne({vendorSubcategory: ['Fast Food']}, function(err, vendor){
-    if(err){
-      console.log(err)
-    }
-    else if (vendor){
-      res.json({
-        name: vendor.fullName,
-        location: vendor.location,
-        hours: vendor.hours,
-        contactInfo: vendor.email,
-      })
-    }
-  })*/
-  Vendor.find({vendorSubcategory: ['Fast Food']}, {fullName: 1, location: 1, hours: 1, email: 1}, function(err, vendor){
+app.get("/minibio/:subcat", (req, res) => {
+  if(req.params.subcat==="fastFood")
+  {
+    Vendor.find({vendorSubcategory: ['Fast Food']}, {fullName: 1, location: 1, hours: 1, email: 1}, function(err, vendor){
+      if(err)
+      {
+        console.log(err)
+      }
+      else
+      {
+        res.json(vendor)
+      }
+    }).limit(4)
+  }
+  else if(req.params.subcat==="latinAmerican")
+  {
+    Vendor.find({vendorSubcategory: ['Latin American']}, {fullName: 1, location: 1, hours: 1, email: 1}, function(err, vendor){
+      if(err)
+      {
+        console.log(err)
+      }
+      else
+      {
+        res.json(vendor)
+      }
+    }).limit(4)
+  }
+  else
+  {
+    Vendor.find({vendorSubcategory: [req.params.subcat]}, {fullName: 1, location: 1, hours: 1, email: 1}, function(err, vendor){
+      if(err)
+      {
+        console.log(err)
+      }
+      else
+      {
+        res.json(vendor)
+      }
+    }).limit(4)
+  }
+  /*Vendor.find({vendorSubcategory: [req.params.subcat]}, {fullName: 1, location: 1, hours: 1, email: 1}, function(err, vendor){
     if(err)
     {
       console.log(err)
@@ -182,7 +208,7 @@ app.get("/minibio", (req, res) => {
     {
       res.json(vendor)
     }
-  }).limit(4)
+  }).limit(4)*/
 });
 
 app.get('/vendor-profile', 
