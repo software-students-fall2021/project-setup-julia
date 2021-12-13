@@ -51,8 +51,10 @@ function Subcategories() {
     hours: "",
     email: "",
   })
+
   let pathnameSections=window.location.pathname.split('/')
   let lastSection=(pathnameSections[pathnameSections.length-1])
+  useEffect(() => {
   if(lastSection=="Fast%20Food")
   {
     lastSection="Fast Food"
@@ -60,7 +62,7 @@ function Subcategories() {
       console.log("fetching vendor information");
       const fetchBio = async() =>{
         const response = await axios.get('http://localhost:5000/minibio/fastFood')
-        console.log(response)
+        //console.log(response)
         let resLen=response.data.length
         if(resLen=2)
         {
@@ -399,6 +401,8 @@ function Subcategories() {
       throw new Error(err);
     }
   }
+}, []);
+
   /*try{
     console.log("fetching vendor information");
     const fetchBio = async() =>{
