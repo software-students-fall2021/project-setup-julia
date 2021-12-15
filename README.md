@@ -1,5 +1,8 @@
 # Project Repository: Whendor
 
+## Link to deployed website
+http://143.198.184.212:3000/http://143.198.184.212:3000/
+
 ## Description
 Whendor is a web app designed to increase the reach that street vendors have. Whendor doesn't just take food vendors into account, it makes sure that all types of street vendors have a voice. Street vendors will be able to create a profile where they can post their location, business hours, and contact information. Once a profile is created, it will be available for customers to view and decide if they'd like to buy from a vendor. Customers are able to create an account and then browse for vendors by category (the type of product that a vendor sells).
 
