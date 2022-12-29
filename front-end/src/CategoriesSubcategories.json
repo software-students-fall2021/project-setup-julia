@@ -1,0 +1,23 @@
+{    
+    "Food" : 
+        ["Fast Food", 
+        "Snacks", 
+        "Breakfast", 
+        "Drinks", 
+        "Asian", 
+        "African", 
+        "Latin American",
+        "European"],
+    "Produce" : 
+        ["Fruits",
+        "Vegetables"],
+    "Accessories" : 
+        ["Jewelry", 
+        "Masks",
+        "Hair",
+        "Makeup"],
+    "Art" : 
+        ["Paintings",
+        "Photography"],
+    "Other" : []    
+}
