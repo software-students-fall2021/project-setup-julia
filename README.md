@@ -4,6 +4,7 @@
 https://www.youtube.com/watch?v=tkcdx7XMR0w&ab_channel=ShuGao
 
 ## Link to deployed website
+[deprecated]
 http://143.198.184.212:3000/http://143.198.184.212:3000/
 
 ## Description
